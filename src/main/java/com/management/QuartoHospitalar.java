@@ -44,4 +44,13 @@ public class QuartoHospitalar {
         this.numPacientes = numPacientes;
         return true;
     }
+
+    public String toString(){
+        String texto = "";
+        texto = texto + "ID do quarto: "+this.getIdQuarto()+", \n";
+        texto = texto + "Nome do quarto: "+this.getNomeQuarto()+", \n";
+        texto = texto + "Número de leitos: "+this.getNumLeitos()+", \n";
+        texto = texto + "Número de pacientes: "+this.getNumPacientes()+", \n";
+        return texto;
+    }
 }
