@@ -1,5 +1,7 @@
 package com.management;
 
+import com.management.ItemFuncionarioPaciente.Item;
+
 import java.util.ArrayList;
 
 public class Equipe {
@@ -45,5 +47,41 @@ public class Equipe {
 
     public void addFuncionario(Funcionario umFuncionario){
         this.funcionarios.add(umFuncionario);
+    }
+
+    public String toString(){
+        String texto = "nomeEquipe: "+this.getNomeEquipe()+", \n";
+        texto = texto + "ID da equipe: "+this.getIdEquipe()+", \n";
+        texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n";
+        for(Item it : this.funcionarios){
+            texto = texto + it.toString();
+        }
+        return texto;
+    }
+
+    public void imprimeFuncionarios(){
+        System.out.println("--- Todas os Funcionarios ---");
+        for (Funcionario umFuncionario : this.funcionarios){
+            System.out.println(umFuncionario.toString());
+        }
+    }
+
+
+    public void imprimeFuncionarios(int id){
+        System.out.println(" --- Funcionário por id ---");
+        for(Funcionario umFuncionario: this.funcionarios){
+            if(umFuncionario.getId() == id){
+                System.out.println(umFuncionario.toString());
+            }
+        }
+    }
+
+    public void imprimeFuncionarios(String nome){
+        System.out.println(" --- Funcionário por Nome ---");
+        for(Funcionario umFuncionario: this.funcionarios){
+            if(umFuncionario.getNome() == nome){
+                System.out.println(umFuncionario.toString());
+            }
+        }
     }
 }

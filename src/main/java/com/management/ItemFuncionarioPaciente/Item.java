@@ -38,4 +38,12 @@ public class Item {
         this.telefone = telefone;
         return true;
     }
+
+    public String toString(){
+        String texto = "";
+        texto =  texto + "ID: " + this.getId()+", \n";
+        texto =  texto + "Nome: " + this.getNome()+", \n";
+        texto =  texto + "Telefone: " + this.getTelefone()+", \n";
+        return texto;
+    }
 }
