@@ -1,4 +1,5 @@
 package com.management;
+import java.util.ArrayList;
 
 public class Equipamento {
     private String nomeEquipamento;
@@ -31,5 +32,12 @@ public class Equipamento {
         }
         this.nomeEquipamento = nomeEquipamento;
         return true;
+    }
+
+    public String toString(){
+        String texto = "";
+        texto = texto + "Nome do equipamento: "+ this.getNomeEquipamento() + ", \n";
+        texto = texto + "Quantidade de Equipamentos: "+ this.getQntEquipamento() + ", \n";
+        return texto;
     }
 }

@@ -7,12 +7,14 @@ public class LeitoHospitalar {
     private String equipamento;
     private boolean ocupado;
     private ArrayList<Paciente> pacientes;
+    private ArrayList<Equipamento> equipamentos;
 
     public LeitoHospitalar ( boolean ocupado, int idLeito, String equipamento){
         this.ocupado = ocupado;
         this.idLeito = idLeito;
         this.equipamento = equipamento;
         this.pacientes = new ArrayList<Paciente>();
+        this.equipamentos = new ArrayList<Equipamento>();
     }
 
     public int getIdLeito(){
@@ -44,6 +46,7 @@ public class LeitoHospitalar {
     public void addPaciente(Paciente umPaciente){
         this.pacientes.add(umPaciente);
     }
+    public void addEquipamento(Equipamento equipamentos){this.equipamentos.add(equipamentos);}
 
     public void imprimePacientes(){
         System.out.println("--- Todas os pacientes ---");
@@ -85,6 +88,12 @@ public class LeitoHospitalar {
             if(umPaciente.getIsolamento() == isolamento){
                 System.out.println(umPaciente.toString());
             }
+        }
+    }
+    public void imprimeEquipamento(String nomeEquipamento){
+        System.out.println("--- Todos os Equipamentos  ---");
+        for(Equipamento umEquipamento : this.equipamentos){
+            System.out.println(umEquipamento.toString());
         }
     }
     //ADICIONAR METODOS IMPRIME LeitoHospitalar():String
