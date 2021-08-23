@@ -45,6 +45,14 @@ public class UnidadeHospitalar {
         return true;
     }
 
+    public String toString(){
+        String texto = "";
+        texto = texto + "ID da unidade Hospitalar: "+this.getIdUnidadeHospitalar()+", \n";
+        texto = texto + "Nome da unidade: "+this.getNomeUnidade()+", \n";
+        texto = texto + "Especialidade da unidade: "+this.getEspecialidade()+", \n";
+        return texto;
+    }
+
     public void addQuartoHospitalar(QuartoHospitalar umQuartoHospitalar){
         this.quartoHospitalars.add(umQuartoHospitalar);
     }
@@ -100,4 +108,5 @@ public class UnidadeHospitalar {
                 System.out.println(umaEquipe.toString());
         }
     }
+
 }

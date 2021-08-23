@@ -5,7 +5,7 @@ public class Item {
     protected int id;
     protected String telefone;
 
-    public Item(String nome, int id, String telefone){
+    public Item(String nome, int id, String telefone) {
         this.nome = nome;
         this.id = id;
         this.telefone = telefone;

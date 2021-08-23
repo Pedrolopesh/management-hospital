@@ -36,8 +36,8 @@ public class Main {
 
         unit1.addQuartoHospitalar(quart1);
 
-        unit1.imprimeEquipe();
-        unit1.imprimeQuarto();
+//        unit1.imprimeEquipe();
+//        unit1.imprimeQuarto();
 
     }
 }

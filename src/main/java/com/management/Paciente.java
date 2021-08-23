@@ -1,6 +1,8 @@
 package com.management;
 
-public class Paciente {
+import com.management.ItemFuncionarioPaciente.Item;
+
+public class Paciente extends Item {
     private int idade;
     private double altura;
     private double peso;
@@ -9,7 +11,8 @@ public class Paciente {
     private boolean isolamento;
     private String necessidade;
 
-    public Paciente(int idade, double altura, double peso, boolean comorbidade, String diagnostico, boolean isolamento, String necessidade){
+    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, boolean comorbidade, String diagnostico, boolean isolamento, String necessidade){
+        super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
         this.peso = peso;
@@ -108,5 +111,19 @@ public class Paciente {
         }
         this.necessidade = necessidade;
         return true;
+    }
+
+    @Override
+    public String toString(){
+        String texto = "";
+        texto = texto + super.toString();
+        texto = texto + "Idade: " + this.getIdade() + ", \n";
+        texto = texto + "Altura: " + this.getAltura() + ", \n";
+        texto = texto + "Peso: " + this.getPeso() + ", \n";
+        texto = texto + "Comorbidades: " + this.getComorbidade() + ", \n";
+        texto = texto + "Diagnóstico: " + this.getDiagnostico() + ", \n";
+        texto = texto + "Isolamento: " + this.getIsolamento() + ", \n";
+        texto = texto + "Necessidades: " + this.getNecessidade() + ", \n";
+        return texto;
     }
 }

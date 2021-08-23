@@ -1,16 +1,20 @@
 package com.management;
 
+import java.util.ArrayList;
+
 public class QuartoHospitalar {
     private String nomeQuarto;
     private int idQuarto;
     private int numLeitos;
     private int numPacientes;
+    private ArrayList<LeitoHospitalar> leitoHospitalares;
 
     public QuartoHospitalar(String nomeQuarto, int idQuarto, int numLeitos, int numPacientes){
         this.nomeQuarto = nomeQuarto;
         this.idQuarto = idQuarto;
         this.numLeitos = numLeitos;
         this.numPacientes = numPacientes;
+        this.leitoHospitalares = new ArrayList<LeitoHospitalar>();
     }
 
     public String getNomeQuarto(){
