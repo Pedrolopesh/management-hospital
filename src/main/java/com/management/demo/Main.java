@@ -14,7 +14,7 @@ public class Main {
         Equipe eqp2 = new Equipe("Equipe 2", 2,"Alisson");
 
 //        Funcionario fun1 = new Funcionario("Pedro", 1, "2");
-//        Funcionario fun2 = new Funcionario("Alisson", 2, "1");
+//        Funcionario fun2 = new Funcionario("Alison", 2, "1");
 
 //        fun1.setCargo("Medico Geral");
 //        fun2.setCargo("Medico Cirurgião");
@@ -24,7 +24,7 @@ public class Main {
 
 //        eqp1.imprimeFuncionarios();
 //        eqp1.imprimeFuncionarios(1);
-//        eqp1.imprimeFuncionarios("Alisson");
+//        eqp1.imprimeFuncionarios("Alison");
 
 
         UnidadeHospitalar unit1 = new UnidadeHospitalar("D", 1, "Cirurgia");
@@ -38,6 +38,8 @@ public class Main {
 
 //        unit1.imprimeEquipe();
 //        unit1.imprimeQuarto();
+
+
 
     }
 }
