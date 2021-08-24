@@ -1,10 +1,12 @@
-package com.management;
+package com.management.UI;
+
+import com.management.Funcionario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FuncionarioUI extends JFrame {
+public class FuncionarioFormUI extends JFrame {
     private JPanel mainPanel;
     private JLabel nomeFuncionario;
     private JTextField nomeFuncionarioTextField;
@@ -14,7 +16,7 @@ public class FuncionarioUI extends JFrame {
     private JTextField cargoFuncionarioTextField;
     private JButton confirmarButton;
 
-    public FuncionarioUI(String title){
+    public FuncionarioFormUI(String title){
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +36,7 @@ public class FuncionarioUI extends JFrame {
     }
 
     public static void main(String[] args){
-        JFrame frame = new FuncionarioUI("Hello World");
+        JFrame frame = new FuncionarioFormUI("Hello World");
         frame.setVisible(true);
     }
 }
