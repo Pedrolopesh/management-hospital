@@ -9,18 +9,19 @@ import java.util.ArrayList;
 
 public class FuncionarioFormUI extends JFrame {
     private JPanel mainPanel;
-    private JTextField tfNomeFuncionario;
-    private JTextField tftelefoneFuncionario;
     private JLabel cargoFuncionario;
     private JLabel lbNomeFuncionario;
     private JLabel lbTelefoneFuncionario;
-    private JTextField cargoFuncionarioTextField;
+
+    private JTextField tfNomeFuncionario;
+    private JTextField tftelefoneFuncionario;
+    private JTextField tfCargoFuncionario;
     private JButton confirmarButton;
-    private PrincipalUI sistemaPrincipalUI;
+    private PrincipalUI mainUI;
     private ArrayList<Funcionario> funcionarios;
 
     public FuncionarioFormUI(PrincipalUI principalUIParam){
-        this.sistemaPrincipalUI = principalUIParam;
+        this.mainUI = principalUIParam;
         this.funcionarios = new ArrayList<Funcionario>();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -30,37 +31,25 @@ public class FuncionarioFormUI extends JFrame {
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                int nextid = 0;
-//                System.out.println("Funciona até agora ?");
-//                for (Funcionario umFuncionario : funcionarios){
-//                    if(funcionarios.size() == 0){
-//                        nextid++;
-//                    }else{
-//                        nextid = funcionarios.size() + 1;
-//                    }
-//                    //TODO
-//                    //não funciona ainda pois precisa cadastrar funcionários
-//                    System.out.println("Ultimo id:" + funcionarios.size());
-//                    System.out.println(umFuncionario.getId());
-//                }
-//                System.out.println(nextid);
+                int nextid = generateId();
                 String nome = tfNomeFuncionario.getText();
                 String telefone = tftelefoneFuncionario.getText();
+                String cargo = tfCargoFuncionario.getText();
 
-                Funcionario newFuncionario = new Funcionario(nome, 1, telefone);
+                Funcionario newFuncionario = new Funcionario(nome, nextid, telefone);
+                newFuncionario.setCargo(cargo);
                 salvaFuncionario(newFuncionario);
-//                principalUI.getFuncionarios().add(newFuncionario);
-
             }
         });
     }
 
-    private void salvaFuncionario(Funcionario newFuncionario) {
-        this.sistemaPrincipalUI.getFuncionarios().add(newFuncionario);
+    private int generateId(){
+        int nextid = this.mainUI.getFuncionarios().size() + 1;;
+        return nextid;
     }
 
-//    public static void main(String[] args){
-//        JFrame frame = new FuncionarioFormUI();
-//        frame.setVisible(true);
-//    }
+    private void salvaFuncionario(Funcionario newFuncionario) {
+        this.mainUI.getFuncionarios().add(newFuncionario);
+    }
+
 }

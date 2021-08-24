@@ -28,9 +28,6 @@
             </properties>
             <border type="none"/>
             <children>
-              <vspacer id="66868">
-                <constraints/>
-              </vspacer>
               <component id="b6f9c" class="javax.swing.JMenuItem" binding="miListarFuncionarios">
                 <constraints/>
                 <properties>
@@ -45,8 +42,7 @@
               </component>
             </children>
           </grid>
-          <grid id="74eee" class="javax.swing.JMenu" binding="mnEquipe" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="74eee" class="javax.swing.JMenu" binding="mnEquipe" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -54,7 +50,26 @@
               <text value="Equipes"/>
             </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="3c083" class="javax.swing.JMenuItem" binding="miCriarEquipe">
+                <constraints/>
+                <properties>
+                  <text value="CriarEquipe"/>
+                </properties>
+              </component>
+              <component id="4f1db" class="javax.swing.JMenuItem" binding="miListarEquipe">
+                <constraints/>
+                <properties>
+                  <text value="Listar equipes"/>
+                </properties>
+              </component>
+              <component id="5c1ef" class="javax.swing.JMenuItem" binding="miAddFuncionario">
+                <constraints/>
+                <properties>
+                  <text value="Adicionar funcionário a uma equipe"/>
+                </properties>
+              </component>
+            </children>
           </grid>
           <hspacer id="45233">
             <constraints>

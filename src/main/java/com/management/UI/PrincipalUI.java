@@ -2,6 +2,9 @@ package com.management.UI;
 
 import com.management.Equipe;
 import com.management.Funcionario;
+import com.management.UI.Equipe.EquipeAddFuncionario;
+import com.management.UI.Equipe.EquipeFormUI;
+import com.management.UI.Equipe.EquipeListaUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +18,9 @@ public class PrincipalUI extends JFrame {
     private JMenu mnEquipe;
     private JMenuItem miListarFuncionarios;
     private JMenuItem miCriarFuncinario;
+    private JMenuItem miCriarEquipe;
+    private JMenuItem miListarEquipe;
+    private JMenuItem miAddFuncionario;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private PrincipalUI principalUI;
@@ -27,6 +33,7 @@ public class PrincipalUI extends JFrame {
         this.setContentPane(mainPanel);
         this.pack();
 
+        //CRIAR FUNCIONARIO
         miCriarFuncinario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,32 +41,77 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //LISTA DE FUNCIONARIOS
         miListarFuncionarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 transferToChieldFuncionarioListaUI();
             }
         });
+
+        //CRIAR EQUIPE
+        miCriarEquipe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldEquipeFormUI();
+            }
+        });
+
+        //LISTAR Equipes
+        miListarEquipe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldEquipeListaUI();
+            }
+        });
+
+        //ADICIONAR FUNCIONARIO A UMA EQUIPE
+        miAddFuncionario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldEquipeAddFuncionario();
+            }
+        });
     }
 
+    //CRIAR FUNCIONARIO
     private void transferToChieldFuncionarioFormUI(){
         FuncionarioFormUI funcionarioFormUI = new FuncionarioFormUI(this);
         funcionarioFormUI.setVisible(true);
     }
 
+    //LISTA DE FUNCIONARIOS
     private void transferToChieldFuncionarioListaUI(){
         FuncionarioListaUI funcionarioListaUI = new FuncionarioListaUI(this);
         funcionarioListaUI.setVisible(true);
     }
 
+    //CRIAR EQUIPE
+    private void chieldEquipeFormUI(){
+        EquipeFormUI equipeFormUI = new EquipeFormUI(this);
+        equipeFormUI.setVisible(true);
+    }
+
+    //LISTA DE EQUIPES
+    private void chieldEquipeListaUI(){
+        EquipeListaUI equipeListaUI = new EquipeListaUI(this);
+        equipeListaUI.setVisible(true);
+    }
+
+    //ADICIONAR FUNCIONARIO A UMA EQUIPE
+    private void chieldEquipeAddFuncionario(){
+        EquipeAddFuncionario equipeAddFuncionario = new EquipeAddFuncionario(this);
+        equipeAddFuncionario.setVisible(true);
+    }
+
     public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;
     }
+    public ArrayList<Equipe> getEquipes(){
+        return this.equipes;
+    }
 
     public static void main(String[] args){
-
-//        Funcionario funcionario1 = new Funcionario("", 2, "");
-
         JFrame frame = new PrincipalUI();
         frame.setVisible(true);
     }
