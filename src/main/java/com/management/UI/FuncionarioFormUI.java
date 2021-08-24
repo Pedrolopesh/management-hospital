@@ -15,11 +15,12 @@ public class FuncionarioFormUI extends JFrame {
     private JLabel cargoFuncionario;
     private JTextField cargoFuncionarioTextField;
     private JButton confirmarButton;
+    private PrincipalUI functionariosUI;
 
-    public FuncionarioFormUI(String title){
-        super(title);
+    public FuncionarioFormUI(PrincipalUI principalUI){
+        this.functionariosUI = principalUI;
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
 
@@ -30,13 +31,14 @@ public class FuncionarioFormUI extends JFrame {
                 //validar campos que foram preenchidos
                 // se campos estiverem validos, fazer sets
                 // se sets derem certo, mostrar mensagem que deu certo!
+                System.out.println();
                 Funcionario funcionario = new Funcionario(nomeFuncionario.getText(), 1, telefoneFuncionario.getText());
             }
         });
     }
 
     public static void main(String[] args){
-        JFrame frame = new FuncionarioFormUI("Hello World");
+        JFrame frame = new FuncionarioFormUI();
         frame.setVisible(true);
     }
 }
