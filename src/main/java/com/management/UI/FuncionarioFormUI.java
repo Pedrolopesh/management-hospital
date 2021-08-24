@@ -5,20 +5,23 @@ import com.management.Funcionario;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class FuncionarioFormUI extends JFrame {
     private JPanel mainPanel;
-    private JLabel nomeFuncionario;
-    private JTextField nomeFuncionarioTextField;
-    private JTextField telefoneFuncionarioTextField;
-    private JLabel telefoneFuncionario;
+    private JTextField tfNomeFuncionario;
+    private JTextField tftelefoneFuncionario;
     private JLabel cargoFuncionario;
+    private JLabel lbNomeFuncionario;
+    private JLabel lbTelefoneFuncionario;
     private JTextField cargoFuncionarioTextField;
     private JButton confirmarButton;
-    private PrincipalUI functionariosUI;
+    private PrincipalUI sistemaPrincipalUI;
+    private ArrayList<Funcionario> funcionarios;
 
-    public FuncionarioFormUI(PrincipalUI principalUI){
-        this.functionariosUI = principalUI;
+    public FuncionarioFormUI(PrincipalUI principalUIParam){
+        this.sistemaPrincipalUI = principalUIParam;
+        this.funcionarios = new ArrayList<Funcionario>();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
@@ -27,18 +30,37 @@ public class FuncionarioFormUI extends JFrame {
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
-                //validar campos que foram preenchidos
-                // se campos estiverem validos, fazer sets
-                // se sets derem certo, mostrar mensagem que deu certo!
-                System.out.println();
-                Funcionario funcionario = new Funcionario(nomeFuncionario.getText(), 1, telefoneFuncionario.getText());
+//                int nextid = 0;
+//                System.out.println("Funciona até agora ?");
+//                for (Funcionario umFuncionario : funcionarios){
+//                    if(funcionarios.size() == 0){
+//                        nextid++;
+//                    }else{
+//                        nextid = funcionarios.size() + 1;
+//                    }
+//                    //TODO
+//                    //não funciona ainda pois precisa cadastrar funcionários
+//                    System.out.println("Ultimo id:" + funcionarios.size());
+//                    System.out.println(umFuncionario.getId());
+//                }
+//                System.out.println(nextid);
+                String nome = tfNomeFuncionario.getText();
+                String telefone = tftelefoneFuncionario.getText();
+
+                Funcionario newFuncionario = new Funcionario(nome, 1, telefone);
+                salvaFuncionario(newFuncionario);
+//                principalUI.getFuncionarios().add(newFuncionario);
+
             }
         });
     }
 
-    public static void main(String[] args){
-        JFrame frame = new FuncionarioFormUI();
-        frame.setVisible(true);
+    private void salvaFuncionario(Funcionario newFuncionario) {
+        this.sistemaPrincipalUI.getFuncionarios().add(newFuncionario);
     }
+
+//    public static void main(String[] args){
+//        JFrame frame = new FuncionarioFormUI();
+//        frame.setVisible(true);
+//    }
 }

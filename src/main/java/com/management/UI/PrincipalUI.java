@@ -17,9 +17,9 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCriarFuncinario;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
+    private PrincipalUI principalUI;
 
-    public PrincipalUI(String title){
-        super(title);
+    public PrincipalUI(){
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
 
@@ -30,29 +30,37 @@ public class PrincipalUI extends JFrame {
         miCriarFuncinario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FuncionarioFormUI funcionarioFormUI = new FuncionarioFormUI();
-                funcionarioFormUI.setVisible(true);
+                transferToChieldFuncionarioFormUI();
             }
         });
 
         miListarFuncionarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FuncionarioListaUI funcionarioListaUI = new FuncionarioListaUI();
-                funcionarioListaUI.setVisible(true);
+                transferToChieldFuncionarioListaUI();
             }
         });
     }
 
-    public ArrayList getFuncionarios(){
+    private void transferToChieldFuncionarioFormUI(){
+        FuncionarioFormUI funcionarioFormUI = new FuncionarioFormUI(this);
+        funcionarioFormUI.setVisible(true);
+    }
+
+    private void transferToChieldFuncionarioListaUI(){
+        FuncionarioListaUI funcionarioListaUI = new FuncionarioListaUI(this);
+        funcionarioListaUI.setVisible(true);
+    }
+
+    public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;
     }
 
     public static void main(String[] args){
 
-        Funcionario funcionario1 = new Funcionario("", 2, "");
+//        Funcionario funcionario1 = new Funcionario("", 2, "");
 
-        JFrame frame = new PrincipalUI("Tela Principal");
+        JFrame frame = new PrincipalUI();
         frame.setVisible(true);
     }
 }
