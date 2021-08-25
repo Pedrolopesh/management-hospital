@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class EquipamentoFormUI {
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField txNomeEquipamento;
+    private JTextField txNumeroEquipamentos;
     private JButton btnConfirmar;
 }

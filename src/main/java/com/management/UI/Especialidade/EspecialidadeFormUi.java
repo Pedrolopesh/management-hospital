@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class EspecialidadeFormUi {
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField txNameEspec;
+    private JTextField txIdEspec;
     private JButton ctnConfirmar;
 }
