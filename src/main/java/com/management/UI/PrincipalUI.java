@@ -135,7 +135,7 @@ public class PrincipalUI extends JFrame {
         miListaEspecialidades.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                listaEspecialidadeUI();
             }
         });
 
@@ -219,7 +219,10 @@ public class PrincipalUI extends JFrame {
 
     //ESPECIALIDADES - LISTA ESPECIALIDADES
     public void listaEspecialidadeUI(){
-        EspecialidadeListaUI especialidadeListaUI = new EspecialidadeListaUI();
+        EspecialidadeListaUI especialidadeListaUI = new EspecialidadeListaUI(this);
+
+        //TORNA PAGINA VISIVEL
+        especialidadeListaUI.setVisible(true);
     }
 
     //QUARTO - CRIAR QUARTO
