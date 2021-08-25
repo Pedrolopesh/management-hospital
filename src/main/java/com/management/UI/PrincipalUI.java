@@ -4,6 +4,7 @@ import com.management.*;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
+import com.management.UI.Especialidade.EspecialidadeFormUi;
 import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
@@ -140,6 +141,12 @@ public class PrincipalUI extends JFrame {
         });
 
         //ESPECIALIDADES - CRIAR ESPECIALIDADE
+        miCriarEspecialidade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                criarEspecilidade();
+            }
+        });
 
         //QUARTO - CRIAR QUARTO
         miCriarQuarto.addActionListener(new ActionListener() {
@@ -225,6 +232,12 @@ public class PrincipalUI extends JFrame {
         especialidadeListaUI.setVisible(true);
     }
 
+    //ESPECIALIDADES - CRIAR ESPECIALIDADE
+    public void criarEspecilidade(){
+        EspecialidadeFormUi especialidadeFormUi = new EspecialidadeFormUi(this);
+        especialidadeFormUi.setVisible(true);
+    }
+
     //QUARTO - CRIAR QUARTO
     public void chieldQuartoCriarUI(){
         QuartoFormUI quartoFormUI = new QuartoFormUI(this);
@@ -250,7 +263,6 @@ public class PrincipalUI extends JFrame {
     }
 
     public void criarEspecialidades(){
-        System.out.println("ESPECIALIDADES CRIADAS");
         Especialidade especialidade1 = new Especialidade("Dermatologia", 1);
         Especialidade especialidade2 = new Especialidade("Cardiologia", 2);
         Especialidade especialidade3 = new Especialidade("Neurologia", 3);
@@ -266,7 +278,6 @@ public class PrincipalUI extends JFrame {
     }
 
     public void criarEquipoamentos(){
-        System.out.println("EQUIPAMENTOS CRIADAS");
         Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1);
         Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2);
         Equipamento equipamento3 = new Equipamento("Oxímetro", 3);
