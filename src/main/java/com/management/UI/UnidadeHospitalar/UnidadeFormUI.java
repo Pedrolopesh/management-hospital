@@ -53,4 +53,7 @@ public class UnidadeFormUI extends JFrame {
         this.mainUI.getUnidadeHospitalares().add(newUnidadeHospitalar);
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
