@@ -49,7 +49,7 @@ public class LeitoHospitalar {
     public void addEquipamento(Equipamento equipamentos){this.equipamentos.add(equipamentos);}
 
     public void imprimePacientes(){
-        System.out.println("--- Todas os pacientes ---");
+        System.out.println("--- Todos os pacientes ---");
         for (Paciente umPaciente : this.pacientes){
             System.out.println(umPaciente.toString());
         }

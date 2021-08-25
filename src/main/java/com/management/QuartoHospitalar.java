@@ -49,6 +49,15 @@ public class QuartoHospitalar {
         return true;
     }
 
+    public void addLeitoHospitalar(LeitoHospitalar leitoHospitalares){
+       this.leitoHospitalares.add(leitoHospitalares);
+    }
+    public void imprimeLeitoHospitalar(){
+        System.out.println("--- Todos os Leito ---");
+        for (LeitoHospitalar leitoHospitalares : this.leitoHospitalares){
+            System.out.println(leitoHospitalares.toString());
+        }
+    }
     public String toString(){
         String texto = "";
         texto = texto + "ID do quarto: "+this.getIdQuarto()+", \n";

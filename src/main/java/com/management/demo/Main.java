@@ -1,9 +1,6 @@
 package com.management.demo;
 
-import com.management.Equipe;
-import com.management.Funcionario;
-import com.management.QuartoHospitalar;
-import com.management.UnidadeHospitalar;
+import com.management.*;
 
 public class Main {
 
@@ -31,14 +28,20 @@ public class Main {
 
         QuartoHospitalar quart1 = new QuartoHospitalar("Quarto da unidade D", 1, 3, 0);
 
+        LeitoHospitalar leit1 = new LeitoHospitalar(false,1111,"respirador");
+
+        System.out.println(leit1);
         unit1.addEquipe(eqp1);
         unit1.addEquipe(eqp2);
 
         unit1.addQuartoHospitalar(quart1);
-
 //        unit1.imprimeEquipe();
 //        unit1.imprimeQuarto();
 
+        Equipamento respirador = new Equipamento("Respirador", 3);
+        respirador.toString();
+        System.out.println(respirador);
+        leit1.addEquipamento(respirador);
 
 
 

@@ -1,5 +1,4 @@
 package com.management;
-import java.util.ArrayList;
 
 public class Equipamento {
     private String nomeEquipamento;
