@@ -1,6 +1,7 @@
 package com.management.UI.UnidadeHospitalar;
 
 import com.management.Equipe;
+import com.management.Especialidade;
 import com.management.UI.PrincipalUI;
 import com.management.UnidadeHospitalar;
 
@@ -12,7 +13,7 @@ public class UnidadeFormUI extends JFrame {
     private JLabel labelEspecialidade;
     private JLabel labelNomeUnidade;
     private JTextField tfNomeUnidade;
-    private JComboBox<Equipe> cbEspecialidades;
+    private JComboBox<Especialidade> cbEspecialidades;
     private JButton salvarButton;
     private JPanel mainPanel;
     private PrincipalUI mainUI;
@@ -24,8 +25,8 @@ public class UnidadeFormUI extends JFrame {
         this.setContentPane(mainPanel);
         this.pack();
 
-        for(Equipe umaEquipe: this.mainUI.getEquipes()){
-            cbEspecialidades.addItem(umaEquipe);
+        for(Especialidade umaEspecialidade: this.mainUI.getEspecialidades()){
+            cbEspecialidades.addItem(umaEspecialidade);
         }
 
         salvarButton.addActionListener(new ActionListener() {
@@ -33,20 +34,23 @@ public class UnidadeFormUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int nextid = generateId();
                 String nomeUnidade = tfNomeUnidade.getText();
-                Equipe selectEquipe = cbEspecialidades.getItemAt(cbEspecialidades.getSelectedIndex());
+                Especialidade selectEquipe = cbEspecialidades.getItemAt(cbEspecialidades.getSelectedIndex());
+                System.out.println("selectEquipe: " + selectEquipe.getNomeEspecialidade());
+                String especialidade = selectEquipe.getNomeEspecialidade();
 
-                UnidadeHospitalar newUnidadeHospitalar = new UnidadeHospitalar(nomeUnidade, nextid, selectEquipe.getNomeEquipe());
-                salvarEquipe(newUnidadeHospitalar);
+                UnidadeHospitalar newUnidadeHospitalar = new UnidadeHospitalar(nomeUnidade, nextid);
+                salvarUnidade(newUnidadeHospitalar, especialidade);
             }
         });
     }
-
-    private void salvarEquipe(UnidadeHospitalar newUnidadeHospitalar){
-        this.mainUI.getUnidadeHospitalares().add(newUnidadeHospitalar);
-    }
-
     private int generateId(){
         int nextid = this.mainUI.getUnidadeHospitalares().size() + 1;
         return nextid;
     }
+
+    private void salvarUnidade(UnidadeHospitalar newUnidadeHospitalar, String selectEquipe){
+        newUnidadeHospitalar.setEspecialidade(selectEquipe);
+        this.mainUI.getUnidadeHospitalares().add(newUnidadeHospitalar);
+    }
+
 }

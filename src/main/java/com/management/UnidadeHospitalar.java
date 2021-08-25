@@ -8,13 +8,26 @@ public class UnidadeHospitalar {
     private String especialidade;
     private ArrayList<Equipe> equipes;
     private ArrayList<QuartoHospitalar> quartoHospitalars;
+    private ArrayList<Especialidade> especialidades;
 
-    public UnidadeHospitalar(String nomeUnidade, int idUnidadeHospitalar, String especialidade){
+    public UnidadeHospitalar(String nomeUnidade, int idUnidadeHospitalar){
         this.nomeUnidade = nomeUnidade;
         this.idUnidadeHospitalar = idUnidadeHospitalar;
-        this.especialidade = especialidade;
         this.equipes = new ArrayList<Equipe>();
         this.quartoHospitalars = new ArrayList<QuartoHospitalar>();
+        this.especialidades = new ArrayList<Especialidade>();
+    }
+
+    public String getEspecialidade(){
+        return this.especialidade;
+    }
+
+    public boolean setEspecialidade(String especialidade){
+        if(especialidade.isEmpty()){
+            return false;
+        }
+        this.especialidade = especialidade;
+        return true;
     }
 
     public int getIdUnidadeHospitalar() {
@@ -25,10 +38,6 @@ public class UnidadeHospitalar {
         return nomeUnidade;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
     public boolean setNomeUnidade(String nomeUnidade) {
         if(nomeUnidade.isEmpty()){
             return false;
@@ -37,28 +46,16 @@ public class UnidadeHospitalar {
         return true;
     }
 
-    public boolean setEspecialidade(String especialidade) {
-        if(especialidade.isEmpty()){
-            return false;
-        }
-        this.especialidade = especialidade;
-        return true;
-    }
-
-    public String toString(){
-        String texto = "";
-        texto = texto + "ID da unidade Hospitalar: "+this.getIdUnidadeHospitalar()+", \n";
-        texto = texto + "Nome da unidade: "+this.getNomeUnidade()+", \n";
-        texto = texto + "Especialidade da unidade: "+this.getEspecialidade()+", \n";
-        return texto;
-    }
-
     public void addQuartoHospitalar(QuartoHospitalar umQuartoHospitalar){
         this.quartoHospitalars.add(umQuartoHospitalar);
     }
 
     public void addEquipe(Equipe umaEquipe){
         this.equipes.add(umaEquipe);
+    }
+
+    public void addEspecialidades(Especialidade especialidades){
+        this.especialidades.add(especialidades);
     }
 
     public void imprimeQuarto(){
@@ -109,4 +106,12 @@ public class UnidadeHospitalar {
         }
     }
 
+    @Override
+    public String toString() {
+        String texto = "";
+        texto = texto + "ID: " + this.getIdUnidadeHospitalar() + ", \n";
+        texto = texto + "Nome Unidade: " + this.getNomeUnidade() + ", \n";
+        texto = texto + "Especialidade: " + this.getEspecialidade() + ", \n";
+        return texto;
+    }
 }

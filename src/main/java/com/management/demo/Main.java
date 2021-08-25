@@ -24,7 +24,7 @@ public class Main {
 //        eqp1.imprimeFuncionarios("Alisson");
 
 
-        UnidadeHospitalar unit1 = new UnidadeHospitalar("D", 1, "Cirurgia");
+        UnidadeHospitalar unit1 = new UnidadeHospitalar("D", 1);
 
         QuartoHospitalar quart1 = new QuartoHospitalar("Quarto da unidade D", 1, 3, 0);
 

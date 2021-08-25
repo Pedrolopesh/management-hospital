@@ -1,6 +1,7 @@
 package com.management.UI;
 
 import com.management.Equipe;
+import com.management.Especialidade;
 import com.management.Funcionario;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
@@ -8,6 +9,7 @@ import com.management.UI.Equipe.EquipeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
 import com.management.UI.UnidadeHospitalar.UnidadeFormUI;
+import com.management.UI.UnidadeHospitalar.UnidadeListaUI;
 import com.management.UnidadeHospitalar;
 
 import javax.swing.*;
@@ -30,13 +32,17 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miListarUnidades;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
+    private ArrayList<Especialidade> especialidades;
     private ArrayList<UnidadeHospitalar> unidadeHospitalares;
     private PrincipalUI principalUI;
 
     public PrincipalUI(){
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
+        this.unidadeHospitalares = new ArrayList<UnidadeHospitalar>();
+        this.especialidades = new ArrayList<Especialidade>();
 
+        criarEspecialidades();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
         //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
@@ -46,7 +52,7 @@ public class PrincipalUI extends JFrame {
         this.setContentPane(mainPanel);
         this.pack();
 
-        //CRIAR FUNCIONARIO
+        //FUNCIONARIOS - CRIAR FUNCIONARIO
         miCriarFuncinario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +60,7 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //LISTA DE FUNCIONARIOS
+        //FUNCIONARIOS - LISTA DE FUNCIONARIOS
         miListarFuncionarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +68,7 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //CRIAR EQUIPE
+        //EQUIPE - CRIAR EQUIPE
         miCriarEquipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +76,7 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //LISTAR Equipes
+        //EQUIPE - LISTAR EQUIPES
         miListarEquipe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,7 +84,7 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //ADICIONAR FUNCIONARIO A UMA EQUIPE
+        //EQUIPE - ADICIONAR FUNCIONARIO A UMA EQUIPE
         miAddFuncionario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,11 +92,19 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //CRIAR UNIDADE HOSPITALR
+        //UNIDADE - CRIAR UNIDADE HOSPITALR
         miCriarUnidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldUnidadeFormUI();
+            }
+        });
+
+        //UNIDADE - LISTA UNIDADES HOSPITALARES
+        miListarUnidades.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldUnidadeListaUI();
             }
         });
     }
@@ -131,6 +145,26 @@ public class PrincipalUI extends JFrame {
         unidadeFormUI.setVisible(true);
     }
 
+    //LISTA UNIDADES HOSPITALARES
+    public void chieldUnidadeListaUI(){
+        UnidadeListaUI unidadeListaUI = new UnidadeListaUI(this);
+        unidadeListaUI.setVisible(true);
+    }
+
+    public void criarEspecialidades(){
+        System.out.println("ESPECIALIDADES CRIADAS");
+        Especialidade especialidade1 = new Especialidade("Dermatologia", 1);
+        Especialidade especialidade2 = new Especialidade("Cardiologia", 2);
+        Especialidade especialidade3 = new Especialidade("Neurologia", 3);
+        Especialidade especialidade4 = new Especialidade("Reumatologia", 4);
+        Especialidade especialidade5 = new Especialidade("Cirurgia torácica", 5);
+        this.especialidades.add(especialidade1);
+        this.especialidades.add(especialidade2);
+        this.especialidades.add(especialidade3);
+        this.especialidades.add(especialidade4);
+        this.especialidades.add(especialidade5);
+    }
+
     public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;
     }
@@ -140,6 +174,7 @@ public class PrincipalUI extends JFrame {
     public ArrayList<UnidadeHospitalar> getUnidadeHospitalares(){
         return this.unidadeHospitalares;
     }
+    public ArrayList<Especialidade> getEspecialidades(){ return  this.especialidades; }
 
     public static void main(String[] args){
         JFrame frame = new PrincipalUI();
