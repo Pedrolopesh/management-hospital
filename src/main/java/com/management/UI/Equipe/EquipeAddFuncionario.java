@@ -22,13 +22,14 @@ public class EquipeAddFuncionario extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
 
+        for (Funcionario umFuncionaro: this.mainUI.getFuncionarios()){
+            cbFuncionarios.addItem(umFuncionaro);
+        }
+
         for (Equipe umaEquipe: this.mainUI.getEquipes()){
             cbEquipes.addItem(umaEquipe);
         }
 
-        for (Funcionario umFuncionaro: this.mainUI.getFuncionarios()){
-            cbFuncionarios.addItem(umFuncionaro);
-        }
 
         confirmarButton.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +44,10 @@ public class EquipeAddFuncionario extends JFrame{
     }
 
     private void EquipeAddFuncionarioConfirmar(Funcionario funcionarioSelecionado, Equipe equipeSelecionada){
-        this.mainUI.getEquipes();
+        for (Equipe umaEquipe: this.mainUI.getEquipes()){
+            if(umaEquipe.getIdEquipe() == equipeSelecionada.getIdEquipe()){
+                umaEquipe.addFuncionario(funcionarioSelecionado);
+            }
+        }
     }
 }

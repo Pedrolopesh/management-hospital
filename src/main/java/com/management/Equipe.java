@@ -50,20 +50,27 @@ public class Equipe {
     }
 
     public String toString(){
-        String texto = "nomeEquipe: "+this.getNomeEquipe()+", \n";
+        String texto = "";
         texto = texto + "ID da equipe: "+this.getIdEquipe()+", \n";
+        texto = texto + "nomeEquipe: "+this.getNomeEquipe()+", \n";
         texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n";
+//        for(Item it : this.funcionarios){
+//            texto = texto + it.toString();
+//        }
+        return texto;
+    }
+
+    public String imprimeFuncionarios(){
+        String texto = "";
+        texto = texto + "--- Informações das Equipes --- \n";
+        texto = texto + "ID da equipe: "+this.getIdEquipe()+", \n";
+        texto = texto + "nomeEquipe: "+this.getNomeEquipe()+", \n";
+        texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n \n";
+        texto = texto + "--- Funcionarios da equipe --- \n";
         for(Item it : this.funcionarios){
             texto = texto + it.toString();
         }
         return texto;
-    }
-
-    public void imprimeFuncionarios(){
-        System.out.println("--- Todas os Funcionarios ---");
-        for (Funcionario umFuncionario : this.funcionarios){
-            System.out.println(umFuncionario.toString());
-        }
     }
 
 

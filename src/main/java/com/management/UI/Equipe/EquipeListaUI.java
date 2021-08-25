@@ -18,7 +18,7 @@ public class EquipeListaUI extends JFrame {
         this.pack();
 
         for(Equipe umaEquipe: this.mainUI.getEquipes()){
-            txTextShow.append(umaEquipe.toString());
+            txTextShow.append(umaEquipe.imprimeFuncionarios());
             txTextShow.append("\n");
         }
     }
