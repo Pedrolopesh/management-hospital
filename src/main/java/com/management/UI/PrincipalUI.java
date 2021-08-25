@@ -37,6 +37,12 @@ public class PrincipalUI extends JFrame {
     private JMenu mnLeitos;
     private JMenuItem miListaLeitos;
     private JMenuItem miCriarLeito;
+    private JMenu mnPacientes;
+    private JMenuItem miCadastrarPaciente;
+    private JMenuItem miListaPaciente;
+    private JMenuItem miLeitoAddPaciente;
+    private JMenuItem miListaEquipamentos;
+    private JMenuItem miCadastrarEquipamento;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
