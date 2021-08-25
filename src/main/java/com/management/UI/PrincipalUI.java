@@ -4,6 +4,7 @@ import com.management.*;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
+import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
 import com.management.UI.LeitoHospitalar.LeitoFormUI;
@@ -43,6 +44,8 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miLeitoAddPaciente;
     private JMenuItem miListaEquipamentos;
     private JMenuItem miCadastrarEquipamento;
+    private JMenuItem miListaEspecialidades;
+    private JMenuItem miCriarEspecialidade;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -128,6 +131,16 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //ESPECIALIDADES - LISTA ESPECIALIDADES
+        miListaEspecialidades.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        //ESPECIALIDADES - CRIAR ESPECIALIDADE
+
         //QUARTO - CRIAR QUARTO
         miCriarQuarto.addActionListener(new ActionListener() {
             @Override
@@ -204,6 +217,11 @@ public class PrincipalUI extends JFrame {
         unidadeListaUI.setVisible(true);
     }
 
+    //ESPECIALIDADES - LISTA ESPECIALIDADES
+    public void listaEspecialidadeUI(){
+        EspecialidadeListaUI especialidadeListaUI = new EspecialidadeListaUI();
+    }
+
     //QUARTO - CRIAR QUARTO
     public void chieldQuartoCriarUI(){
         QuartoFormUI quartoFormUI = new QuartoFormUI(this);
@@ -235,11 +253,13 @@ public class PrincipalUI extends JFrame {
         Especialidade especialidade3 = new Especialidade("Neurologia", 3);
         Especialidade especialidade4 = new Especialidade("Reumatologia", 4);
         Especialidade especialidade5 = new Especialidade("Cirurgia torácica", 5);
+        Especialidade especialidade6 = new Especialidade("Outra", 6);
         this.especialidades.add(especialidade1);
         this.especialidades.add(especialidade2);
         this.especialidades.add(especialidade3);
         this.especialidades.add(especialidade4);
         this.especialidades.add(especialidade5);
+        this.especialidades.add(especialidade6);
     }
 
     public void criarEquipoamentos(){
