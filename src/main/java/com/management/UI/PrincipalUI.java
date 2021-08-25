@@ -7,6 +7,7 @@ import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
+import com.management.UI.UnidadeHospitalar.UnidadeFormUI;
 import com.management.UnidadeHospitalar;
 
 import javax.swing.*;
@@ -24,6 +25,9 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCriarEquipe;
     private JMenuItem miListarEquipe;
     private JMenuItem miAddFuncionario;
+    private JMenu mnUnidadeHospitalar;
+    private JMenuItem miCriarUnidade;
+    private JMenuItem miListarUnidades;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<UnidadeHospitalar> unidadeHospitalares;
@@ -33,7 +37,12 @@ public class PrincipalUI extends JFrame {
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
 
+        //DEFINE COMO A JANELA VAI SER FECHADA
+        //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
+        //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //VAI COLOCAR EM TELA TODOS OS COMPONENTES
         this.setContentPane(mainPanel);
         this.pack();
 
@@ -76,6 +85,14 @@ public class PrincipalUI extends JFrame {
                 chieldEquipeAddFuncionario();
             }
         });
+
+        //CRIAR UNIDADE HOSPITALR
+        miCriarUnidade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldUnidadeFormUI();
+            }
+        });
     }
 
     //CRIAR FUNCIONARIO
@@ -106,6 +123,12 @@ public class PrincipalUI extends JFrame {
     private void chieldEquipeAddFuncionario(){
         EquipeAddFuncionario equipeAddFuncionario = new EquipeAddFuncionario(this);
         equipeAddFuncionario.setVisible(true);
+    }
+
+    //CRIAR UNIDADE HOSPITALR
+    private void chieldUnidadeFormUI(){
+        UnidadeFormUI unidadeFormUI = new UnidadeFormUI(this);
+        unidadeFormUI.setVisible(true);
     }
 
     public ArrayList<Funcionario> getFuncionarios(){
