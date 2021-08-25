@@ -1,6 +1,7 @@
-package com.management.UI;
+package com.management.UI.Funcionario;
 
 import com.management.Funcionario;
+import com.management.UI.PrincipalUI;
 
 import javax.swing.*;
 

@@ -5,6 +5,9 @@ import com.management.Funcionario;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
+import com.management.UI.Funcionario.FuncionarioFormUI;
+import com.management.UI.Funcionario.FuncionarioListaUI;
+import com.management.UnidadeHospitalar;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +26,7 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miAddFuncionario;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
+    private ArrayList<UnidadeHospitalar> unidadeHospitalares;
     private PrincipalUI principalUI;
 
     public PrincipalUI(){
@@ -109,6 +113,9 @@ public class PrincipalUI extends JFrame {
     }
     public ArrayList<Equipe> getEquipes(){
         return this.equipes;
+    }
+    public ArrayList<UnidadeHospitalar> getUnidadeHospitalares(){
+        return this.unidadeHospitalares;
     }
 
     public static void main(String[] args){
