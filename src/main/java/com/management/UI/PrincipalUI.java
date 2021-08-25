@@ -1,16 +1,17 @@
 package com.management.UI;
 
-import com.management.Equipe;
-import com.management.Especialidade;
-import com.management.Funcionario;
+import com.management.*;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
+import com.management.UI.LeitoHospitalar.LeitoFormUI;
+import com.management.UI.LeitoHospitalar.LeitoListaUI;
+import com.management.UI.QuartoHospitalar.QuartoFormUI;
+import com.management.UI.QuartoHospitalar.QuartoListaUI;
 import com.management.UI.UnidadeHospitalar.UnidadeFormUI;
 import com.management.UI.UnidadeHospitalar.UnidadeListaUI;
-import com.management.UnidadeHospitalar;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,10 +31,19 @@ public class PrincipalUI extends JFrame {
     private JMenu mnUnidadeHospitalar;
     private JMenuItem miCriarUnidade;
     private JMenuItem miListarUnidades;
+    private JMenu mnQuarto;
+    private JMenuItem miCriarQuarto;
+    private JMenuItem miListarQuarto;
+    private JMenu mnLeitos;
+    private JMenuItem miListaLeitos;
+    private JMenuItem miCriarLeito;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
     private ArrayList<UnidadeHospitalar> unidadeHospitalares;
+    private ArrayList<QuartoHospitalar> quartoHospitalars;
+    private ArrayList<LeitoHospitalar> leitoHospitalares;
+    private ArrayList<Equipamento> equipamentos;
     private PrincipalUI principalUI;
 
     public PrincipalUI(){
@@ -41,8 +51,12 @@ public class PrincipalUI extends JFrame {
         this.equipes = new ArrayList<Equipe>();
         this.unidadeHospitalares = new ArrayList<UnidadeHospitalar>();
         this.especialidades = new ArrayList<Especialidade>();
+        this.quartoHospitalars = new ArrayList<QuartoHospitalar>();
+        this.leitoHospitalares = new ArrayList<LeitoHospitalar>();
+        this.equipamentos = new ArrayList<Equipamento>();
 
         criarEspecialidades();
+        criarEquipoamentos();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
         //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
@@ -107,48 +121,105 @@ public class PrincipalUI extends JFrame {
                 chieldUnidadeListaUI();
             }
         });
+
+        //QUARTO - CRIAR QUARTO
+        miCriarQuarto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldQuartoCriarUI();
+            }
+        });
+
+        //QUARTO - LISTAR QUARTOS
+        miListarQuarto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldQuartoListaUI();
+            }
+        });
+
+        //LEITO - CRIAR LEITO
+        miCriarLeito.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldLeitoFormUI();
+            }
+        });
+
+        //LEITO - LISTAR LEITOS
+        miListaLeitos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chieldLeitoListaUI();
+            }
+        });
+
     }
 
-    //CRIAR FUNCIONARIO
+    //FUNCIONARIO - CRIAR FUNCIONARIO
     private void transferToChieldFuncionarioFormUI(){
         FuncionarioFormUI funcionarioFormUI = new FuncionarioFormUI(this);
         funcionarioFormUI.setVisible(true);
     }
 
-    //LISTA DE FUNCIONARIOS
+    //FUNCIONARIOS - LISTA DE FUNCIONARIOS
     private void transferToChieldFuncionarioListaUI(){
         FuncionarioListaUI funcionarioListaUI = new FuncionarioListaUI(this);
         funcionarioListaUI.setVisible(true);
     }
 
-    //CRIAR EQUIPE
+    //EQUIPE - CRIAR EQUIPE
     private void chieldEquipeFormUI(){
         EquipeFormUI equipeFormUI = new EquipeFormUI(this);
         equipeFormUI.setVisible(true);
     }
 
-    //LISTA DE EQUIPES
+    //EQUIPES - LISTA DE EQUIPES
     private void chieldEquipeListaUI(){
         EquipeListaUI equipeListaUI = new EquipeListaUI(this);
         equipeListaUI.setVisible(true);
     }
 
-    //ADICIONAR FUNCIONARIO A UMA EQUIPE
+    //EQUIPES - ADICIONAR FUNCIONARIO A UMA EQUIPE
     private void chieldEquipeAddFuncionario(){
         EquipeAddFuncionario equipeAddFuncionario = new EquipeAddFuncionario(this);
         equipeAddFuncionario.setVisible(true);
     }
 
-    //CRIAR UNIDADE HOSPITALR
+    //UNIDADES - CRIAR UNIDADE HOSPITALR
     private void chieldUnidadeFormUI(){
         UnidadeFormUI unidadeFormUI = new UnidadeFormUI(this);
         unidadeFormUI.setVisible(true);
     }
 
-    //LISTA UNIDADES HOSPITALARES
+    //UNIDADES - LISTA UNIDADES HOSPITALARES
     public void chieldUnidadeListaUI(){
         UnidadeListaUI unidadeListaUI = new UnidadeListaUI(this);
         unidadeListaUI.setVisible(true);
+    }
+
+    //QUARTO - CRIAR QUARTO
+    public void chieldQuartoCriarUI(){
+        QuartoFormUI quartoFormUI = new QuartoFormUI(this);
+        quartoFormUI.setVisible(true);
+    }
+
+    //QUARTO - LISTA DE QUARTOS
+    public void chieldQuartoListaUI(){
+        QuartoListaUI quartoListaUI = new QuartoListaUI(this);
+        quartoListaUI.setVisible(true);
+    }
+
+    //QUARTO - LISTAR QUARTOS
+    public void chieldLeitoFormUI(){
+        LeitoFormUI leitoFormUI = new LeitoFormUI(this);
+        leitoFormUI.setVisible(true);
+    }
+
+    //LEITO - LISTAR LEITOS
+    public void chieldLeitoListaUI(){
+        LeitoListaUI leitoListaUI = new LeitoListaUI(this);
+        leitoListaUI.setVisible(true);
     }
 
     public void criarEspecialidades(){
@@ -165,6 +236,20 @@ public class PrincipalUI extends JFrame {
         this.especialidades.add(especialidade5);
     }
 
+    public void criarEquipoamentos(){
+        System.out.println("EQUIPAMENTOS CRIADAS");
+        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1);
+        Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2);
+        Equipamento equipamento3 = new Equipamento("Oxímetro", 3);
+        Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4);
+        Equipamento equipamento5 = new Equipamento("Desfibrilador", 5);
+        this.equipamentos.add(equipamento1);
+        this.equipamentos.add(equipamento2);
+        this.equipamentos.add(equipamento3);
+        this.equipamentos.add(equipamento4);
+        this.equipamentos.add(equipamento5);
+    }
+
     public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;
     }
@@ -175,6 +260,10 @@ public class PrincipalUI extends JFrame {
         return this.unidadeHospitalares;
     }
     public ArrayList<Especialidade> getEspecialidades(){ return  this.especialidades; }
+    public ArrayList<QuartoHospitalar> getQuartos(){ return  this.quartoHospitalars; }
+    public ArrayList<LeitoHospitalar> getLeitos(){ return  this.leitoHospitalares; }
+    public ArrayList<Equipamento> getEquipamentos(){ return  this.equipamentos; }
+
 
     public static void main(String[] args){
         JFrame frame = new PrincipalUI();

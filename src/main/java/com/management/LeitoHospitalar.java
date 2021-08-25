@@ -13,6 +13,7 @@ public class LeitoHospitalar {
         this.ocupado = ocupado;
         this.idLeito = idLeito;
         this.equipamento = equipamento;
+
         this.pacientes = new ArrayList<Paciente>();
         this.equipamentos = new ArrayList<Equipamento>();
     }

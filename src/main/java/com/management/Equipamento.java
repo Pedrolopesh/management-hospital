@@ -35,8 +35,8 @@ public class Equipamento {
 
     public String toString(){
         String texto = "";
-        texto = texto + "Nome do equipamento: "+ this.getNomeEquipamento() + ", \n";
-        texto = texto + "Quantidade de Equipamentos: "+ this.getQntEquipamento() + ", \n";
+        texto = texto + "equipamento: "+ this.getNomeEquipamento() + ", \n";
+        texto = texto + "Quantidade: "+ this.getQntEquipamento() + ", \n";
         return texto;
     }
 }

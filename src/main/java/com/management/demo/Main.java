@@ -23,7 +23,7 @@ public class Main {
 //        eqp1.imprimeFuncionarios(1);
 //        eqp1.imprimeFuncionarios("Alisson");
 
-        UnidadeHospitalar unit1 = new UnidadeHospitalar("D", 1, "Cirurgia");
+//        UnidadeHospitalar unit1 = new UnidadeHospitalar("D", 1, "Cirurgia");
 
         QuartoHospitalar quart1 = new QuartoHospitalar("Quarto da unidade D", 1, 3, 0);
 
@@ -34,10 +34,10 @@ public class Main {
         quart1.addLeitoHospitalar(leit1);
         quart1.imprimeLeitoHospitalar();
         System.out.println(quart1.toString());
-        unit1.addEquipe(eqp1);
-        unit1.addEquipe(eqp2);
+//        unit1.addEquipe(eqp1);
+//        unit1.addEquipe(eqp2);
 
-        unit1.addQuartoHospitalar(quart1);
+//        unit1.addQuartoHospitalar(quart1);
 //        unit1.imprimeEquipe();
 //        unit1.imprimeQuarto();
 
