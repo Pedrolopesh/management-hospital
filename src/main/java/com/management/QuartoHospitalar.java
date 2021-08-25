@@ -52,11 +52,11 @@ public class QuartoHospitalar {
     public void addLeitoHospitalar(LeitoHospitalar leitoHospitalares){
        this.leitoHospitalares.add(leitoHospitalares);
     }
+
     public void imprimeLeitoHospitalar(){
-        System.out.println("--- Todos os Leito ---");
-        for (LeitoHospitalar leitoHospitalares : this.leitoHospitalares){
-            System.out.println(leitoHospitalares.toString());
-        }
+        System.out.println("--- Todos os Leitos ---");
+        for (LeitoHospitalar leitoHospitalers : this.leitoHospitalares);
+        System.out.println(leitoHospitalares.toString());
     }
     public String toString(){
         String texto = "";

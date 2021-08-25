@@ -96,6 +96,14 @@ public class LeitoHospitalar {
             System.out.println(umEquipamento.toString());
         }
     }
+
+    public String toString(){
+        String texto = "";
+        texto = texto + "Ocupado ?"+ this.ocupado+ " \n";
+        texto = texto + "ID do leito :"+ this.idLeito + " \n";
+        texto = texto + "Equipamentos do leito :"+this.equipamento;
+        return texto;
+    }
     //ADICIONAR METODOS IMPRIME LeitoHospitalar():String
     //ADICIONAR METODOS IMPRIME LeitoHospitalar(ocupado:boolen):String
 
