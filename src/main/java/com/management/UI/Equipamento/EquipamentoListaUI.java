@@ -4,7 +4,5 @@ import javax.swing.*;
 
 public class EquipamentoListaUI {
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JButton ConfirmarBtn;
+    private JTextArea textArea1;
 }
