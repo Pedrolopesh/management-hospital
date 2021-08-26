@@ -40,9 +40,6 @@ public class PesquisaNomeFuncionario extends JFrame {
             }
         }
 
-        ArrayList<Equipe> equipetest = this.mainUI.getEquipes();
-
-
         PesquisaUI resultadoPesquisa = new PesquisaUI(resultado);
         resultadoPesquisa.setVisible(true);
     }

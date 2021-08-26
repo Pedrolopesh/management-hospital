@@ -142,6 +142,7 @@ public class Paciente extends Item {
         texto = texto + "Diagnóstico: " + this.getDiagnostico() + ", \n";
         texto = texto + "Isolamento: " + this.getIsolamento() + ", \n";
         texto = texto + "Necessidades: " + this.getNecessidade() + ", \n";
+        texto = texto + "Status do paciente: " + this.getStatusPaciente() + ", \n";
         return texto;
     }
 
