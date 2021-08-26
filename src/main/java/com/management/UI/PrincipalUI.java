@@ -17,6 +17,7 @@ import com.management.UI.QuartoHospitalar.QuartoListaUI;
 import com.management.UI.UnidadeHospitalar.UnidadeEquipeFormUI;
 import com.management.UI.UnidadeHospitalar.UnidadeFormularioUI;
 import com.management.UI.UnidadeHospitalar.UnidadeListaUI;
+import com.management.UI.UnidadeHospitalar.UnidadeQuartoFormUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -51,6 +52,7 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miListaEspecialidades;
     private JMenuItem miCriarEspecialidade;
     private JMenuItem miUnidadeEquipe;
+    private JMenuItem miUnidadeAddQuarto;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -73,6 +75,7 @@ public class PrincipalUI extends JFrame {
 
         criarEspecialidades();
         criarEquipoamentos();
+        criarDadosTest();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
         //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
@@ -146,6 +149,14 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //UNIDADE - ADICIONAR QUARTO A UMA UNIDADE HOSPITALAR
+        miUnidadeAddQuarto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                unidadeAddQuartoUI();
+            }
+        });
+
         //ESPECIALIDADES - LISTA ESPECIALIDADES
         miListaEspecialidades.addActionListener(new ActionListener() {
             @Override
@@ -201,6 +212,7 @@ public class PrincipalUI extends JFrame {
                 pacienteFormUI();
             }
         });
+
         //PACIENTE - LISTA PACIENTES
         miListaPaciente.addActionListener(new ActionListener() {
             @Override
@@ -257,6 +269,12 @@ public class PrincipalUI extends JFrame {
     public void unidadeAddequipeUI(){
         UnidadeEquipeFormUI unidadeEquipeFormUI = new UnidadeEquipeFormUI(this);
         unidadeEquipeFormUI.setVisible(true);
+    }
+
+    //UNIDADE - ADICIONAR QUARTO A UMA UNIDADE HOSPITALAR
+    public void unidadeAddQuartoUI(){
+        UnidadeQuartoFormUI unidadeQuartoFormUI = new UnidadeQuartoFormUI(this);
+        unidadeQuartoFormUI.setVisible(true);
     }
 
     //ESPECIALIDADES - LISTA ESPECIALIDADES
@@ -335,11 +353,32 @@ public class PrincipalUI extends JFrame {
         this.equipamentos.add(equipamento5);
     }
 
-//    public void criarDadosTest(){
-//        Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
-//        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", 2, "1234567890");
-//        Funcionario funcionario3 = new Funcionario("Fernanda Alves", 1, "1234567890");
-//    }
+    public void criarDadosTest(){
+        Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
+        funcionario1.setCargo("Medico Geral");
+        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", 2, "1234567890");
+        funcionario2.setCargo("Medico Cirurgião");
+        Funcionario funcionario3 = new Funcionario("Fernanda Alves", 3, "1234567890");
+        funcionario3.setCargo("Enfermeiro");
+        Funcionario funcionario4 = new Funcionario("Maria Silva", 4, "1234567890");
+        funcionario4.setCargo("Limpeza");
+        this.funcionarios.add(funcionario1);
+        this.funcionarios.add(funcionario2);
+        this.funcionarios.add(funcionario3);
+        this.funcionarios.add(funcionario4);
+
+        Equipe equipe1 = new Equipe("Equipe Delta", 1, "Pedro Lopes");
+        Equipe equipe2 = new Equipe("Equipe Gama", 2, "lisson Gabriel");
+        this.equipes.add(equipe1);
+        this.equipes.add(equipe2);
+
+        UnidadeHospitalar unidade1 = new UnidadeHospitalar("A", 1);
+        unidade1.setEspecialidade("Dermatologia");
+        UnidadeHospitalar unidade2 = new UnidadeHospitalar("B", 2);
+        unidade2.setEspecialidade("Reumatologia");
+        this.unidadeHospitalares.add(unidade1);
+        this.unidadeHospitalares.add(unidade2);
+    }
 
     public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;

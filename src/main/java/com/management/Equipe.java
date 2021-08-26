@@ -63,9 +63,7 @@ public class Equipe {
     public String imprimeFuncionarios(){
         String texto = "";
         texto = texto + "--- Informações das Equipes --- \n";
-        texto = texto + "ID da equipe: "+this.getIdEquipe()+", \n";
-        texto = texto + "nomeEquipe: "+this.getNomeEquipe()+", \n";
-        texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n \n";
+        texto = texto + toString();
         texto = texto + "--- Funcionarios da equipe --- \n";
         for(Item it : this.funcionarios){
             texto = texto + it.toString();

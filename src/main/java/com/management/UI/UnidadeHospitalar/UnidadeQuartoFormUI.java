@@ -1,6 +1,9 @@
 package com.management.UI.UnidadeHospitalar;
 
+import com.management.Equipe;
+import com.management.QuartoHospitalar;
 import com.management.UI.PrincipalUI;
+import com.management.UnidadeHospitalar;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +13,9 @@ public class UnidadeQuartoFormUI extends JFrame {
     private JPanel mainPanel;
     private JLabel labelTitulo;
     private JLabel labelUnidade;
-    private JComboBox cbUnidades;
+    private JComboBox<UnidadeHospitalar> cbUnidades;
     private JLabel labelQuarto;
-    private JComboBox cbQuartos;
+    private JComboBox<QuartoHospitalar> cbQuartos;
     private JButton confirmarButton;
     private PrincipalUI mainUI;
 
@@ -21,6 +24,15 @@ public class UnidadeQuartoFormUI extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
+
+        for (UnidadeHospitalar unidadeHospitalar: this.mainUI.getUnidadeHospitalares()){
+            cbUnidades.addItem(unidadeHospitalar);
+        }
+
+        for (QuartoHospitalar umQuarto: this.mainUI.getQuartos()){
+            cbQuartos.addItem(umQuarto);
+        }
+
 
         confirmarButton.addActionListener(new ActionListener() {
             @Override
