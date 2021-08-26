@@ -6,12 +6,12 @@ public class Paciente extends Item {
     private int idade;
     private double altura;
     private double peso;
-    private boolean comorbidade;
+    private String comorbidade;
     private String diagnostico;
     private boolean isolamento;
     private String necessidade;
 
-    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, boolean comorbidade, String diagnostico, boolean isolamento, String necessidade){
+    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade){
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
@@ -65,14 +65,17 @@ public class Paciente extends Item {
     }
 
 
-    public boolean getComorbidade(){
+    public String getComorbidade(){
         return comorbidade;
     }
 
 
-    public boolean setComorbidade(boolean comorbidade){
+    public boolean setComorbidade(String comorbidade) {
+        if (comorbidade.isEmpty()) {
+            return false;
+        }
         this.comorbidade = comorbidade;
-        return true;
+         return true;
     }
 
 

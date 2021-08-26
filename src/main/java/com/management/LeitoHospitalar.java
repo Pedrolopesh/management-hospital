@@ -74,10 +74,10 @@ public class LeitoHospitalar {
         }
     }
 
-    public void imprimePacientes(boolean comorbidade){
+    public void imprimePacientesComorbidade(String comorbidade){
         System.out.println("--- Pacientes com comorbidade ---");
         for (Paciente umPaciente : this.pacientes){
-            if(umPaciente.getComorbidade() == comorbidade){
+            if(umPaciente.getComorbidade().equals(comorbidade)){
                 System.out.println(umPaciente.toString());
             }
         }
