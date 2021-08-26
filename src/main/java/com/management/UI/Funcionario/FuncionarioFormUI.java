@@ -20,14 +20,13 @@ public class FuncionarioFormUI extends JFrame {
     private JButton confirmarButton;
     private PrincipalUI mainUI;
     private ArrayList<Funcionario> funcionarios;
-
+// Construtor
     public FuncionarioFormUI(PrincipalUI principalUIParam){
         this.mainUI = principalUIParam;
         this.funcionarios = new ArrayList<Funcionario>();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
-        this.pack();
 
         confirmarButton.addActionListener(new ActionListener() {
             @Override
