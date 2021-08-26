@@ -81,12 +81,15 @@ public class Equipe {
         }
     }
 
-    public void imprimeFuncionarios(String nome){
-        System.out.println(" --- Funcionário por Nome ---");
+    public String pesquisaFuncionarios(String nome){
+        System.out.println("PESQUISA: " + nome);
+        String texto = "";
         for(Funcionario umFuncionario: this.funcionarios){
-            if(umFuncionario.getNome() == nome){
-                System.out.println(umFuncionario.toString());
+            if(umFuncionario.getNome().equals(nome)){
+                System.out.println("TESTE AQUI");
+                texto = texto + umFuncionario.toString();
             }
         }
+        return texto;
     }
 }

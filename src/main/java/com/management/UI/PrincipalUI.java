@@ -6,10 +6,12 @@ import com.management.UI.Equipamento.EquipamentoListaUI;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
+import com.management.UI.Equipe.EquipePesquisaUI;
 import com.management.UI.Especialidade.EspecialidadeFormUi;
 import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
+import com.management.UI.Funcionario.PesquisaNomeFuncionario;
 import com.management.UI.LeitoHospitalar.LeitoAddQuarto;
 import com.management.UI.LeitoHospitalar.LeitoFormUI;
 import com.management.UI.LeitoHospitalar.LeitoListaUI;
@@ -58,6 +60,15 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miUnidadeAddQuarto;
     private JLabel labelInstrucao;
     private JMenuItem miQuartoAddLeito;
+    private JPanel jpEquipe;
+    private JPanel jpFuncionario;
+    private JPanel jpUnidade;
+    private JPanel jpEspecialidade;
+    private JPanel jpQuarto;
+    private JPanel jpLeito;
+    private JPanel jpEquipamento;
+    private JMenuItem miPesquisaFuncionario;
+    private JMenuItem miPesquisaEquipe;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -79,7 +90,6 @@ public class PrincipalUI extends JFrame {
         this.pacientes = new ArrayList<Paciente>();
 
         criarEspecialidades();
-        criarEquipoamentos();
         criarDadosTest();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
@@ -106,6 +116,14 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //FUNCIONARIOS - PESQUISAR FUNCIONARIO POR NOME
+        miPesquisaFuncionario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pesquisaFuncionarioUI();
+            }
+        });
+
         //EQUIPE - CRIAR EQUIPE
         miCriarEquipe.addActionListener(new ActionListener() {
             @Override
@@ -127,6 +145,14 @@ public class PrincipalUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldEquipeAddFuncionario();
+            }
+        });
+
+        //EQUIPE - PESQUISAR EQUIPE POR NOME
+        miPesquisaEquipe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pesquisaEquipeUI();
             }
         });
 
@@ -264,6 +290,12 @@ public class PrincipalUI extends JFrame {
         funcionarioListaUI.setVisible(true);
     }
 
+    //FUNCIONARIO - PESQUISAR FUNCIONARIO POR NOME
+    private void pesquisaFuncionarioUI(){
+        PesquisaNomeFuncionario pesquisaNomeFuncionario = new PesquisaNomeFuncionario(this);
+        pesquisaNomeFuncionario.setVisible(true);
+    }
+
     //EQUIPE - CRIAR EQUIPE
     private void chieldEquipeFormUI(){
         EquipeFormUI equipeFormUI = new EquipeFormUI(this);
@@ -280,6 +312,12 @@ public class PrincipalUI extends JFrame {
     private void chieldEquipeAddFuncionario(){
         EquipeAddFuncionario equipeAddFuncionario = new EquipeAddFuncionario(this);
         equipeAddFuncionario.setVisible(true);
+    }
+
+    //EQUIPES - PESQUISAR EQUIPE PELO NOME
+    public void pesquisaEquipeUI(){
+        EquipePesquisaUI equipePesquisaUI = new EquipePesquisaUI(this);
+        equipePesquisaUI.setVisible(true);
     }
 
     //UNIDADES - CRIAR UNIDADE HOSPITALR
@@ -333,6 +371,7 @@ public class PrincipalUI extends JFrame {
         quartoListaUI.setVisible(true);
     }
 
+    //QUARTO - ADICIONAR LEITO AO QUARTO
     public void quartoAddLeito(){
         LeitoAddQuarto leitoAddQuarto = new LeitoAddQuarto(this);
         leitoAddQuarto.setVisible(true);
@@ -386,7 +425,7 @@ public class PrincipalUI extends JFrame {
         this.especialidades.add(especialidade6);
     }
 
-    public void criarEquipoamentos(){
+    public void criarDadosTest(){
         Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,1);
         Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,2);
         Equipamento equipamento3 = new Equipamento("Oxímetro", 3,3);
@@ -397,9 +436,7 @@ public class PrincipalUI extends JFrame {
         this.equipamentos.add(equipamento3);
         this.equipamentos.add(equipamento4);
         this.equipamentos.add(equipamento5);
-    }
 
-    public void criarDadosTest(){
         Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
         funcionario1.setCargo("Medico Geral");
         Funcionario funcionario2 = new Funcionario("Alisson Gabriel", 2, "1234567890");
@@ -440,6 +477,18 @@ public class PrincipalUI extends JFrame {
         this.leitoHospitalares.add(leito1);
         this.leitoHospitalares.add(leito2);
         this.leitoHospitalares.add(leito3);
+        leito1.addEquipamento(equipamento1);
+        leito2.addEquipamento(equipamento2);
+
+        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", true, "Isolamento imediato");
+        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", true, "Isolamento Imediato");
+        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", false, "Não possui");
+        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", false, "Não possui");
+        this.pacientes.add(paciente1);
+        this.pacientes.add(paciente2);
+        this.pacientes.add(paciente3);
+        this.pacientes.add(paciente4);
+
     }
 
     public ArrayList<Funcionario> getFuncionarios(){

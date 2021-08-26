@@ -4,6 +4,7 @@ import com.management.Funcionario;
 import com.management.UI.PrincipalUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class FuncionarioFormUI extends JFrame {
         this.funcionarios = new ArrayList<Funcionario>();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainPanel.setPreferredSize(new Dimension(600, 600));
+        mainPanel.repaint();
         this.setContentPane(mainPanel);
 
         confirmarButton.addActionListener(new ActionListener() {
