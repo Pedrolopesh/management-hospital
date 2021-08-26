@@ -1,6 +1,8 @@
 package com.management.UI;
 
 import com.management.*;
+import com.management.UI.Equipamento.EditarNewEquipamentoFormUI;
+import com.management.UI.Equipamento.EquipamentoFormEditarUI;
 import com.management.UI.Equipamento.EquipamentoFormUI;
 import com.management.UI.Equipamento.EquipamentoListaUI;
 import com.management.UI.Equipe.*;
@@ -68,6 +70,7 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miPesquisaFuncionario;
     private JMenuItem miPesquisaEquipe;
     private JMenuItem miEditarFuncionario;
+    private JMenuItem miEquipamentoEditar;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -291,6 +294,14 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //EQUIPAMENTO - EDITAR EQUIPAMENTO
+        miEquipamentoEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                equipamentoEditarUI();
+            }
+        });
+
     }
 
     //FUNCIONARIO - CRIAR FUNCIONARIO
@@ -436,6 +447,11 @@ public class PrincipalUI extends JFrame {
     public void equipamentoListaUI(){
        EquipamentoListaUI equipamentoListaUI = new EquipamentoListaUI(this);
         equipamentoListaUI.setVisible(true);
+    }
+
+    public void equipamentoEditarUI(){
+        EquipamentoFormEditarUI editarNewEquipamentoFormUI = new EquipamentoFormEditarUI(this);
+        editarNewEquipamentoFormUI.setVisible(true);
     }
 
     public void criarEspecialidades(){

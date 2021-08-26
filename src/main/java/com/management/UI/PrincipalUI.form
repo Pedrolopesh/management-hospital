@@ -199,6 +199,12 @@
                   <text value="Adicionar Leito a um quarto"/>
                 </properties>
               </component>
+              <component id="b17a0" class="javax.swing.JMenuItem" binding="miEquipamentoEditar">
+                <constraints/>
+                <properties>
+                  <text value="Editar um Equipamento"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="d719c" class="javax.swing.JMenu" binding="mnPacientes" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">

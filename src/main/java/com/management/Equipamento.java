@@ -15,7 +15,7 @@ public class Equipamento {
         return qntEquipamento;
     }
 
-    public boolean setQntEquipamento(){
+    public boolean setQntEquipamento(int qntEquipamento){
         if(qntEquipamento < 0){
             return false;
         }
