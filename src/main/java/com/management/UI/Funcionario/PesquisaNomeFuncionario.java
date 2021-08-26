@@ -1,5 +1,6 @@
 package com.management.UI.Funcionario;
 
+import com.management.Equipe;
 import com.management.Funcionario;
 import com.management.UI.Pesquisa.PesquisaUI;
 import com.management.UI.PrincipalUI;
@@ -7,6 +8,7 @@ import com.management.UI.PrincipalUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PesquisaNomeFuncionario extends JFrame {
     private JTextField tfNomeFuncionario;
@@ -37,6 +39,9 @@ public class PesquisaNomeFuncionario extends JFrame {
                 resultado = umFuncionario.toString();
             }
         }
+
+        ArrayList<Equipe> equipetest = this.mainUI.getEquipes();
+
 
         PesquisaUI resultadoPesquisa = new PesquisaUI(resultado);
         resultadoPesquisa.setVisible(true);

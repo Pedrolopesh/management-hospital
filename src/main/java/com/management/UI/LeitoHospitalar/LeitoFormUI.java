@@ -31,7 +31,8 @@ public class LeitoFormUI extends JFrame {
                 int nextid = generateId();
                 Equipamento equipamentoSelecionado = cbEquipamentos.getItemAt(cbEquipamentos.getSelectedIndex());
 
-                LeitoHospitalar newLeito = new LeitoHospitalar(false, nextid);
+                LeitoHospitalar newLeito = new LeitoHospitalar(nextid);
+                newLeito.setOcupado(false);
                 salvarLeito(newLeito,equipamentoSelecionado);
             }
         });

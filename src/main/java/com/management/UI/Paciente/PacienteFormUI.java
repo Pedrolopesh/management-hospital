@@ -46,8 +46,8 @@ public class PacienteFormUI extends JFrame{
                 boolean isolamento = Boolean.parseBoolean(txIsolamento.getText());
                 String telefone = txTelefone.getText();
 
-                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","",false,"");
-                Paciente novoPaciente = new Paciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade);
+                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","",false,"", "");
+                Paciente novoPaciente = new Paciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade, "aguardando");
                 salvarPaciente(novoPaciente);
             }
         });

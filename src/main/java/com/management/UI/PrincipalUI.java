@@ -12,6 +12,7 @@ import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
 import com.management.UI.Funcionario.PesquisaNomeFuncionario;
+import com.management.UI.LeitoHospitalar.LeitoAddPacienteUI;
 import com.management.UI.LeitoHospitalar.LeitoAddQuarto;
 import com.management.UI.LeitoHospitalar.LeitoFormUI;
 import com.management.UI.LeitoHospitalar.LeitoListaUI;
@@ -252,6 +253,14 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //PACIENTE - ADICIONAR PACIENTE EM LEITO
+        miLeitoAddPaciente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                leitoAddPacienteUI();
+            }
+        });
+
         //PACIENTE - LISTA PACIENTES
         miListaPaciente.addActionListener(new ActionListener() {
             @Override
@@ -388,6 +397,13 @@ public class PrincipalUI extends JFrame {
         LeitoListaUI leitoListaUI = new LeitoListaUI(this);
         leitoListaUI.setVisible(true);
     }
+
+    //LEITO - ALOCAR PACIENTE EM LEITO
+    public void leitoAddPacienteUI(){
+        LeitoAddPacienteUI leitoAddPacienteUI = new LeitoAddPacienteUI(this);
+        leitoAddPacienteUI.setVisible(true);
+    }
+
     // PACIENTE - CRIAR PACIENTE
     public void pacienteFormUI(){
         PacienteFormUI pacienteFormUI = new PacienteFormUI(this);
@@ -471,24 +487,27 @@ public class PrincipalUI extends JFrame {
         this.quartoHospitalars.add(quart3);
         this.quartoHospitalars.add(quart4);
 
-        LeitoHospitalar leito1 = new LeitoHospitalar(false, 1);
-        LeitoHospitalar leito2 = new LeitoHospitalar(false, 2);
-        LeitoHospitalar leito3 = new LeitoHospitalar(false, 3);
+        LeitoHospitalar leito1 = new LeitoHospitalar(1);
+        LeitoHospitalar leito2 = new LeitoHospitalar(2);
+        LeitoHospitalar leito3 = new LeitoHospitalar(3);
         this.leitoHospitalares.add(leito1);
         this.leitoHospitalares.add(leito2);
         this.leitoHospitalares.add(leito3);
         leito1.addEquipamento(equipamento1);
         leito2.addEquipamento(equipamento2);
 
-        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", true, "Isolamento imediato");
-        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", true, "Isolamento Imediato");
-        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", false, "Não possui");
-        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", false, "Não possui");
+        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", true, "Isolamento imediato", "aguardando");
+        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", true, "Isolamento Imediato", "aguardando");
+        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", false, "Não possui", "aguardando");
+        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", false, "Não possui", "aguardando");
         this.pacientes.add(paciente1);
         this.pacientes.add(paciente2);
         this.pacientes.add(paciente3);
         this.pacientes.add(paciente4);
 
+        leito1.addPaciente(paciente1);
+        leito1.setOcupado(true);
+        paciente1.setStatusPaciente("emLeito");
     }
 
     public ArrayList<Funcionario> getFuncionarios(){

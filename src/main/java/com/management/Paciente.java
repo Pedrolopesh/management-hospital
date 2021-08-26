@@ -2,6 +2,8 @@ package com.management;
 
 import com.management.ItemFuncionarioPaciente.Item;
 
+import java.util.ArrayList;
+
 public class Paciente extends Item {
     private int idade;
     private double altura;
@@ -10,8 +12,9 @@ public class Paciente extends Item {
     private String diagnostico;
     private boolean isolamento;
     private String necessidade;
+    private String statusPaciente;
 
-    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade){
+    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente){
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
@@ -20,6 +23,7 @@ public class Paciente extends Item {
         this.diagnostico = diagnostico;
         this.isolamento = isolamento;
         this.necessidade = necessidade;
+        this.statusPaciente = statusPaciente;
     }
 
 
@@ -27,6 +31,18 @@ public class Paciente extends Item {
         return idade;
     }
 
+
+    public String getStatusPaciente() {
+        return this.statusPaciente;
+    }
+
+    public boolean setStatusPaciente(String statusPaciente) {
+        if(statusPaciente.isEmpty()){
+            return false;
+        }
+        this.statusPaciente = statusPaciente;
+        return true;
+    }
 
     public boolean setIdade(int idade) {
         if(idade < 0){
@@ -116,8 +132,7 @@ public class Paciente extends Item {
         return true;
     }
 
-    @Override
-    public String toString(){
+    public String imformacaoPacientes(){
         String texto = "";
         texto = texto + super.toString();
         texto = texto + "Idade: " + this.getIdade() + ", \n";
@@ -127,6 +142,14 @@ public class Paciente extends Item {
         texto = texto + "Diagnóstico: " + this.getDiagnostico() + ", \n";
         texto = texto + "Isolamento: " + this.getIsolamento() + ", \n";
         texto = texto + "Necessidades: " + this.getNecessidade() + ", \n";
+        return texto;
+    }
+
+
+    @Override
+    public String toString(){
+        String texto = "";
+        texto = texto + super.toString();
         return texto;
     }
 }
