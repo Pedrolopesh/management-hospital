@@ -13,7 +13,7 @@ public class EspecialidadeListaUI extends JFrame {
     //PrincipalUI = classe principal com todas as ligações entre outras telas
     //mainUI = nome do atributo que é do TIPO PrincipalUI
     private PrincipalUI mainUI;
-
+    // Construtor
     public EspecialidadeListaUI(PrincipalUI principalUI){
         this.mainUI = principalUI;
 
