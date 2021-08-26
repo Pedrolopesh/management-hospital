@@ -17,7 +17,6 @@ public class PacienteFormUI extends JFrame{
     private JTextField txComorbidade;
     private JTextField txDiagnostico;
     private JTextField txNecessidade;
-    private JCheckBox cbIsolamento;
     private JButton btConfirmar;
     private JTextField txNome;
     private JTextField txIsolamento;
@@ -25,11 +24,6 @@ public class PacienteFormUI extends JFrame{
     private PrincipalUI mainUI;
     private ArrayList<Paciente> pacientes;
 
-// todo
-
-    // Pegar valor dos atributos de tx
-    // Criar nova classe paciente dentro de evento do bt
-    // Salvar novo paciente
 
    // Construtor
     public PacienteFormUI(PrincipalUI principalUI){
@@ -65,7 +59,5 @@ public class PacienteFormUI extends JFrame{
     }
 
     private void salvarPaciente(Paciente novoPaciente){ this.mainUI.getPacientes().add(novoPaciente);}
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+
 }
