@@ -67,23 +67,6 @@ public class UnidadeHospitalar {
         return texto;
     }
 
-    public void imprimeQuarto(int idQuarto){
-        for (QuartoHospitalar umQuarto: this.quartoHospitalars){
-            if(umQuarto.getIdQuarto() == idQuarto){
-                System.out.println(umQuarto.toString());
-            }
-        }
-    }
-
-    public void imprimeQuarto(String nomeQuarto){
-        System.out.println("--- Quarto Hospitalar por nome ---");
-        for (QuartoHospitalar umQuarto: this.quartoHospitalars){
-            if(umQuarto.getNomeQuarto().equals(nomeQuarto)){
-                System.out.println(umQuarto.toString());
-            }
-        }
-    }
-
     public String imprimeEquipe(){
         String texto = "";
         texto = texto + "--- Equipes da Unidade --- \n";
@@ -91,22 +74,6 @@ public class UnidadeHospitalar {
             texto = texto + umaEquipe.toString();
         }
         return texto;
-    }
-
-    public void imprimeEquipe(int idEquipe){
-        System.out.println("--- Unidade Hospitalar ---");
-        for (Equipe umaEquipe : this.equipes){
-            if(umaEquipe.getIdEquipe() == idEquipe)
-            System.out.println(umaEquipe.toString());
-        }
-    }
-
-    public void imprimeEquipe(String nomeEquipe){
-        System.out.println("--- Unidade hospitalar por nome ---");
-        for (Equipe umaEquipe : this.equipes){
-            if(umaEquipe.getNomeEquipe().equals(nomeEquipe))
-                System.out.println(umaEquipe.toString());
-        }
     }
 
     @Override

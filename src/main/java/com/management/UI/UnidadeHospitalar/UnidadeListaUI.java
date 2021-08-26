@@ -20,8 +20,8 @@ public class UnidadeListaUI extends JFrame{
         for (UnidadeHospitalar umaUnidadeHospitalar: this.mainUI.getUnidadeHospitalares()){
             txShowList.append("--- Informações da unidade --- \n");
             txShowList.append(umaUnidadeHospitalar.toString());
-//            txShowList.append(umaUnidadeHospitalar.imprimeEquipe());
-//            txShowList.append(umaUnidadeHospitalar.imprimeQuarto());
+            txShowList.append(umaUnidadeHospitalar.imprimeEquipe());
+            txShowList.append(umaUnidadeHospitalar.imprimeQuarto());
             txShowList.append("\n");
         }
     }

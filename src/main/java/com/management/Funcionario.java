@@ -2,8 +2,6 @@ package com.management;
 
 import com.management.ItemFuncionarioPaciente.Item;
 
-import java.util.ArrayList;
-
 public class Funcionario extends Item {
     private String cargo;
     private String statusFuncionario;

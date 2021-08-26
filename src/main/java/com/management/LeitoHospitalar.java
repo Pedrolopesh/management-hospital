@@ -33,57 +33,6 @@ public class LeitoHospitalar {
     }
     public void addEquipamento(Equipamento equipamentos){this.equipamentos.add(equipamentos);}
 
-
-    public void imprimePacientes(){
-        System.out.println("--- Todos os pacientes ---");
-        for (Paciente umPaciente : this.pacientes){
-            System.out.println(umPaciente.toString());
-        }
-    }
-
-    public void imprimePacientes(int idPaciente){
-        System.out.println("--- Informações do paciente ---");
-        for (Paciente umPaciente : this.pacientes){
-            if(umPaciente.getId() == idPaciente){
-                System.out.println(umPaciente.toString());
-            }
-        }
-    }
-
-    public void imprimePacientes(String nomePaciente){
-        System.out.println("--- Informações do paciente ---");
-        for (Paciente umPaciente : this.pacientes){
-            if(umPaciente.getNome().equals(nomePaciente)){
-                System.out.println(umPaciente.toString());
-            }
-        }
-    }
-
-    public void imprimePacientesComorbidade(String comorbidade){
-        System.out.println("--- Pacientes com comorbidade ---");
-        for (Paciente umPaciente : this.pacientes){
-            if(umPaciente.getComorbidade().equals(comorbidade)){
-                System.out.println(umPaciente.toString());
-            }
-        }
-    }
-
-    public void imprimePacientesIsolados(boolean isolamento){
-        System.out.println("--- Pacientes em isolamento ---");
-        for (Paciente umPaciente : this.pacientes){
-            if(umPaciente.getIsolamento() == isolamento){
-                System.out.println(umPaciente.toString());
-            }
-        }
-    }
-    public String imprimeEquipamento(){
-        String texto = "";
-        for(Equipamento umEquipamento : this.equipamentos){
-            texto = texto + umEquipamento.toString();
-        }
-        return texto;
-    }
-
     public String imformacao(){
         String texto = "";
         texto = texto + "ID do leito :"+ this.idLeito + " \n";
