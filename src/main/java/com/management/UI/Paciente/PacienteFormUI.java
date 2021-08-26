@@ -21,11 +21,12 @@ public class PacienteFormUI extends JFrame{
     private JButton btConfirmar;
     private JTextField txNome;
     private JTextField txIsolamento;
+    private JTextField txTelefone;
     private PrincipalUI mainUI;
     private ArrayList<Paciente> pacientes;
 
 // todo
-    // Adicionar evento ao botao btConfirmar
+
     // Pegar valor dos atributos de tx
     // Criar nova classe paciente dentro de evento do bt
     // Salvar novo paciente
@@ -33,27 +34,34 @@ public class PacienteFormUI extends JFrame{
    // Construtor
     public PacienteFormUI(PrincipalUI principalUI){
         this.mainUI = principalUI;
-
+        this.pacientes = new ArrayList<Paciente>();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
 
         btConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int nextid = generateId();
                 String nome = txNome.getText();
-                String idade = txIdade.getText();
-                String Altura = txAltura.getText();
-                String Peso = txPeso.getText();
+                int idade = Integer.parseInt(txIdade.getText());
+                double altura = Double.parseDouble(txAltura.getText());
+                double peso = Double.parseDouble(txAltura.getText());
                 String comorbidade = txComorbidade.getText();
                 String diagnostico = txDiagnostico.getText();
                 String necessidade = txNecessidade.getText();
-                String isolamento = txIsolamento.getText();
+                boolean isolamento = Boolean.parseBoolean(txIsolamento.getText());
+                String telefone = txTelefone.getText();
 
-//                Paciente novoPaciente = new Paciente("",1,"","",1,1.0,);
-//                Paciente novoPaciente = new Paciente(nome, idade, Altura, Peso, comorbidade, diagnostico, necessidade, isolamento);
-
+                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","",false,"");
+                Paciente novoPaciente = new Paciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade);
+                salvarPaciente(novoPaciente);
             }
         });
+    }
+
+    private int generateId(){
+        int nextid = this.mainUI.getPacientes().size() + 1;;
+        return nextid;
     }
 
     private void salvarPaciente(Paciente novoPaciente){ this.mainUI.getPacientes().add(novoPaciente);}
