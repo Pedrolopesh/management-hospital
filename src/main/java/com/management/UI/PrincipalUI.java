@@ -91,7 +91,6 @@ public class PrincipalUI extends JFrame {
         this.equipamentos = new ArrayList<Equipamento>();
         this.pacientes = new ArrayList<Paciente>();
 
-        criarEspecialidades();
         criarDadosTest();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
@@ -454,22 +453,22 @@ public class PrincipalUI extends JFrame {
         editarNewEquipamentoFormUI.setVisible(true);
     }
 
-    public void criarEspecialidades(){
-        Especialidade especialidade1 = new Especialidade("Dermatologia", 1);
+
+    public void criarDadosTest(){
+        Especialidade especialidade1 = new Especialidade(1);
         Especialidade especialidade2 = new Especialidade("Cardiologia", 2);
         Especialidade especialidade3 = new Especialidade("Neurologia", 3);
         Especialidade especialidade4 = new Especialidade("Reumatologia", 4);
         Especialidade especialidade5 = new Especialidade("Cirurgia torácica", 5);
         Especialidade especialidade6 = new Especialidade("Outra", 6);
+        especialidade1.setNomeEspecialidade("Dermatologia");
         this.especialidades.add(especialidade1);
         this.especialidades.add(especialidade2);
         this.especialidades.add(especialidade3);
         this.especialidades.add(especialidade4);
         this.especialidades.add(especialidade5);
         this.especialidades.add(especialidade6);
-    }
 
-    public void criarDadosTest(){
         Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,1);
         Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,2);
         Equipamento equipamento3 = new Equipamento("Oxímetro", 3,3);

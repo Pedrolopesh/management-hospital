@@ -9,6 +9,11 @@ public class Especialidade {
         this.idEspecialidade = idEspecialidade;
     }
 
+    public Especialidade(int idEspecialidade){
+        this.nomeEspecialidade = null;
+        this.idEspecialidade = idEspecialidade;
+    }
+
     public String getNomeEspecialidade() {
         return nomeEspecialidade;
     }
