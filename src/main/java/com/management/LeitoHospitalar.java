@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 public class LeitoHospitalar {
     private int idLeito;
-    private String equipamento;
     private boolean ocupado;
     private ArrayList<Paciente> pacientes;
     private ArrayList<Equipamento> equipamentos;
 
-    public LeitoHospitalar ( boolean ocupado, int idLeito, String equipamento){
+    public LeitoHospitalar ( boolean ocupado, int idLeito){
         this.ocupado = ocupado;
         this.idLeito = idLeito;
-        this.equipamento = equipamento;
 
         this.pacientes = new ArrayList<Paciente>();
         this.equipamentos = new ArrayList<Equipamento>();
@@ -20,17 +18,6 @@ public class LeitoHospitalar {
 
     public int getIdLeito(){
         return idLeito;
-    }
-
-    public String getEquipamento(){
-        return equipamento;
-    }
-
-    public boolean setEquipamento(String equipamento){
-        if(equipamento.isEmpty()){
-            return false;
-        }
-        return true;
     }
 
     public boolean getOcupado(){
@@ -91,18 +78,18 @@ public class LeitoHospitalar {
             }
         }
     }
-    public void imprimeEquipamento(String nomeEquipamento){
-        System.out.println("--- Todos os Equipamentos  ---");
+    public String imprimeEquipamento(){
+        String texto = "";
         for(Equipamento umEquipamento : this.equipamentos){
-            System.out.println(umEquipamento.toString());
+            texto = texto + umEquipamento.toString();
         }
+        return texto;
     }
 
     public String toString(){
         String texto = "";
         texto = texto + "Ocupado ?"+ this.ocupado+ " \n";
         texto = texto + "ID do leito :"+ this.idLeito + " \n";
-        texto = texto + "Equipamentos do leito :"+this.equipamento;
         return texto;
     }
     //ADICIONAR METODOS IMPRIME LeitoHospitalar():String

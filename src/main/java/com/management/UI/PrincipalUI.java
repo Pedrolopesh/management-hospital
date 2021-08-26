@@ -1,6 +1,8 @@
 package com.management.UI;
 
 import com.management.*;
+import com.management.UI.Equipamento.EquipamentoFormUI;
+import com.management.UI.Equipamento.EquipamentoListaUI;
 import com.management.UI.Equipe.EquipeAddFuncionario;
 import com.management.UI.Equipe.EquipeFormUI;
 import com.management.UI.Equipe.EquipeListaUI;
@@ -232,6 +234,22 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //EQUIPAMENTO - CRIAR EQUIPAMENTO
+        miCadastrarEquipamento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               equipamentoCadastrarUI();
+            }
+        });
+
+        //EQUIPAMENTO - LISTA EQUIPAMENTO
+        miListaEquipamentos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                equipamentoListaUI();
+            }
+        });
+
     }
 
     //FUNCIONARIO - CRIAR FUNCIONARIO
@@ -341,6 +359,17 @@ public class PrincipalUI extends JFrame {
         PacienteListaUI pacienteListaUI = new PacienteListaUI(this);
         pacienteListaUI.setVisible(true);
     }
+    //EQUIPAMENTO - CADASTRAR EQUIPAMENTO
+    public void equipamentoCadastrarUI(){
+        EquipamentoFormUI equipamentoFormUI = new EquipamentoFormUI(this);
+        equipamentoFormUI.setVisible(true);
+    }
+
+    //EQUIPAMENTO - LISTAR EQUIPAMENTO
+    public void equipamentoListaUI(){
+       EquipamentoListaUI equipamentoListaUI = new EquipamentoListaUI(this);
+        equipamentoListaUI.setVisible(true);
+    }
 
     public void criarEspecialidades(){
         Especialidade especialidade1 = new Especialidade("Dermatologia", 1);
@@ -358,11 +387,11 @@ public class PrincipalUI extends JFrame {
     }
 
     public void criarEquipoamentos(){
-        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1);
-        Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2);
-        Equipamento equipamento3 = new Equipamento("Oxímetro", 3);
-        Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4);
-        Equipamento equipamento5 = new Equipamento("Desfibrilador", 5);
+        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,1);
+        Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,2);
+        Equipamento equipamento3 = new Equipamento("Oxímetro", 3,3);
+        Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,4);
+        Equipamento equipamento5 = new Equipamento("Desfibrilador", 5,5);
         this.equipamentos.add(equipamento1);
         this.equipamentos.add(equipamento2);
         this.equipamentos.add(equipamento3);
@@ -405,9 +434,9 @@ public class PrincipalUI extends JFrame {
         this.quartoHospitalars.add(quart3);
         this.quartoHospitalars.add(quart4);
 
-        LeitoHospitalar leito1 = new LeitoHospitalar(false, 1, "Eletrocardiógrafos");
-        LeitoHospitalar leito2 = new LeitoHospitalar(false, 2, "Desfibrilador");
-        LeitoHospitalar leito3 = new LeitoHospitalar(false, 3, "Oxímetro");
+        LeitoHospitalar leito1 = new LeitoHospitalar(false, 1);
+        LeitoHospitalar leito2 = new LeitoHospitalar(false, 2);
+        LeitoHospitalar leito3 = new LeitoHospitalar(false, 3);
         this.leitoHospitalares.add(leito1);
         this.leitoHospitalares.add(leito2);
         this.leitoHospitalares.add(leito3);

@@ -29,11 +29,10 @@ public class LeitoFormUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int nextid = generateId();
-                Equipamento equipemento = cbEquipamentos.getItemAt(cbEquipamentos.getSelectedIndex());
-                String selectEquipemento = equipemento.getNomeEquipamento();
+                Equipamento equipamentoSelecionado = cbEquipamentos.getItemAt(cbEquipamentos.getSelectedIndex());
 
-                LeitoHospitalar newLeito = new LeitoHospitalar(false, nextid,selectEquipemento);
-                salvarLeito(newLeito);
+                LeitoHospitalar newLeito = new LeitoHospitalar(false, nextid);
+                salvarLeito(newLeito,equipamentoSelecionado);
             }
         });
     }
@@ -43,7 +42,12 @@ public class LeitoFormUI extends JFrame {
         return nextid;
     }
 
-    private void salvarLeito(LeitoHospitalar newLeito){
+    private void salvarLeito(LeitoHospitalar newLeito,Equipamento equipamentoSelecionado){
         this.mainUI.getLeitos().add(newLeito);
+        for (Equipamento umEquipamento : this.mainUI.getEquipamentos()){
+            if(umEquipamento.getIdEquipamento() == equipamentoSelecionado.getIdEquipamento()){
+                newLeito.addEquipamento(equipamentoSelecionado);
+            }
+        }
     }
 }

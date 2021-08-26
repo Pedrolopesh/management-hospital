@@ -26,14 +26,19 @@ public class EquipamentoFormUI extends JFrame {
         btnConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int nextid = generateId();
                 String NomeEquipamento = txNomeEquipamento.getText();
                 int NumeroEquipamentos = Integer.parseInt(txNumeroEquipamentos.getText());
 
-                Equipamento exemploEquipamento = new Equipamento("Respirador",1);
-                Equipamento novoEquipamento = new Equipamento(NomeEquipamento,NumeroEquipamentos);
+                Equipamento exemploEquipamento = new Equipamento("Respirador",1,nextid);
+                Equipamento novoEquipamento = new Equipamento(NomeEquipamento,NumeroEquipamentos,nextid);
                 salvarEquipamento(novoEquipamento);
             }
         });
+    }
+    private int generateId(){
+        int nextid = this.mainUI.getFuncionarios().size() + 1;;
+        return nextid;
     }
     private void salvarEquipamento(Equipamento novoEquipamento){ this.mainUI.getEquipamentos().add(novoEquipamento);
     }
