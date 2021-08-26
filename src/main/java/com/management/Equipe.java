@@ -88,17 +88,6 @@ public class Equipe {
         return texto;
     }
 
-    public String imprimeFuncionarios(String parametro){
-        String texto = "";
-        texto = texto + "--- Informações das Equipes --- \n";
-        texto = texto + toString();
-        texto = texto + "--- Funcionarios da equipe --- \n";
-        for(Item it : this.funcionarios){
-            texto = texto + it.toString();
-        }
-        return texto;
-    }
-
 
     public void imprimeFuncionarios(int id){
         System.out.println(" --- Funcionário por id ---");
