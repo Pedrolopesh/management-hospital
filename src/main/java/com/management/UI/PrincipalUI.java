@@ -10,6 +10,8 @@ import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
 import com.management.UI.LeitoHospitalar.LeitoFormUI;
 import com.management.UI.LeitoHospitalar.LeitoListaUI;
+import com.management.UI.Paciente.PacienteFormUI;
+import com.management.UI.Paciente.PacienteListaUI;
 import com.management.UI.QuartoHospitalar.QuartoFormUI;
 import com.management.UI.QuartoHospitalar.QuartoListaUI;
 import com.management.UI.UnidadeHospitalar.UnidadeEquipeFormUI;
@@ -56,6 +58,7 @@ public class PrincipalUI extends JFrame {
     private ArrayList<QuartoHospitalar> quartoHospitalars;
     private ArrayList<LeitoHospitalar> leitoHospitalares;
     private ArrayList<Equipamento> equipamentos;
+    private ArrayList<Paciente>pacientes;
     private PrincipalUI principalUI;
 
     public PrincipalUI(){
@@ -66,6 +69,7 @@ public class PrincipalUI extends JFrame {
         this.quartoHospitalars = new ArrayList<QuartoHospitalar>();
         this.leitoHospitalares = new ArrayList<LeitoHospitalar>();
         this.equipamentos = new ArrayList<Equipamento>();
+        this.pacientes = new ArrayList<Paciente>();
 
         criarEspecialidades();
         criarEquipoamentos();
@@ -190,6 +194,21 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //PACIENTE - CRIAR PACIENTES
+        miCadastrarPaciente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pacienteFormUI();
+            }
+        });
+        //PACIENTE - LISTA PACIENTES
+        miListaPaciente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pacientelistaui();
+            }
+        });
+
     }
 
     //FUNCIONARIO - CRIAR FUNCIONARIO
@@ -277,6 +296,16 @@ public class PrincipalUI extends JFrame {
         LeitoListaUI leitoListaUI = new LeitoListaUI(this);
         leitoListaUI.setVisible(true);
     }
+    // PACIENTE - CRIAR PACIENTE
+    public void pacienteFormUI(){
+        PacienteFormUI pacienteFormUI = new PacienteFormUI(this);
+        pacienteFormUI.setVisible(true);
+    }
+    //PACIENTE - LISTAR PACIENTE
+    public void pacientelistaui(){
+        PacienteListaUI pacienteListaUI = new PacienteListaUI(this);
+        pacienteListaUI.setVisible(true);
+    }
 
     public void criarEspecialidades(){
         Especialidade especialidade1 = new Especialidade("Dermatologia", 1);
@@ -325,6 +354,7 @@ public class PrincipalUI extends JFrame {
     public ArrayList<QuartoHospitalar> getQuartos(){ return  this.quartoHospitalars; }
     public ArrayList<LeitoHospitalar> getLeitos(){ return  this.leitoHospitalares; }
     public ArrayList<Equipamento> getEquipamentos(){ return  this.equipamentos; }
+    public ArrayList<Paciente> getPacientes(){ return this.pacientes ;}
 
 
     public static void main(String[] args){

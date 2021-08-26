@@ -1,6 +1,5 @@
 package com.management.UI.Paciente;
-
-import com.management.Especialidade;
+import com.management.Paciente;
 import com.management.UI.PrincipalUI;
 
 import javax.swing.*;
@@ -17,10 +16,10 @@ public class PacienteListaUI extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
 
-//        for(PacienteListaUI umPaciente : this.mainUI.get()){
-//            //append = atribui item
-//            txTextShow.append(umEspecialidade.toString());
-//            txTextShow.append("\n");
-//        }
+        for(Paciente umPaciente : this.mainUI.getPacientes()){
+            //append = atribui item
+            txTextShow.append(umPaciente.toString());
+            txTextShow.append("\n");
+        }
     }
 }

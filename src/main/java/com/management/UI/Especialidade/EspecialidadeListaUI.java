@@ -1,7 +1,6 @@
 package com.management.UI.Especialidade;
 
 import com.management.Especialidade;
-import com.management.Funcionario;
 import com.management.UI.PrincipalUI;
 
 import javax.swing.*;
