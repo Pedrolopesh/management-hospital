@@ -34,9 +34,10 @@ public class EquipeFormUI extends JFrame {
                 String nome = tfNomeEquipe.getText();
                 Funcionario liderEquipe = cbFuncionarios.getItemAt(cbFuncionarios.getSelectedIndex());
 
-                Equipe newEquipe = new Equipe(nome, nextid, liderEquipe.getNome());
+                Equipe novaEquipe = new Equipe(nome, nextid, "vazio");
+                novaEquipe.setLiderEquipe(liderEquipe.getNome());
 
-                salvarEquipe(newEquipe);
+                salvarEquipe(novaEquipe);
             }
         });
     }

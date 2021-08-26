@@ -47,6 +47,8 @@ public class EquipeAddFuncionario extends JFrame{
         for (Equipe umaEquipe: this.mainUI.getEquipes()){
             if(umaEquipe.getIdEquipe() == equipeSelecionada.getIdEquipe()){
                 umaEquipe.addFuncionario(funcionarioSelecionado);
+                funcionarioSelecionado.setStatusFuncionario("emEquipe");
+                umaEquipe.setStatusEquipe("funcionarios");
             }
         }
     }

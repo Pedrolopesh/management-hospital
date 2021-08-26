@@ -8,13 +8,14 @@ public class Equipe {
     private String nomeEquipe;
     private int idEquipe;
     private String liderEquipe;
+    private String statusEquipe;
     private ArrayList<Funcionario> funcionarios;
 
-    public Equipe(String nomeEquipe, int idEquipe, String liderEquipe){
+    public Equipe(String nomeEquipe, int idEquipe, String statusEquipe){
         this.nomeEquipe = nomeEquipe;
         this.idEquipe = idEquipe;
-        this.liderEquipe = liderEquipe;
         this.funcionarios = new ArrayList<Funcionario>();
+        this.statusEquipe = statusEquipe;
     }
 
     public int getIdEquipe() {
@@ -45,8 +46,24 @@ public class Equipe {
         return true;
     }
 
+    public String getStatusEquipe(){
+        return this.statusEquipe;
+    }
+
+    public boolean setStatusEquipe(String statusEquipe) {
+        if(statusEquipe.isEmpty()){
+            return false;
+        }
+        this.statusEquipe = statusEquipe;
+        return true;
+    }
+
     public void addFuncionario(Funcionario umFuncionario){
         this.funcionarios.add(umFuncionario);
+    }
+
+    public void removeFuncionario(Funcionario umFuncionario){
+        this.funcionarios.remove(umFuncionario);
     }
 
     public String toString(){

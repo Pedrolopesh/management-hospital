@@ -3,10 +3,7 @@ package com.management.UI;
 import com.management.*;
 import com.management.UI.Equipamento.EquipamentoFormUI;
 import com.management.UI.Equipamento.EquipamentoListaUI;
-import com.management.UI.Equipe.EquipeAddFuncionario;
-import com.management.UI.Equipe.EquipeFormUI;
-import com.management.UI.Equipe.EquipeListaUI;
-import com.management.UI.Equipe.EquipePesquisaUI;
+import com.management.UI.Equipe.*;
 import com.management.UI.Especialidade.EspecialidadeFormUi;
 import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
@@ -70,6 +67,7 @@ public class PrincipalUI extends JFrame {
     private JPanel jpEquipamento;
     private JMenuItem miPesquisaFuncionario;
     private JMenuItem miPesquisaEquipe;
+    private JMenuItem miEditarFuncionario;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -154,6 +152,14 @@ public class PrincipalUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pesquisaEquipeUI();
+            }
+        });
+
+        //EQUIPES - TROCAR FUNCIONARIO DE EQUIPE
+        miEditarFuncionario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editarEquipesFuncionarioUI();
             }
         });
 
@@ -329,6 +335,12 @@ public class PrincipalUI extends JFrame {
         equipePesquisaUI.setVisible(true);
     }
 
+    //EQUIPES - TROCAR FUNCIONARIO DE EQUIPE
+    public void editarEquipesFuncionarioUI(){
+        EquipeEditaFuncionarioFormUI equipeEditaFuncionarioFormUI = new EquipeEditaFuncionarioFormUI(this);
+        equipeEditaFuncionarioFormUI.setVisible(true);
+    }
+
     //UNIDADES - CRIAR UNIDADE HOSPITALR
     private void unidadeFormUI(){
         UnidadeFormularioUI unidadeFormularioUI = new UnidadeFormularioUI(this);
@@ -466,10 +478,19 @@ public class PrincipalUI extends JFrame {
         this.funcionarios.add(funcionario3);
         this.funcionarios.add(funcionario4);
 
-        Equipe equipe1 = new Equipe("Equipe Delta", 1, "Pedro Lopes");
-        Equipe equipe2 = new Equipe("Equipe Gama", 2, "lisson Gabriel");
+        Equipe equipe1 = new Equipe("Equipe Delta", 1, "vazio");
+        Equipe equipe2 = new Equipe("Equipe Gama", 2, "vazio");
         this.equipes.add(equipe1);
         this.equipes.add(equipe2);
+
+        equipe1.addFuncionario(funcionario1);
+        equipe1.setLiderEquipe(funcionario1.getNome());
+        funcionario1.setStatusFuncionario("emEquipe");
+
+        equipe1.addFuncionario(funcionario2);
+        funcionario2.setStatusFuncionario("emEquipe");
+
+        equipe1.setStatusEquipe("funcionarios");
 
         UnidadeHospitalar unidade1 = new UnidadeHospitalar("A", 1);
         unidade1.setEspecialidade("Dermatologia");
