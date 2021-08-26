@@ -28,7 +28,7 @@ public class QuartoFormUI extends JFrame{
                 int totalLeitos = Integer.parseInt(tfNumeroLeitos.getText());
                 int nextid = generateId();
 
-                QuartoHospitalar newQuartoHospitalar = new QuartoHospitalar(nome, nextid, totalLeitos, 0);
+                QuartoHospitalar newQuartoHospitalar = new QuartoHospitalar(nome, nextid, totalLeitos);
                 salvarQuarto(newQuartoHospitalar);
             }
         });

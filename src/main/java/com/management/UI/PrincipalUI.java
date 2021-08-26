@@ -478,10 +478,10 @@ public class PrincipalUI extends JFrame {
         this.unidadeHospitalares.add(unidade1);
         this.unidadeHospitalares.add(unidade2);
 
-        QuartoHospitalar quart1 = new QuartoHospitalar("Quarto 1A", 1, 10, 0);
-        QuartoHospitalar quart2 = new QuartoHospitalar("Quarto 2A", 2, 10, 0);
-        QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 3A", 3, 10, 0);
-        QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 4A", 4, 10, 0);
+        QuartoHospitalar quart1 = new QuartoHospitalar("Quarto 1A", 1, 10);
+        QuartoHospitalar quart2 = new QuartoHospitalar("Quarto 2A", 2, 10);
+        QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 3A", 3, 10);
+        QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 4A", 4, 10);
         this.quartoHospitalars.add(quart1);
         this.quartoHospitalars.add(quart2);
         this.quartoHospitalars.add(quart3);
@@ -495,6 +495,10 @@ public class PrincipalUI extends JFrame {
         this.leitoHospitalares.add(leito3);
         leito1.addEquipamento(equipamento1);
         leito2.addEquipamento(equipamento2);
+
+        quart1.addLeitoHospitalar(leito1);
+        quart1.addLeitoHospitalar(leito2);
+
 
         Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", true, "Isolamento imediato", "aguardando");
         Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", true, "Isolamento Imediato", "aguardando");

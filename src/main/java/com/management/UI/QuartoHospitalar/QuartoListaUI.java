@@ -18,7 +18,7 @@ public class QuartoListaUI extends JFrame{
         txTextShow.append("--- Todos os Quartos ---");
         txTextShow.append("\n");
         for(QuartoHospitalar umQuarto: this.mainUI.getQuartos()){
-            txTextShow.append(umQuarto.toString());
+            txTextShow.append(umQuarto.informaLeitos());
             txTextShow.append("\n");
         }
     }
