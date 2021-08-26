@@ -8,6 +8,7 @@ import com.management.UI.Especialidade.EspecialidadeFormUi;
 import com.management.UI.Especialidade.EspecialidadeListaUI;
 import com.management.UI.Funcionario.FuncionarioFormUI;
 import com.management.UI.Funcionario.FuncionarioListaUI;
+import com.management.UI.LeitoHospitalar.LeitoAddQuarto;
 import com.management.UI.LeitoHospitalar.LeitoFormUI;
 import com.management.UI.LeitoHospitalar.LeitoListaUI;
 import com.management.UI.Paciente.PacienteFormUI;
@@ -53,6 +54,8 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCriarEspecialidade;
     private JMenuItem miUnidadeEquipe;
     private JMenuItem miUnidadeAddQuarto;
+    private JLabel labelInstrucao;
+    private JMenuItem miQuartoAddLeito;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -189,6 +192,14 @@ public class PrincipalUI extends JFrame {
             }
         });
 
+        //QUARTO - LISTAR QUARTOS
+        miQuartoAddLeito.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quartoAddLeito();
+            }
+        });
+
         //LEITO - CRIAR LEITO
         miCriarLeito.addActionListener(new ActionListener() {
             @Override
@@ -303,6 +314,11 @@ public class PrincipalUI extends JFrame {
         quartoListaUI.setVisible(true);
     }
 
+    public void quartoAddLeito(){
+        LeitoAddQuarto leitoAddQuarto = new LeitoAddQuarto(this);
+        leitoAddQuarto.setVisible(true);
+    }
+
     //LEITO - CRIAR LEITO
     public void chieldLeitoFormUI(){
         LeitoFormUI leitoFormUI = new LeitoFormUI(this);
@@ -387,6 +403,13 @@ public class PrincipalUI extends JFrame {
         this.quartoHospitalars.add(quart2);
         this.quartoHospitalars.add(quart3);
         this.quartoHospitalars.add(quart4);
+
+        LeitoHospitalar leito1 = new LeitoHospitalar(false, 1, "Eletrocardiógrafos");
+        LeitoHospitalar leito2 = new LeitoHospitalar(false, 2, "Desfibrilador");
+        LeitoHospitalar leito3 = new LeitoHospitalar(false, 3, "Oxímetro");
+        this.leitoHospitalares.add(leito1);
+        this.leitoHospitalares.add(leito2);
+        this.leitoHospitalares.add(leito3);
     }
 
     public ArrayList<Funcionario> getFuncionarios(){
