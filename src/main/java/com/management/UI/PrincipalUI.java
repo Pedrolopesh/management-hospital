@@ -12,7 +12,8 @@ import com.management.UI.LeitoHospitalar.LeitoFormUI;
 import com.management.UI.LeitoHospitalar.LeitoListaUI;
 import com.management.UI.QuartoHospitalar.QuartoFormUI;
 import com.management.UI.QuartoHospitalar.QuartoListaUI;
-import com.management.UI.UnidadeHospitalar.UnidadeFormUI;
+import com.management.UI.UnidadeHospitalar.UnidadeEquipeFormUI;
+import com.management.UI.UnidadeHospitalar.UnidadeFormularioUI;
 import com.management.UI.UnidadeHospitalar.UnidadeListaUI;
 
 import javax.swing.*;
@@ -47,6 +48,7 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCadastrarEquipamento;
     private JMenuItem miListaEspecialidades;
     private JMenuItem miCriarEspecialidade;
+    private JMenuItem miUnidadeEquipe;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
@@ -120,7 +122,7 @@ public class PrincipalUI extends JFrame {
         miCriarUnidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chieldUnidadeFormUI();
+                unidadeFormUI();
             }
         });
 
@@ -129,6 +131,14 @@ public class PrincipalUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldUnidadeListaUI();
+            }
+        });
+
+        //UNIDADE - ADICIONAR EQUIPE A UMA UNIDADE HOSPITALAR
+        miUnidadeEquipe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                unidadeAddequipeUI();
             }
         });
 
@@ -213,15 +223,21 @@ public class PrincipalUI extends JFrame {
     }
 
     //UNIDADES - CRIAR UNIDADE HOSPITALR
-    private void chieldUnidadeFormUI(){
-        UnidadeFormUI unidadeFormUI = new UnidadeFormUI(this);
-        unidadeFormUI.setVisible(true);
+    private void unidadeFormUI(){
+        UnidadeFormularioUI unidadeFormularioUI = new UnidadeFormularioUI(this);
+        unidadeFormularioUI.setVisible(true);
     }
 
     //UNIDADES - LISTA UNIDADES HOSPITALARES
     public void chieldUnidadeListaUI(){
         UnidadeListaUI unidadeListaUI = new UnidadeListaUI(this);
         unidadeListaUI.setVisible(true);
+    }
+
+    //UNIDADE - ADICIONAR EQUIPE A UMA UNIDADE HOSPITALAR
+    public void unidadeAddequipeUI(){
+        UnidadeEquipeFormUI unidadeEquipeFormUI = new UnidadeEquipeFormUI(this);
+        unidadeEquipeFormUI.setVisible(true);
     }
 
     //ESPECIALIDADES - LISTA ESPECIALIDADES
@@ -250,7 +266,7 @@ public class PrincipalUI extends JFrame {
         quartoListaUI.setVisible(true);
     }
 
-    //QUARTO - LISTAR QUARTOS
+    //LEITO - CRIAR LEITO
     public void chieldLeitoFormUI(){
         LeitoFormUI leitoFormUI = new LeitoFormUI(this);
         leitoFormUI.setVisible(true);
@@ -289,6 +305,12 @@ public class PrincipalUI extends JFrame {
         this.equipamentos.add(equipamento4);
         this.equipamentos.add(equipamento5);
     }
+
+//    public void criarDadosTest(){
+//        Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
+//        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", 2, "1234567890");
+//        Funcionario funcionario3 = new Funcionario("Fernanda Alves", 1, "1234567890");
+//    }
 
     public ArrayList<Funcionario> getFuncionarios(){
         return this.funcionarios;

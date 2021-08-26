@@ -54,7 +54,7 @@
               <component id="3c083" class="javax.swing.JMenuItem" binding="miCriarEquipe">
                 <constraints/>
                 <properties>
-                  <text value="CriarEquipe"/>
+                  <text value="Criar Equipe"/>
                 </properties>
               </component>
               <component id="4f1db" class="javax.swing.JMenuItem" binding="miListarEquipe">
@@ -103,6 +103,12 @@
                 <constraints/>
                 <properties>
                   <text value="Criar Especialidade"/>
+                </properties>
+              </component>
+              <component id="9100a" class="javax.swing.JMenuItem" binding="miUnidadeEquipe">
+                <constraints/>
+                <properties>
+                  <text value="Adicionar equipe a unidade"/>
                 </properties>
               </component>
             </children>
