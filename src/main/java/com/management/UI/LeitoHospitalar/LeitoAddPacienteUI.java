@@ -28,7 +28,6 @@ public class LeitoAddPacienteUI extends JFrame{
 
         for(LeitoHospitalar umLeito : this.mainUI.getLeitos()){
             if(!umLeito.getOcupado()){
-                System.out.println(umLeito);
                 cbLeitosDisponiveis.addItem(umLeito);
             }
         }

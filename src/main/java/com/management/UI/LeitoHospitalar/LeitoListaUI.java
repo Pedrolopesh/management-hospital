@@ -21,8 +21,6 @@ public class LeitoListaUI extends JFrame {
         for (LeitoHospitalar umLeito: this.mainUI.getLeitos()){
             txShowList.append("\n --- Informações do Leito --- \n");
             txShowList.append(umLeito.imformacao());
-//            txShowList.append("\n--- Equipamentos do Leito --- \n");
-//            txShowList.append(umLeito.imprimeEquipamento());
         }
 
     }

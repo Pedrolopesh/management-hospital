@@ -16,7 +16,6 @@ public class PacienteListaUI extends JFrame{
         this.setContentPane(mainPanel);
 
         for(Paciente umPaciente : this.mainUI.getPacientes()){
-            //append = atribui item
             txTextShow.append(umPaciente.imformacaoPacientes());
             txTextShow.append("\n");
         }
