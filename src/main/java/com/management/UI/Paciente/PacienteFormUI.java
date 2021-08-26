@@ -49,7 +49,7 @@ public class PacienteFormUI extends JFrame{
                 String necessidade = txNecessidade.getText();
                 String isolamento = txIsolamento.getText();
 
-                Paciente novoPaciente = new Paciente("",1,"","",1,1.0,);
+//                Paciente novoPaciente = new Paciente("",1,"","",1,1.0,);
 //                Paciente novoPaciente = new Paciente(nome, idade, Altura, Peso, comorbidade, diagnostico, necessidade, isolamento);
 
             }

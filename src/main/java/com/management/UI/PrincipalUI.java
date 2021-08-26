@@ -378,6 +378,15 @@ public class PrincipalUI extends JFrame {
         unidade2.setEspecialidade("Reumatologia");
         this.unidadeHospitalares.add(unidade1);
         this.unidadeHospitalares.add(unidade2);
+
+        QuartoHospitalar quart1 = new QuartoHospitalar("Quarto 1A", 1, 10, 0);
+        QuartoHospitalar quart2 = new QuartoHospitalar("Quarto 2A", 2, 10, 0);
+        QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 3A", 3, 10, 0);
+        QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 4A", 4, 10, 0);
+        this.quartoHospitalars.add(quart1);
+        this.quartoHospitalars.add(quart2);
+        this.quartoHospitalars.add(quart3);
+        this.quartoHospitalars.add(quart4);
     }
 
     public ArrayList<Funcionario> getFuncionarios(){

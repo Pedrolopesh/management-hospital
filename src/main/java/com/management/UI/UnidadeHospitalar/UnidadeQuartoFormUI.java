@@ -33,12 +33,23 @@ public class UnidadeQuartoFormUI extends JFrame {
             cbQuartos.addItem(umQuarto);
         }
 
-
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                UnidadeHospitalar unidadeSelecionada = cbUnidades.getItemAt(cbUnidades.getSelectedIndex());
 
+                QuartoHospitalar quartoSelecionado = cbQuartos.getItemAt(cbQuartos.getSelectedIndex());
+
+                confirmarUnidadeAddQuarto(unidadeSelecionada, quartoSelecionado);
             }
         });
+    }
+
+    private void confirmarUnidadeAddQuarto(UnidadeHospitalar unidadeSelecionada, QuartoHospitalar quartoSelecionado){
+        for (UnidadeHospitalar unidadeHospitalar : this.mainUI.getUnidadeHospitalares()){
+            if(unidadeHospitalar.getIdUnidadeHospitalar() == unidadeSelecionada.getIdUnidadeHospitalar()){
+                unidadeHospitalar.addQuartoHospitalar(quartoSelecionado);
+            }
+        }
     }
 }

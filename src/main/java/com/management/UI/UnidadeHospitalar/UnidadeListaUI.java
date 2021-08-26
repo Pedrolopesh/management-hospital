@@ -16,10 +16,12 @@ public class UnidadeListaUI extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
 
-        txShowList.append("--- Todas as Unidades ---");
-        txShowList.append("\n");
+        txShowList.append("--- Todas as Unidades --- \n");
         for (UnidadeHospitalar umaUnidadeHospitalar: this.mainUI.getUnidadeHospitalares()){
+            txShowList.append("--- Informações da unidade --- \n");
+            txShowList.append(umaUnidadeHospitalar.toString());
             txShowList.append(umaUnidadeHospitalar.imprimeEquipe());
+            txShowList.append(umaUnidadeHospitalar.imprimeQuarto());
             txShowList.append("\n");
         }
     }

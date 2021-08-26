@@ -58,11 +58,13 @@ public class UnidadeHospitalar {
         this.especialidades.add(especialidades);
     }
 
-    public void imprimeQuarto(){
-        System.out.println("--- Todos os quartos ---");
+    public String imprimeQuarto(){
+        String texto = "";
+        texto = texto + "--- Quarto da Unidade --- \n";
         for (QuartoHospitalar umQuarto: this.quartoHospitalars){
-            System.out.println(umQuarto.toString());
+            texto = texto + umQuarto.toString();
         }
+        return texto;
     }
 
     public void imprimeQuarto(int idQuarto){
@@ -84,9 +86,6 @@ public class UnidadeHospitalar {
 
     public String imprimeEquipe(){
         String texto = "";
-        texto = texto + "--- Informações da unidade --- \n";
-        texto = texto + toString();
-
         texto = texto + "--- Equipes da Unidade --- \n";
         for (Equipe umaEquipe : this.equipes){
             texto = texto + umaEquipe.toString();
