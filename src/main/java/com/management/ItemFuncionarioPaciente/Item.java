@@ -1,6 +1,6 @@
 package com.management.ItemFuncionarioPaciente;
 
-public class Item {
+public abstract class Item {
     protected String nome;
     protected int id;
     protected String telefone;
@@ -38,6 +38,8 @@ public class Item {
         this.telefone = telefone;
         return true;
     }
+
+    public abstract void atendimento(String item);
 
     public String toString(){
         String texto = "";

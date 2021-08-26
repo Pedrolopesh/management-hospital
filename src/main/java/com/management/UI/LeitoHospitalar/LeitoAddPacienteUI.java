@@ -1,5 +1,6 @@
 package com.management.UI.LeitoHospitalar;
 
+import com.management.Funcionario;
 import com.management.LeitoHospitalar;
 import com.management.Paciente;
 import com.management.UI.PrincipalUI;
@@ -14,6 +15,7 @@ public class LeitoAddPacienteUI extends JFrame{
     private JButton confirmarButton;
     private JPanel mainPanel;
     private JComboBox<Paciente> cbPacientes;
+    private JComboBox<Funcionario> cbFuncionarios;
     private PrincipalUI mainUI;
     private ArrayList<LeitoHospitalar> leitoHospitalares;
 
@@ -37,18 +39,27 @@ public class LeitoAddPacienteUI extends JFrame{
             }
         }
 
+        for (Funcionario umFuncionario : this.mainUI.getFuncionarios()){
+            cbFuncionarios.addItem(umFuncionario);
+        }
+
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LeitoHospitalar leitoSelecionado = cbLeitosDisponiveis.getItemAt(cbLeitosDisponiveis.getSelectedIndex());
                 Paciente pacienteSelecionado = cbPacientes.getItemAt(cbPacientes.getSelectedIndex());
+                Funcionario funcionarioSelecionado = cbFuncionarios.getItemAt(cbFuncionarios.getSelectedIndex());
 
-                confirmarLeitoAddPaciente(leitoSelecionado, pacienteSelecionado);
+                confirmarLeitoAddPaciente(leitoSelecionado, pacienteSelecionado, funcionarioSelecionado);
             }
         });
     }
 
-    private void confirmarLeitoAddPaciente(LeitoHospitalar leitoSelecionado, Paciente pacienteSelecionado){
+    private void confirmarLeitoAddPaciente(LeitoHospitalar leitoSelecionado, Paciente pacienteSelecionado, Funcionario funcionarioSelecionado){
+
+        funcionarioSelecionado.atendimento(pacienteSelecionado.getNome());
+        pacienteSelecionado.atendimento(funcionarioSelecionado.getNome());
+
         for(LeitoHospitalar umleito : this.mainUI.getLeitos()){
             if(umleito.getIdLeito() == leitoSelecionado.getIdLeito()){
                 umleito.addPaciente(pacienteSelecionado);

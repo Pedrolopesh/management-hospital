@@ -13,6 +13,7 @@ public class Paciente extends Item {
     private boolean isolamento;
     private String necessidade;
     private String statusPaciente;
+    private String funcionarioAtendimento;
 
     public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente){
         super(nome, id, telefone);
@@ -143,9 +144,19 @@ public class Paciente extends Item {
         texto = texto + "Isolamento: " + this.getIsolamento() + ", \n";
         texto = texto + "Necessidades: " + this.getNecessidade() + ", \n";
         texto = texto + "Status do paciente: " + this.getStatusPaciente() + ", \n";
+        texto = texto + "Funcionário atendido por: " + this.getFuncionarioAtendimento() + ", \n";
         return texto;
     }
 
+
+    @Override
+    public void atendimento(String funcionarioAtendimento) {
+        this.funcionarioAtendimento = funcionarioAtendimento;
+    }
+
+    public String getFuncionarioAtendimento(){
+        return this.funcionarioAtendimento;
+    }
 
     @Override
     public String toString(){

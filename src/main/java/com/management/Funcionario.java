@@ -2,12 +2,24 @@ package com.management;
 
 import com.management.ItemFuncionarioPaciente.Item;
 
+import java.util.ArrayList;
+
 public class Funcionario extends Item {
     private String cargo;
     private String statusFuncionario;
+    private String pacientesAtendidos;
 
     public Funcionario(String nome, int id, String telefone) {
         super(nome, id, telefone);
+    }
+
+    @Override
+    public void atendimento(String pacienteAtendido) {
+        this.pacientesAtendidos = pacienteAtendido;
+    }
+
+    public String getPacientesAtendidos() {
+        return this.pacientesAtendidos;
     }
 
     public String getStatusFuncionario() {
