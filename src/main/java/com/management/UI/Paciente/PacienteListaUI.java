@@ -7,7 +7,6 @@ import javax.swing.*;
 public class PacienteListaUI extends JFrame{
     private JTextArea txTextShow;
     private JPanel mainPanel;
-
     private PrincipalUI mainUI;
 
     public PacienteListaUI(PrincipalUI principalUI){
