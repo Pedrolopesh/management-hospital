@@ -2,55 +2,71 @@ package com.management;
 
 import java.util.ArrayList;
 
-public class LeitoHospitalar {
+
+public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
     private int idLeito;
     private boolean ocupado;
-    private ArrayList<Paciente> pacientes;
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Paciente paciente;
     private ArrayList<Equipamento> equipamentos;
 
-    public LeitoHospitalar ( int idLeito){
+    public LeitoHospitalar(int idLeito) {
         this.idLeito = idLeito;
-
-        this.pacientes = new ArrayList<Paciente>();
+        this.paciente = new Paciente();
         this.equipamentos = new ArrayList<Equipamento>();
     }
 
-    public int getIdLeito(){
+
+    public int getIdLeito() {
         return idLeito;
     }
 
-    public boolean getOcupado(){
+    public boolean getOcupado() {
         return ocupado;
     }
 
-    public boolean setOcupado(boolean ocupado){
+    public boolean setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
         return true;
     }
 
-    public void addPaciente(Paciente umPaciente){
-        this.pacientes.add(umPaciente);
+    public void addEquipamento(Equipamento equipamentos) {
+        this.equipamentos.add(equipamentos);
     }
-    public void addEquipamento(Equipamento equipamentos){this.equipamentos.add(equipamentos);}
 
-    public String imformacao(){
+    public String imformacao() {
         String texto = "";
-        texto = texto + "ID do leito :"+ this.idLeito + " \n";
-        texto = texto + "Ocupado ? "+ this.ocupado+ " \n";
-        for (Paciente umPaciente : this.pacientes){
-            texto = texto + "\n *** Paciente no leito *** \n";
-            texto = texto + umPaciente.imformacaoPacientes();
+        texto = texto + "ID do leito :" + this.idLeito + " \n";
+        texto = texto + "Ocupado ? " + this.ocupado + " \n";
+        texto = texto + "\n * Paciente no leito * \n";
+        texto = texto + this.paciente.imformacaoPacientes();
+        return texto;
+    }
+
+    public String toString() {
+        String texto = "";
+        texto = texto + "ID do leito :" + this.idLeito + " \n";
+        texto = texto + "Ocupado ?" + this.ocupado + " \n";
+        return texto;
+    }
+
+    public int compareTo(LeitoHospitalar leitoHospitalar) {
+        if (this.paciente.getIdade() < leitoHospitalar.getPaciente().getIdade()) {
+            return -1;
+        } else if (this.paciente.getIdade() > leitoHospitalar.getPaciente().getIdade()) {
+            return +1;
         }
-        return texto;
+        return 0;
     }
-
-    public String toString(){
-        String texto = "";
-        texto = texto + "ID do leito :"+ this.idLeito + " \n";
-        texto = texto + "Ocupado ?"+ this.ocupado+ " \n";
-        return texto;
-    }
-    //ADICIONAR METODOS IMPRIME LeitoHospitalar():String
-    //ADICIONAR METODOS IMPRIME LeitoHospitalar(ocupado:boolen):String
+    // ADICIONAR METODOS IMPRIME LeitoHospitalar():String
+    // ADICIONAR METODOS IMPRIME LeitoHospitalar(ocupado:boolen):String
 
 }

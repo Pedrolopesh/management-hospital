@@ -26,10 +26,6 @@ public class Main {
 
         QuartoHospitalar quart1 = new QuartoHospitalar("Quarto da unidade D", 1, 3);
 
-        LeitoHospitalar leit1 = new LeitoHospitalar(1111);
-        Paciente pac1 = new Paciente("Alison",172,"98431091",18,1.96,115,"","Cancer terminal",false,"Consolo", "");
-        leit1.addPaciente(pac1);
-        quart1.addLeitoHospitalar(leit1);
 
         unit1.addEquipe(eqp1);
         unit1.addEquipe(eqp2);
@@ -41,7 +37,6 @@ public class Main {
         Equipamento respirador = new Equipamento("Respirador", 3, 1);
         respirador.toString();
 
-        leit1.addEquipamento(respirador);
 
     }
 }

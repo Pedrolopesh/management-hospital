@@ -1,5 +1,7 @@
 package com.management.ItemFuncionarioPaciente;
 
+import com.management.Funcionario;
+
 public abstract class Item {
     protected String nome;
     protected int id;
@@ -9,6 +11,10 @@ public abstract class Item {
         this.nome = nome;
         this.id = id;
         this.telefone = telefone;
+    }
+
+    public Item(){
+
     }
 
     public String getNome() {

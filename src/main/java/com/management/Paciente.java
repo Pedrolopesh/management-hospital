@@ -1,8 +1,6 @@
 package com.management;
-
 import com.management.ItemFuncionarioPaciente.Item;
 
-import java.util.ArrayList;
 
 public class Paciente extends Item {
     private int idade;
@@ -15,7 +13,7 @@ public class Paciente extends Item {
     private String statusPaciente;
     private String funcionarioAtendimento;
 
-    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente){
+    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente) {
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
@@ -26,9 +24,10 @@ public class Paciente extends Item {
         this.necessidade = necessidade;
         this.statusPaciente = statusPaciente;
     }
+    public Paciente (){
 
-
-    public int getIdade(){
+    }
+    public int getIdade() {
         return idade;
     }
 
@@ -38,7 +37,7 @@ public class Paciente extends Item {
     }
 
     public boolean setStatusPaciente(String statusPaciente) {
-        if(statusPaciente.isEmpty()){
+        if (statusPaciente.isEmpty()) {
             return false;
         }
         this.statusPaciente = statusPaciente;
@@ -46,7 +45,7 @@ public class Paciente extends Item {
     }
 
     public boolean setIdade(int idade) {
-        if(idade < 0){
+        if (idade < 0) {
             return false;
         }
         this.idade = idade;
@@ -59,8 +58,8 @@ public class Paciente extends Item {
     }
 
 
-    public boolean setAltura(double altura){
-        if(altura < 0){
+    public boolean setAltura(double altura) {
+        if (altura < 0) {
             return false;
         }
         this.altura = altura;
@@ -73,8 +72,8 @@ public class Paciente extends Item {
     }
 
 
-    public boolean setPeso(double peso){
-        if(peso < 0){
+    public boolean setPeso(double peso) {
+        if (peso < 0) {
             return false;
         }
         this.peso = peso;
@@ -82,7 +81,7 @@ public class Paciente extends Item {
     }
 
 
-    public String getComorbidade(){
+    public String getComorbidade() {
         return comorbidade;
     }
 
@@ -92,48 +91,48 @@ public class Paciente extends Item {
             return false;
         }
         this.comorbidade = comorbidade;
-         return true;
+        return true;
     }
 
 
-    public String getDiagnostico(){
+    public String getDiagnostico() {
         return diagnostico;
     }
 
 
-    public boolean setDiagnostico(String diagnostico){
-        if(diagnostico.isEmpty()){
+    public boolean setDiagnostico(String diagnostico) {
+        if (diagnostico.isEmpty()) {
             return false;
         }
         return true;
     }
 
 
-    public boolean getIsolamento(){
+    public boolean getIsolamento() {
         return isolamento;
     }
 
 
-    public boolean setIsolamento(boolean isolamento){
+    public boolean setIsolamento(boolean isolamento) {
         this.isolamento = isolamento;
         return true;
     }
 
 
-    public String getNecessidade(){
+    public String getNecessidade() {
         return necessidade;
     }
 
 
-    public boolean setNecessidade(String necessidade){
-        if(necessidade.isEmpty()){
+    public boolean setNecessidade(String necessidade) {
+        if (necessidade.isEmpty()) {
             return false;
         }
         this.necessidade = necessidade;
         return true;
     }
 
-    public String imformacaoPacientes(){
+    public String imformacaoPacientes() {
         String texto = "";
         texto = texto + super.toString();
         texto = texto + "Idade: " + this.getIdade() + ", \n";
@@ -148,18 +147,17 @@ public class Paciente extends Item {
         return texto;
     }
 
-
     @Override
     public void atendimento(String funcionarioAtendimento) {
         this.funcionarioAtendimento = funcionarioAtendimento;
     }
 
-    public String getFuncionarioAtendimento(){
+    public String getFuncionarioAtendimento() {
         return this.funcionarioAtendimento;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String texto = "";
         texto = texto + super.toString();
         return texto;

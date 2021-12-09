@@ -61,7 +61,7 @@ public class LeitoAddPacienteUI extends JFrame{
 
         for(LeitoHospitalar umleito : this.mainUI.getLeitos()){
             if(umleito.getIdLeito() == leitoSelecionado.getIdLeito()){
-                umleito.addPaciente(pacienteSelecionado);
+                umleito.setPaciente(pacienteSelecionado);
 
                 umleito.setOcupado(true);
                 pacienteSelecionado.setStatusPaciente("emLeito");

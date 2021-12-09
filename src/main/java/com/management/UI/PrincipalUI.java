@@ -545,7 +545,7 @@ public class PrincipalUI extends JFrame {
         this.pacientes.add(paciente3);
         this.pacientes.add(paciente4);
 
-        leito1.addPaciente(paciente1);
+        leito1.setPaciente(paciente1);
         leito1.setOcupado(true);
         paciente1.setStatusPaciente("emLeito");
     }

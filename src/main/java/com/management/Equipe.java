@@ -3,6 +3,7 @@ package com.management;
 import com.management.ItemFuncionarioPaciente.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Equipe {
     private String nomeEquipe;

@@ -39,7 +39,7 @@ public class PacienteFormUI extends JFrame{
                 String nome = txNome.getText();
                 int idade = Integer.parseInt(txIdade.getText());
                 double altura = Double.parseDouble(txAltura.getText());
-                double peso = Double.parseDouble(txAltura.getText());
+                double peso = Double.parseDouble(txPeso.getText());
                 String comorbidade = txComorbidade.getText();
                 String diagnostico = txDiagnostico.getText();
                 String necessidade = txNecessidade.getText();
