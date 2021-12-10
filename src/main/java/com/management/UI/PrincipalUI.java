@@ -27,10 +27,7 @@ import com.management.UI.UnidadeHospitalar.UnidadeQuartoFormUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PrincipalUI extends JFrame {
     private JPanel mainPanel;
@@ -70,6 +67,7 @@ public class PrincipalUI extends JFrame {
     private JPanel jpQuarto;
     private JPanel jpLeito;
     private JPanel jpEquipamento;
+    private PrincipalUI principalUI;
     private JMenuItem miPesquisaFuncionario;
     private JMenuItem miPesquisaEquipe;
     private JMenuItem miEditarFuncionario;
@@ -80,24 +78,23 @@ public class PrincipalUI extends JFrame {
     private ArrayList<QuartoHospitalar> quartoHospitalars;
     private ArrayList<LeitoHospitalar> leitoHospitalares;
     private ArrayList<Paciente>pacientes;
-    private PrincipalUI principalUI;
-//    private ArrayList<Equipamento> equipamentos;
-//    private ArrayList<UnidadeHospitalar> unidadeHospitalares;
     List<Equipamento> equipamentos = new ArrayList<Equipamento>();
     Set<UnidadeHospitalar> unidadeHospitalares = new HashSet<UnidadeHospitalar>();
+    Map<String, Equipe> mapaEquipe = new HashMap();
 
     public PrincipalUI(){
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
-//        this.unidadeHospitalares = new ArrayList<UnidadeHospitalar>();
         this.especialidades = new ArrayList<Especialidade>();
         this.quartoHospitalars = new ArrayList<QuartoHospitalar>();
         this.leitoHospitalares = new ArrayList<LeitoHospitalar>();
-//        this.equipamentos = new ArrayList<Equipamento>();
+
         this.pacientes = new ArrayList<Paciente>();
 
         criarDadosTest();
         checkLogClasses();
+        MapearEquipes();
+
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
         //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
@@ -581,6 +578,20 @@ public class PrincipalUI extends JFrame {
         };
 
         texto.SobrescrevertoString();
+    }
+
+    //TODO TESTE DE IMPLEMENTAÇÃO DO MAP PARA APLICAR EM CLASSE DE LIMPEZA (RELEASE 3.3)
+    public void MapearEquipes() {
+        Equipe equipe1 = new Equipe("Equipe Delta", 1, "vazio");
+        Equipe equipe2 = new Equipe("Equipe Gama", 2, "vazio");
+
+        mapaEquipe.put("Lider Equipe", equipe1);
+        mapaEquipe.put("Vice lider", equipe2);
+
+        Equipe equipe = mapaEquipe.get("Lider Equipe");
+        System.out.println("====== MAP PARA ENCONTRAR LIMPEZA =======");
+        System.out.println(equipe.toString());
+
     }
 
     public ArrayList<Funcionario> getFuncionarios(){
