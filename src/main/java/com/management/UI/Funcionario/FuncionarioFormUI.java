@@ -33,9 +33,10 @@ public class FuncionarioFormUI extends JFrame {
         this.funcionarios = new ArrayList<Funcionario>();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mainPanel.setPreferredSize(new Dimension(600, 600));
-        mainPanel.repaint();
+        mainPanel.setPreferredSize(new Dimension(300, 300));
+//        mainPanel.repaint();
         this.setContentPane(mainPanel);
+        this.pack();
 
         confirmarButton.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +53,8 @@ public class FuncionarioFormUI extends JFrame {
                     newFuncionario.setCargo(cargo);
                     salvaFuncionario(newFuncionario);
                 } catch (Excessao ex) {
-                    System.out.println(ex);
+                    String log = ex.getMessage();
+                    System.out.println(log);
                 }
 
             }

@@ -5,6 +5,7 @@ import com.management.FuncionarioComparator;
 import com.management.UI.PrincipalUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Collections;
 
 public class FuncionarioListaUI extends JFrame {
@@ -19,7 +20,9 @@ public class FuncionarioListaUI extends JFrame {
         FuncionarioComparator comparator = new FuncionarioComparator();
         Collections.sort(this.mainUI.getFuncionarios(), comparator);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         this.setContentPane(mainPanel);
+        mainPanel.setPreferredSize(new Dimension(300, 300));
         this.pack();
 
         for (Funcionario umFunc : this.mainUI.getFuncionarios()) {

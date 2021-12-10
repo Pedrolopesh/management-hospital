@@ -45,6 +45,8 @@ public class UnidadeEquipeFormUI extends JFrame{
         });
     }
 
+
+
     private void confirmarUnidadeaddEquipe(UnidadeHospitalar unidadeSelecionada, Equipe equipeSelecionada){
         for (UnidadeHospitalar unidadeHospitalar : this.mainUI.getUnidadeHospitalares()){
             if(unidadeHospitalar.getIdUnidadeHospitalar() == unidadeSelecionada.getIdUnidadeHospitalar()){

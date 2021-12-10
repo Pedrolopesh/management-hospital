@@ -60,7 +60,15 @@ public class Equipe {
     }
 
     public void addFuncionario(Funcionario umFuncionario){
-        this.funcionarios.add(umFuncionario);
+        try {
+            this.funcionarios.add(umFuncionario);
+        }catch (Exception ex){
+            System.err.printf("%s\n\n" , ex.getMessage());
+            ex.printStackTrace();
+
+            StackTraceElement[] traceElements = ex.getStackTrace();
+            System.out.println("\n StackTrace:");
+        }
     }
 
     public void removeFuncionario(Funcionario umFuncionario){
@@ -74,6 +82,7 @@ public class Equipe {
         texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n";
         return texto;
     }
+
 
     public String imprimeFuncionarios(){
         String texto = "";
