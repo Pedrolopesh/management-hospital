@@ -97,6 +97,7 @@ public class PrincipalUI extends JFrame {
         this.pacientes = new ArrayList<Paciente>();
 
         criarDadosTest();
+        checkLogClasses();
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
         //DISPOSE_ON_CLOSE = FECHA A JANELA E SISTEMA CONTINUA FUNCIONANDO
@@ -553,6 +554,33 @@ public class PrincipalUI extends JFrame {
         leito1.setPaciente(paciente1);
         leito1.setOcupado(true);
         paciente1.setStatusPaciente("emLeito");
+    }
+
+    public void checkLogClasses() {
+        SobrescrevertoString texto = new SobrescrevertoString() {
+            @Override
+            public void SobrescrevertoString() {
+                System.out.println("\n ========= DADOS PARA EQUIPAMENTOS: =========");
+                System.out.println( equipamentos.toString() );
+
+                System.out.println("\n ========= DADOS PARA ESPECIALIDADE: =========");
+                System.out.println( especialidades.toString() );
+
+                System.out.println("\n ========= DADOS PARA FUNCIONARIOS: =========");
+                System.out.println(funcionarios.toString());
+
+                System.out.println("\n ========= DADOS PARA LEITO: =========");
+                System.out.println(leitoHospitalares.toString());
+
+                System.out.println("\n ========= DADOS PARA PACIENTES: =========");
+                System.out.println(pacientes.toString());
+
+                System.out.println("\n ========= DADOS PARA QUARTO: =========");
+                System.out.println(quartoHospitalars.toString());
+            }
+        };
+
+        texto.SobrescrevertoString();
     }
 
     public ArrayList<Funcionario> getFuncionarios(){

@@ -19,9 +19,11 @@ public class EquipamentoListaUI extends JFrame  {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPainel);
 
-        // Todo, entrou .getEquipamentos porem to em duvida se é Equipamento.
         for(Equipamento umEquipamento : this.mainUI.getEquipamentos()){
             //append = atribui item
+
+
+
             txTextShow.append(umEquipamento.toString());
             txTextShow.append("\n");
         }
