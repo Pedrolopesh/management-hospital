@@ -1,6 +1,7 @@
 package com.management;
 
 import com.management.ItemFuncionarioPaciente.Item;
+import com.management.UI.Alerts.AlertaGeralUI;
 
 public class Funcionario extends Item {
     private String cargo;

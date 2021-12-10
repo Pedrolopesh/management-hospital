@@ -28,6 +28,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class PrincipalUI extends JFrame {
     private JPanel mainPanel;
@@ -74,21 +77,23 @@ public class PrincipalUI extends JFrame {
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Equipe> equipes;
     private ArrayList<Especialidade> especialidades;
-    private ArrayList<UnidadeHospitalar> unidadeHospitalares;
     private ArrayList<QuartoHospitalar> quartoHospitalars;
     private ArrayList<LeitoHospitalar> leitoHospitalares;
-    private ArrayList<Equipamento> equipamentos;
     private ArrayList<Paciente>pacientes;
     private PrincipalUI principalUI;
+//    private ArrayList<Equipamento> equipamentos;
+//    private ArrayList<UnidadeHospitalar> unidadeHospitalares;
+    List<Equipamento> equipamentos = new ArrayList<Equipamento>();
+    Set<UnidadeHospitalar> unidadeHospitalares = new HashSet<UnidadeHospitalar>();
 
     public PrincipalUI(){
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
-        this.unidadeHospitalares = new ArrayList<UnidadeHospitalar>();
+//        this.unidadeHospitalares = new ArrayList<UnidadeHospitalar>();
         this.especialidades = new ArrayList<Especialidade>();
         this.quartoHospitalars = new ArrayList<QuartoHospitalar>();
         this.leitoHospitalares = new ArrayList<LeitoHospitalar>();
-        this.equipamentos = new ArrayList<Equipamento>();
+//        this.equipamentos = new ArrayList<Equipamento>();
         this.pacientes = new ArrayList<Paciente>();
 
         criarDadosTest();
@@ -474,11 +479,11 @@ public class PrincipalUI extends JFrame {
         Equipamento equipamento3 = new Equipamento("Oxímetro", 3,3);
         Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,4);
         Equipamento equipamento5 = new Equipamento("Desfibrilador", 5,5);
-        this.equipamentos.add(equipamento1);
-        this.equipamentos.add(equipamento2);
-        this.equipamentos.add(equipamento3);
-        this.equipamentos.add(equipamento4);
-        this.equipamentos.add(equipamento5);
+        equipamentos.add(equipamento1);
+        equipamentos.add(equipamento2);
+        equipamentos.add(equipamento3);
+        equipamentos.add(equipamento4);
+        equipamentos.add(equipamento5);
 
         Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
         funcionario1.setCargo("Medico Geral");
@@ -556,15 +561,12 @@ public class PrincipalUI extends JFrame {
     public ArrayList<Equipe> getEquipes(){
         return this.equipes;
     }
-    public ArrayList<UnidadeHospitalar> getUnidadeHospitalares(){
-        return this.unidadeHospitalares;
-    }
+    public Set<UnidadeHospitalar> getUnidadeHospitalares(){ return this.unidadeHospitalares; }
     public ArrayList<Especialidade> getEspecialidades(){ return  this.especialidades; }
     public ArrayList<QuartoHospitalar> getQuartos(){ return  this.quartoHospitalars; }
     public ArrayList<LeitoHospitalar> getLeitos(){ return  this.leitoHospitalares; }
-    public ArrayList<Equipamento> getEquipamentos(){ return  this.equipamentos; }
+    public List<Equipamento> getEquipamentos(){ return equipamentos; }
     public ArrayList<Paciente> getPacientes(){ return this.pacientes ;}
-
 
     public static void main(String[] args){
         JFrame frame = new PrincipalUI();
