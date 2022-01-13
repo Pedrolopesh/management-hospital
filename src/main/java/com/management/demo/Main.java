@@ -1,6 +1,6 @@
 package com.management.demo;
 
-import com.management.*;
+import com.management.Controller.Classes.*;
 
 public class Main {
 
