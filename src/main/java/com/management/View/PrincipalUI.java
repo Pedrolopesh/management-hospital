@@ -1,6 +1,7 @@
 package com.management.View;
 
-import com.management.Controller.Classes.*;
+import com.management.Model.Classes.*;
+import com.management.Model.Repository.EquipamentoRepository;
 import com.management.View.Equipamento.EquipamentoFormEditarUI;
 import com.management.View.Equipamento.EquipamentoFormUI;
 import com.management.View.Equipamento.EquipamentoListaUI;
@@ -22,13 +23,19 @@ import com.management.View.UnidadeHospitalar.UnidadeEquipeFormUI;
 import com.management.View.UnidadeHospitalar.UnidadeFormularioUI;
 import com.management.View.UnidadeHospitalar.UnidadeListaUI;
 import com.management.View.UnidadeHospitalar.UnidadeQuartoFormUI;
+//import com.management.API.ApiApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+@SpringBootApplication
+@CrossOrigin
 public class PrincipalUI extends JFrame {
+    private EquipamentoRepository equipamentoRepo;
     private JPanel mainPanel;
     private JMenuBar mbSistema;
     private JMenu mnFuncionarios;
@@ -82,7 +89,6 @@ public class PrincipalUI extends JFrame {
     Set<UnidadeHospitalar> unidadeHospitalares = new HashSet<UnidadeHospitalar>();
     Map<String, Equipe> mapaEquipe = new HashMap();
 
-
     public PrincipalUI(){
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
@@ -97,6 +103,8 @@ public class PrincipalUI extends JFrame {
         MapearEquipes();
         calcPacientesInternados();
         calcPacientesAguardando();
+
+
 
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
@@ -606,7 +614,7 @@ public class PrincipalUI extends JFrame {
 
     }
 
-    public void calcPacientesInternados(){
+    public void calcPacientesInternados() {
 
     }
 
@@ -626,5 +634,10 @@ public class PrincipalUI extends JFrame {
     public static void main(String[] args){
         JFrame frame = new PrincipalUI();
         frame.setVisible(true);
+
+//        SpringApplication.run(PrincipalUI.class, args);
+//        SpringApplication app = new SpringApplication(PrincipalUI.class);
+//        app.setDefaultProperties(Collections.singletonMap("server.port", "3333"));
+//        app.run(args);
     }
 }

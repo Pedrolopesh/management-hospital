@@ -1,35 +1,14 @@
-package com.management.Model.Entities;
+package com.management.Model.Classes;
 
-import javax.persistence.*;
-import java.util.Date;
-
-@Entity
-@Table(name = "equipamento")
 public class Equipamento {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String nomeEquipamento;
+    private int qntEquipamento;
     private int idEquipamento;
 
-    @Column(name = "nomeEquipamento", nullable = false)
-    private String nomeEquipamento;
-
-    @Column(name = "qntEquipamento")
-    private int qntEquipamento;
-
-    private Date createdAt;
-
-    //    INITIALIZER NO-ARGS PUBLIC CLASS
-    public Equipamento() { }
-
-    @PrePersist
-    protected void onCreate() {this.createdAt = new Date(); }
-
-    public Equipamento(String nomeEquipamento, int qntEquipamento, int idEquipamento, Date createdAt){
+    public Equipamento(String nomeEquipamento, int qntEquipamento, int idEquipamento){
         this.nomeEquipamento = nomeEquipamento;
         this.qntEquipamento = qntEquipamento;
         this.idEquipamento = idEquipamento;
-        this.createdAt = createdAt;
     }
 
     public int getQntEquipamento(){
@@ -59,4 +38,11 @@ public class Equipamento {
         return idEquipamento;
     }
 
+    public String toString(){
+        String texto = "";
+        texto = texto + "equipamento: "+ this.getNomeEquipamento() + ", \n";
+        texto = texto + "Quantidade: "+ this.getQntEquipamento() + ", \n";
+        texto = texto + "ID: "+ this.getIdEquipamento()+", \n";
+        return texto;
+    }
 }

@@ -1,6 +1,6 @@
 package com.management.View.Equipamento;
 
-import com.management.Controller.Classes.Equipamento;
+import com.management.Model.Classes.Equipamento;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

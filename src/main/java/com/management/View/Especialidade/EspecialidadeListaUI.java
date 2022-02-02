@@ -1,6 +1,6 @@
 package com.management.View.Especialidade;
 
-import com.management.Controller.Classes.Especialidade;
+import com.management.Model.Classes.Especialidade;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

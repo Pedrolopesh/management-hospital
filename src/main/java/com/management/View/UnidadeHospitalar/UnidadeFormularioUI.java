@@ -1,8 +1,8 @@
 package com.management.View.UnidadeHospitalar;
 
-import com.management.Controller.Classes.Especialidade;
+import com.management.Model.Classes.Especialidade;
 import com.management.View.PrincipalUI;
-import com.management.Controller.Classes.UnidadeHospitalar;
+import com.management.Model.Classes.UnidadeHospitalar;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

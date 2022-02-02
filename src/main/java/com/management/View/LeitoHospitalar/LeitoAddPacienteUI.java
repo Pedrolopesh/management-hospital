@@ -1,8 +1,8 @@
 package com.management.View.LeitoHospitalar;
 
-import com.management.Controller.Classes.Funcionario;
-import com.management.Controller.Classes.LeitoHospitalar;
-import com.management.Controller.Classes.Paciente;
+import com.management.Model.Classes.Funcionario;
+import com.management.Model.Classes.LeitoHospitalar;
+import com.management.Model.Classes.Paciente;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

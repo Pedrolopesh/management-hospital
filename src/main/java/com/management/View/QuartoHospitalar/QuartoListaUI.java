@@ -1,6 +1,6 @@
 package com.management.View.QuartoHospitalar;
 
-import com.management.Controller.Classes.QuartoHospitalar;
+import com.management.Model.Classes.QuartoHospitalar;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

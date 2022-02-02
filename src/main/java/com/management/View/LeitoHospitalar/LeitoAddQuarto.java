@@ -1,7 +1,7 @@
 package com.management.View.LeitoHospitalar;
 
-import com.management.Controller.Classes.LeitoHospitalar;
-import com.management.Controller.Classes.QuartoHospitalar;
+import com.management.Model.Classes.LeitoHospitalar;
+import com.management.Model.Classes.QuartoHospitalar;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

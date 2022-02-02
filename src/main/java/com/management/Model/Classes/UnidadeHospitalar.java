@@ -1,4 +1,4 @@
-package com.management.Controller.Classes;
+package com.management.Model.Classes;
 
 import java.util.ArrayList;
 

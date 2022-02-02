@@ -1,7 +1,7 @@
 package com.management.View.Funcionario;
 
-import com.management.Controller.Classes.Excessao;
-import com.management.Controller.Classes.Funcionario;
+import com.management.Model.Classes.Excessao;
+import com.management.Model.Classes.Funcionario;
 import com.management.View.Alerts.AlertaGeralUI;
 import com.management.View.Alerts.AlertaSucessoUI;
 import com.management.View.PrincipalUI;

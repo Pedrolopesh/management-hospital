@@ -1,6 +1,6 @@
 package com.management.View.Funcionario;
 
-import com.management.Controller.Classes.Funcionario;
+import com.management.Model.Classes.Funcionario;
 import com.management.View.Pesquisa.PesquisaUI;
 import com.management.View.PrincipalUI;
 

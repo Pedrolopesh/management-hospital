@@ -1,7 +1,7 @@
 package com.management.View.Equipe;
 
-import com.management.Controller.Classes.Equipe;
-import com.management.Controller.Classes.Funcionario;
+import com.management.Model.Classes.Equipe;
+import com.management.Model.Classes.Funcionario;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

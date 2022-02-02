@@ -1,4 +1,4 @@
-package com.management.Controller.Classes;
+package com.management.Model.Classes;
 
 public class Especialidade {
     private String nomeEspecialidade;

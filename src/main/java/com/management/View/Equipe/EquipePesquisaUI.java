@@ -1,6 +1,6 @@
 package com.management.View.Equipe;
 
-import com.management.Controller.Classes.Equipe;
+import com.management.Model.Classes.Equipe;
 import com.management.View.Pesquisa.PesquisaUI;
 import com.management.View.PrincipalUI;
 

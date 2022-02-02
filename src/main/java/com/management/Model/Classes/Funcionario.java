@@ -1,4 +1,4 @@
-package com.management.Controller.Classes;
+package com.management.Model.Classes;
 
 import com.management.Controller.ItemFuncionarioPaciente.Item;
 

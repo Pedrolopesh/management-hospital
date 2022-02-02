@@ -1,7 +1,7 @@
 package com.management.View.Funcionario;
 
-import com.management.Controller.Classes.Funcionario;
-import com.management.Controller.Classes.FuncionarioComparator;
+import com.management.Model.Classes.Funcionario;
+import com.management.Model.Classes.FuncionarioComparator;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;

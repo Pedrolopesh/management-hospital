@@ -1,5 +1,5 @@
 package com.management.View.Paciente;
-import com.management.Controller.Classes.Paciente;
+import com.management.Model.Classes.Paciente;
 import com.management.View.PrincipalUI;
 
 import javax.swing.*;
