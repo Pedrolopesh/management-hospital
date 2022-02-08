@@ -50,6 +50,7 @@ public class EquipamentoListaUI extends JFrame  {
             equipamentos.add(new Equipamento(umEquipamento.getNomeEquipamento(), umEquipamento.getQntEquipamento(), umEquipamento.getIdEquipamento()));
         }
 
+
         EquipamentoModel equipamentoModel = new EquipamentoModel(equipamentos);
         JTable.setModel(equipamentoModel);
         JTable.setAutoCreateRowSorter(true);

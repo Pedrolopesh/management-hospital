@@ -1,4 +1,4 @@
 package com.management.Model.Entities;
 
-public class Funcionario {
+public class FuncionarioEntitie {
 }

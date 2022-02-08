@@ -494,13 +494,13 @@ public class PrincipalUI extends JFrame {
         equipamentos.add(equipamento4);
         equipamentos.add(equipamento5);
 
-        Funcionario funcionario1 = new Funcionario("Pedro Lopes", 1, "1234567890");
+        Funcionario funcionario1 = new Funcionario("Pedro Lopes", "", 1, "admin", "ativo", "", "", "");
         funcionario1.setCargo("Medico Geral");
-        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", 2, "1234567890");
+        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "", 2, "1234567890", "admin", "ativo", "", "");
         funcionario2.setCargo("Medico Cirurgião");
-        Funcionario funcionario3 = new Funcionario("Fernanda Alves", 3, "1234567890");
+        Funcionario funcionario3 = new Funcionario("Fernanda Alves", "", 3, "1234567890", "Medica residente", "ativo", "10", "");
         funcionario3.setCargo("Enfermeiro");
-        Funcionario funcionario4 = new Funcionario("Maria Silva", 4, "1234567890");
+        Funcionario funcionario4 = new Funcionario("Maria Silva", "", 4, "1234567890", "Enfermeira", "ativo", "20", "");
         funcionario4.setCargo("Limpeza");
         this.funcionarios.add(funcionario1);
         this.funcionarios.add(funcionario2);
@@ -550,10 +550,10 @@ public class PrincipalUI extends JFrame {
         quart1.addLeitoHospitalar(leito2);
 
 
-        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", true, "Isolamento imediato", "aguardando");
-        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", true, "Isolamento Imediato", "aguardando");
-        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", false, "Não possui", "aguardando");
-        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", false, "Não possui", "aguardando");
+        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
+        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
+        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", "false", "Não possui", "aguardando");
+        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", "false", "Não possui", "aguardando");
         this.pacientes.add(paciente1);
         this.pacientes.add(paciente2);
         this.pacientes.add(paciente3);

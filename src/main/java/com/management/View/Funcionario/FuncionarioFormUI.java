@@ -3,8 +3,10 @@ package com.management.View.Funcionario;
 import com.management.Model.Classes.Excessao;
 import com.management.Model.Classes.Funcionario;
 import com.management.View.Alerts.AlertaGeralUI;
-import com.management.View.Alerts.AlertaSucessoUI;
+import com.management.Controller.FuncionarioController;
 import com.management.View.PrincipalUI;
+import com.management.utils.EncryptPassword;
+import lombok.SneakyThrows;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,15 +24,18 @@ public class FuncionarioFormUI extends JFrame {
     private JTextField tftelefoneFuncionario;
     private JTextField tfCargoFuncionario;
     private JButton confirmarButton;
+    private JTextField tfpassword;
+    private JTextField tfemail;
     private PrincipalUI mainUI;
     private ArrayList<Funcionario> funcionarios;
     private Excessao excessao;
+    private FuncionarioController funcionarioController;
+
 
 // Construtor
     public FuncionarioFormUI(PrincipalUI principalUIParam){
         this.mainUI = principalUIParam;
         this.funcionarios = new ArrayList<Funcionario>();
-
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mainPanel.setPreferredSize(new Dimension(300, 300));
 //        mainPanel.repaint();
@@ -38,19 +43,26 @@ public class FuncionarioFormUI extends JFrame {
         this.pack();
 
         confirmarButton.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 int nextid = generateId();
                 String nome = tfNomeFuncionario.getText();
                 String telefone = tftelefoneFuncionario.getText();
                 String cargo = tfCargoFuncionario.getText();
+                String email = tfemail.getText();
+                String password = tfpassword.getText();
 
-                Funcionario newFuncionario = new Funcionario(nome, nextid, telefone);
+                EncryptPassword encryptPassword = new EncryptPassword();
+                String encryptedPassword = encryptPassword.encrypt(password);
+
+                Funcionario newFuncionario = new Funcionario(nome, email,  nextid, telefone, "", "", "", encryptedPassword);
 
                 try {
                     checkInputEntries(nome, nextid, telefone, cargo);
                     newFuncionario.setCargo(cargo);
                     salvaFuncionario(newFuncionario);
+
                 } catch (Excessao ex) {
                     String log = ex.getMessage();
                     System.out.println(log);
@@ -61,7 +73,8 @@ public class FuncionarioFormUI extends JFrame {
     }
 
     private int generateId(){
-        int nextid = this.mainUI.getFuncionarios().size() + 1;
+        FuncionarioController funcionarioController = new FuncionarioController();
+        int nextid = funcionarioController.checkIdBeforeAdd() + 1;
         return nextid;
     }
 
@@ -72,16 +85,27 @@ public class FuncionarioFormUI extends JFrame {
         System.out.println(cargo.isEmpty());
 
         if(nome.isEmpty() || id == 0 || tel.isEmpty() || cargo.isEmpty()){
-            AlertaGeralUI alertaGeralUI = new AlertaGeralUI("Error ao cadastrar funcioário!");
-            alertaGeralUI.setVisible(true);
-            throw new Excessao("\"Error ao cadastrar funcioário!\"");
+
         }
     }
 
     private void salvaFuncionario(Funcionario newFuncionario){
+        FuncionarioController funcionarioController = new FuncionarioController();
+        funcionarioController.salvarDadosFuncionario(newFuncionario);
+//        try{
+//            boolean idResult =  funcionarioController.checkIdBeforeAdd(newFuncionario.getId());
+//            if(idResult){
+//            }else{
+//                int newId = newFuncionario.getId()+1;
+//                Funcionario newFuncionarioId = new Funcionario(newFuncionario.getNome(), newFuncionario.getEmail(), newId, newFuncionario.getTelefone(), newFuncionario.getCargo(), newFuncionario.getStatusFuncionario(), newFuncionario.getPacientesAtendidos(),newFuncionario.getPassword());
+//                funcionarioController.salvarDadosFuncionario(newFuncionarioId);
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+
+
         this.mainUI.getFuncionarios().add(newFuncionario);
-        AlertaSucessoUI sucessoAlert = new AlertaSucessoUI();
-        sucessoAlert.setVisible(true);
     }
 
 }

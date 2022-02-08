@@ -6,11 +6,16 @@ import com.management.Model.Repository.PacienteRepository;
 import com.management.View.PrincipalUI;
 import com.management.Controller.UserController;
 import com.management.Model.Entities.PacienteEntitie;
+import lombok.SneakyThrows;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PacienteFormUI extends JFrame{
@@ -44,6 +49,7 @@ public class PacienteFormUI extends JFrame{
         this.pack();
 
         btConfirmar.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 int nextid = generateId();
@@ -54,31 +60,19 @@ public class PacienteFormUI extends JFrame{
                 String comorbidade = txComorbidade.getText();
                 String diagnostico = txDiagnostico.getText();
                 String necessidade = txNecessidade.getText();
-                boolean isolamento = false;
+                String isolamento = "não";
                 String telefone = txTelefone.getText();
 
+
                 if(afirmativeCheckBox.isSelected() && !negativeCheckBox.isSelected()){
-                    isolamento = true;
+                    isolamento = "sim";
                 }else if(negativeCheckBox.isSelected() && !afirmativeCheckBox.isSelected()){
-                    isolamento = false;
+                    isolamento = "não";
                 }
 
-                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","",false,"", "");
+                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","","false","", "");
                 Paciente novoPaciente = new Paciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade, "aguardando");
-                salvarByController(nome, nextid, telefone,idade,altura, peso,comorbidade,diagnostico,isolamento,necessidade, "aguardando");
-
-                System.out.println(nome);
-                System.out.println(nextid);
-                System.out.println(telefone);
-                System.out.println(idade);
-                System.out.println(altura);
-                System.out.println(peso);
-                System.out.println(comorbidade);
-                System.out.println(diagnostico);
-                System.out.println(isolamento);
-                System.out.println(necessidade);
-                System.out.println("aguardando");
-
+                salvarByController(nome, nextid, telefone,idade,altura, peso,comorbidade,diagnostico,isolamento, necessidade, "aguardando", "Não possui");
 
                 salvarPacienteLocalmente(novoPaciente);
 
@@ -108,11 +102,51 @@ public class PacienteFormUI extends JFrame{
     }
 
     private void salvarByController(
-            String nome, int nextid, String telefone, int idade, double altura, double peso, String comorbidade,
-            String diagnostico, boolean isolamento, String necessidade, String statusPaciente)
-    {
-        PacienteController pacienteController = new PacienteController();
-        pacienteController.salvarDadosPaciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade, statusPaciente);
+            String nomeParam, int nextidParam, String telefoneParam, int idadeParam, double alturaParam, double pesoParam, String comorbidadeParam,
+            String diagnosticoParam, String isolamentoParam, String necessidadeParam, String statusPacienteParam, String funcionarioAntedimentoParam) throws ClassNotFoundException, SQLException {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+            int nextid = nextidParam;
+            String nome = nomeParam;
+            String telefone = telefoneParam;
+            double idade = idadeParam;
+            double altura = alturaParam;
+            double peso = pesoParam;
+            String diagnostico = diagnosticoParam;
+            String isolamento = isolamentoParam;
+            String necessidade = necessidadeParam;
+            String statusPaciente = statusPacienteParam;
+            String comorbidade = comorbidadeParam;
+            String funcionarioAntedimento = funcionarioAntedimentoParam;
+
+            PreparedStatement ps = conn.prepareStatement(
+                    "insert into paciente " +
+                            "(id, nome, telefone, idade, altura, peso, diagnostico, isolamento, necessidade, statusPaciente, comorbidade, funcionarioAntedimento) " +
+                            "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+
+            ps.setInt(1, nextid);
+            ps.setString(2, nome);
+            ps.setString(3, telefone);
+            ps.setDouble(4, idade);
+            ps.setDouble(5, altura);
+            ps.setDouble(6, peso);
+            ps.setString(7, diagnostico);
+            ps.setString(8, isolamento);
+            ps.setString(9, necessidade);
+            ps.setString(10, statusPaciente);
+            ps.setString(11, comorbidade);
+            ps.setString(12, funcionarioAntedimento);
+
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Insert Sucessfully");
+        }catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     private void salvarPacienteLocalmente(Paciente novoPaciente){

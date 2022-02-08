@@ -3,12 +3,19 @@ package com.management.Model.Classes;
 import com.management.Controller.ItemFuncionarioPaciente.Item;
 
 public class Funcionario extends Item {
+    private String email;
     private String cargo;
     private String statusFuncionario;
     private String pacientesAtendidos;
+    private String password;
 
-    public Funcionario(String nome, int id, String telefone) {
+    public Funcionario(String nome, String email, int id, String telefone, String cargo, String statusFuncionario, String pacientesAtendidos, String password) {
         super(nome, id, telefone);
+        this.email = email;
+        this.cargo = cargo;
+        this.statusFuncionario = statusFuncionario;
+        this.pacientesAtendidos = pacientesAtendidos;
+        this.password = password;
     }
 
     @Override
@@ -35,6 +42,11 @@ public class Funcionario extends Item {
     public String getCargo() {
         return cargo;
     }
+
+
+    public String getEmail() { return  this.email; }
+
+    public String getPassword() { return this.password; }
 
     public boolean setCargo(String cargo){
         if(cargo.isEmpty()){

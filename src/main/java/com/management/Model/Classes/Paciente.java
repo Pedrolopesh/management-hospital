@@ -8,12 +8,12 @@ public class Paciente extends Item {
     private double peso;
     private String comorbidade;
     private String diagnostico;
-    private boolean isolamento;
+    private String isolamento;
     private String necessidade;
     private String statusPaciente;
     private String funcionarioAtendimento;
 
-    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente) {
+    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, String isolamento, String necessidade, String statusPaciente) {
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
@@ -108,12 +108,12 @@ public class Paciente extends Item {
     }
 
 
-    public boolean getIsolamento() {
+    public String getIsolamento() {
         return isolamento;
     }
 
 
-    public boolean setIsolamento(boolean isolamento) {
+    public boolean setIsolamento(String isolamento) {
         this.isolamento = isolamento;
         return true;
     }
