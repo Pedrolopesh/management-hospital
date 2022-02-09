@@ -13,7 +13,7 @@ public class Paciente extends Item {
     private String statusPaciente;
     private String funcionarioAtendimento;
 
-    public Paciente(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, String isolamento, String necessidade, String statusPaciente) {
+    public Paciente(String nome, String id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, String isolamento, String necessidade, String statusPaciente) {
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;

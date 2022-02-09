@@ -1,5 +1,6 @@
 package com.management.View.Funcionario;
 
+import com.management.Controller.FuncionarioController;
 import com.management.Model.Classes.Equipamento;
 import com.management.Model.Classes.Funcionario;
 import com.management.Model.Classes.FuncionarioComparator;
@@ -9,6 +10,7 @@ import com.management.View.PrincipalUI;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,10 +19,12 @@ public class FuncionarioListaUI extends JFrame {
     private JPanel mainPanel;
     private JTable JTable;
     private PrincipalUI mainUI;
+    private FuncionarioController funcionarioController;
 
-    public FuncionarioListaUI(PrincipalUI principalUI) {
+    public FuncionarioListaUI(PrincipalUI principalUI) throws SQLException, ClassNotFoundException {
         this.mainUI = principalUI;
-
+        FuncionarioController funcionarioController = new FuncionarioController();
+        this.funcionarioController = funcionarioController;
         FuncionarioComparator comparator = new FuncionarioComparator();
         Collections.sort(this.mainUI.getFuncionarios(), comparator);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -33,16 +37,28 @@ public class FuncionarioListaUI extends JFrame {
 
     }
 
-    public void createTable() {
-        List<Funcionario> funcionarioList = new ArrayList<>();
+    public void createTable() throws SQLException, ClassNotFoundException {
+        try{
+            List<Funcionario> funcionarioList = new ArrayList<>();
 
-        for(Funcionario umfuncionario : this.mainUI.getFuncionarios()){
-            funcionarioList.add(new Funcionario(umfuncionario.getNome(), umfuncionario.getEmail(), umfuncionario.getId(), umfuncionario.getTelefone(), umfuncionario.getCargo(), umfuncionario.getStatusFuncionario(), umfuncionario.getPacientesAtendidos(),""));
+            ArrayList<Funcionario> funcionarioArrayList;
+
+            funcionarioArrayList = this.funcionarioController.getFuncionarios();
+
+            for(Funcionario umfuncionario : funcionarioArrayList){
+                funcionarioList.add(new Funcionario(umfuncionario.getNome(), umfuncionario.getEmail(), umfuncionario.getId(), umfuncionario.getTelefone(), umfuncionario.getCargo(), umfuncionario.getStatusFuncionario(), umfuncionario.getPacientesAtendidos(),""));
+            }
+
+            FuncionarioModel funcionarioModel = new FuncionarioModel(funcionarioList);
+            JTable.setModel(funcionarioModel);
+            JTable.setAutoCreateRowSorter(true);
+
+        }catch (SQLException SQLException){
+            System.out.println(SQLException);
+
+        }catch (ClassNotFoundException ClassNotFoundException){
+            System.out.println(ClassNotFoundException);
         }
-
-        FuncionarioModel funcionarioModel = new FuncionarioModel(funcionarioList);
-        JTable.setModel(funcionarioModel);
-        JTable.setAutoCreateRowSorter(true);
     }
 
     public static class FuncionarioModel extends AbstractTableModel {

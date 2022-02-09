@@ -3,6 +3,7 @@ package com.management.View.Equipe;
 import com.management.Model.Classes.Equipe;
 import com.management.Model.Classes.Funcionario;
 import com.management.View.PrincipalUI;
+import com.management.utils.Uuid;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class EquipeFormUI extends JFrame {
     private JComboBox<Funcionario> cbFuncionarios;
     private JLabel labelLiderEquipe;
     private PrincipalUI mainUI;
+    private Uuid uuidLocal;
 
     public EquipeFormUI(PrincipalUI principalUI){
         this.mainUI = principalUI;
@@ -30,21 +32,16 @@ public class EquipeFormUI extends JFrame {
         botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int nextid = generateId();
+                String nextid = uuidLocal.generateId();
                 String nome = tfNomeEquipe.getText();
                 Funcionario liderEquipe = cbFuncionarios.getItemAt(cbFuncionarios.getSelectedIndex());
 
-                Equipe novaEquipe = new Equipe(nome, nextid, "vazio");
+                Equipe novaEquipe = new Equipe(nome, nextid, "vazio", "");
                 novaEquipe.setLiderEquipe(liderEquipe.getNome());
 
                 salvarEquipe(novaEquipe);
             }
         });
-    }
-
-    private int generateId(){
-        int nextid = this.mainUI.getEquipes().size() + 1;;
-        return nextid;
     }
 
     private void salvarEquipe(Equipe newEquipe){

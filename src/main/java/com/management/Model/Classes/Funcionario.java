@@ -9,7 +9,7 @@ public class Funcionario extends Item {
     private String pacientesAtendidos;
     private String password;
 
-    public Funcionario(String nome, String email, int id, String telefone, String cargo, String statusFuncionario, String pacientesAtendidos, String password) {
+    public Funcionario(String nome, String email, String id, String telefone, String cargo, String statusFuncionario, String pacientesAtendidos, String password) {
         super(nome, id, telefone);
         this.email = email;
         this.cargo = cargo;
@@ -40,7 +40,7 @@ public class Funcionario extends Item {
     }
 
     public String getCargo() {
-        return cargo;
+        return this.cargo;
     }
 
 

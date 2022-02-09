@@ -2,10 +2,10 @@ package com.management.Controller.ItemFuncionarioPaciente;
 
 public abstract class Item {
     protected String nome;
-    protected int id;
+    protected String id;
     protected String telefone;
 
-    public Item(String nome, int id, String telefone) {
+    public Item(String nome, String id, String telefone) {
         this.nome = nome;
         this.id = id;
         this.telefone = telefone;
@@ -19,7 +19,7 @@ public abstract class Item {
         return this.nome;
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 

@@ -1,5 +1,6 @@
 package com.management.View;
 
+import com.management.Controller.FuncionarioController;
 import com.management.Model.Classes.*;
 import com.management.Model.Repository.EquipamentoRepository;
 import com.management.View.Equipamento.EquipamentoFormEditarUI;
@@ -24,12 +25,15 @@ import com.management.View.UnidadeHospitalar.UnidadeFormularioUI;
 import com.management.View.UnidadeHospitalar.UnidadeListaUI;
 import com.management.View.UnidadeHospitalar.UnidadeQuartoFormUI;
 //import com.management.API.ApiApplication;
+import com.management.utils.Uuid;
+import lombok.SneakyThrows;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.*;
 
 @SpringBootApplication
@@ -88,8 +92,10 @@ public class PrincipalUI extends JFrame {
     List<Equipamento> equipamentos = new ArrayList<Equipamento>();
     Set<UnidadeHospitalar> unidadeHospitalares = new HashSet<UnidadeHospitalar>();
     Map<String, Equipe> mapaEquipe = new HashMap();
+    private Uuid generetedUidd = new Uuid();
+    private FuncionarioController funcionarioController = new FuncionarioController();
 
-    public PrincipalUI(){
+    public PrincipalUI() throws SQLException, ClassNotFoundException {
         this.funcionarios = new ArrayList<Funcionario>();
         this.equipes = new ArrayList<Equipe>();
         this.especialidades = new ArrayList<Especialidade>();
@@ -117,6 +123,7 @@ public class PrincipalUI extends JFrame {
 
         //FUNCIONARIOS - CRIAR FUNCIONARIO
         miCriarFuncinario.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 transferToChieldFuncionarioFormUI();
@@ -125,6 +132,7 @@ public class PrincipalUI extends JFrame {
 
         //FUNCIONARIOS - LISTA DE FUNCIONARIOS
         miListarFuncionarios.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 transferToChieldFuncionarioListaUI();
@@ -318,13 +326,13 @@ public class PrincipalUI extends JFrame {
     }
 
     //FUNCIONARIO - CRIAR FUNCIONARIO
-    private void transferToChieldFuncionarioFormUI(){
+    private void transferToChieldFuncionarioFormUI() throws SQLException, ClassNotFoundException {
         FuncionarioFormUI funcionarioFormUI = new FuncionarioFormUI(this);
         funcionarioFormUI.setVisible(true);
     }
 
     //FUNCIONARIOS - LISTA DE FUNCIONARIOS
-    private void transferToChieldFuncionarioListaUI(){
+    private void transferToChieldFuncionarioListaUI() throws SQLException, ClassNotFoundException {
         FuncionarioListaUI funcionarioListaUI = new FuncionarioListaUI(this);
         funcionarioListaUI.setVisible(true);
     }
@@ -468,7 +476,7 @@ public class PrincipalUI extends JFrame {
     }
 
 
-    public void criarDadosTest(){
+    public void criarDadosTest() throws SQLException, ClassNotFoundException {
         Especialidade especialidade1 = new Especialidade(1);
         Especialidade especialidade2 = new Especialidade("Cardiologia", 2);
         Especialidade especialidade3 = new Especialidade("Neurologia", 3);
@@ -494,30 +502,35 @@ public class PrincipalUI extends JFrame {
         equipamentos.add(equipamento4);
         equipamentos.add(equipamento5);
 
-        Funcionario funcionario1 = new Funcionario("Pedro Lopes", "", 1, "admin", "ativo", "", "", "");
-        funcionario1.setCargo("Medico Geral");
-        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "", 2, "1234567890", "admin", "ativo", "", "");
-        funcionario2.setCargo("Medico Cirurgião");
-        Funcionario funcionario3 = new Funcionario("Fernanda Alves", "", 3, "1234567890", "Medica residente", "ativo", "10", "");
-        funcionario3.setCargo("Enfermeiro");
-        Funcionario funcionario4 = new Funcionario("Maria Silva", "", 4, "1234567890", "Enfermeira", "ativo", "20", "");
-        funcionario4.setCargo("Limpeza");
-        this.funcionarios.add(funcionario1);
-        this.funcionarios.add(funcionario2);
-        this.funcionarios.add(funcionario3);
-        this.funcionarios.add(funcionario4);
+        if(this.funcionarioController.getFuncionarios().size() < 1){
+            Funcionario funcionario1 = new Funcionario("Pedro Lopes", "pedrolopeshls@gmail.com", generetedUidd.generateId(), "admin", "Medico Geral", "ativo", "", "123123");
+            Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "email@email.com", generetedUidd.generateId(), "1234567890", "admin", "ativo", "", "123123");
+            Funcionario funcionario3 = new Funcionario("Fernanda Alves", "email@email.com", generetedUidd.generateId(), "1234567890", "Medica residente", "ativo", "", "123123");
+            Funcionario funcionario4 = new Funcionario("Maria Silva", "email@email.com", generetedUidd.generateId(), "1234567890", "Enfermeira", "ativo", "", "123123");
 
-        Equipe equipe1 = new Equipe("Equipe Delta", 1, "vazio");
-        Equipe equipe2 = new Equipe("Equipe Gama", 2, "vazio");
+            this.funcionarioController.salvarDadosFuncionario(funcionario1);
+            this.funcionarioController.salvarDadosFuncionario(funcionario2);
+            this.funcionarioController.salvarDadosFuncionario(funcionario3);
+            this.funcionarioController.salvarDadosFuncionario(funcionario4);
+
+            this.funcionarios.add(funcionario1);
+            this.funcionarios.add(funcionario2);
+            this.funcionarios.add(funcionario3);
+            this.funcionarios.add(funcionario4);
+        }
+
+
+        Equipe equipe1 = new Equipe("Equipe Delta", generetedUidd.generateId(), "vazio", "");
+        Equipe equipe2 = new Equipe("Equipe Gama", generetedUidd.generateId(), "vazio", "");
         this.equipes.add(equipe1);
         this.equipes.add(equipe2);
 
-        equipe1.addFuncionario(funcionario1);
-        equipe1.setLiderEquipe(funcionario1.getNome());
-        funcionario1.setStatusFuncionario("emEquipe");
+//        equipe1.addFuncionario(funcionario1);
+//        equipe1.setLiderEquipe(funcionario1.getNome());
+//        funcionario1.setStatusFuncionario("emEquipe");
 
-        equipe1.addFuncionario(funcionario2);
-        funcionario2.setStatusFuncionario("emEquipe");
+//        equipe1.addFuncionario(funcionario2);
+//        funcionario2.setStatusFuncionario("emEquipe");
 
         equipe1.setStatusEquipe("funcionarios");
 
@@ -550,10 +563,10 @@ public class PrincipalUI extends JFrame {
         quart1.addLeitoHospitalar(leito2);
 
 
-        Paciente paciente1 = new Paciente("Maria", 1, "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
-        Paciente paciente2 = new Paciente("João", 2, "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
-        Paciente paciente3 = new Paciente("Paulo", 3, "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", "false", "Não possui", "aguardando");
-        Paciente paciente4 = new Paciente("Gustavo", 4, "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", "false", "Não possui", "aguardando");
+        Paciente paciente1 = new Paciente("Maria", "1", "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
+        Paciente paciente2 = new Paciente("João", "2", "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
+        Paciente paciente3 = new Paciente("Paulo", "3", "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", "false", "Não possui", "aguardando");
+        Paciente paciente4 = new Paciente("Gustavo", "4", "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", "false", "Não possui", "aguardando");
         this.pacientes.add(paciente1);
         this.pacientes.add(paciente2);
         this.pacientes.add(paciente3);
@@ -593,8 +606,8 @@ public class PrincipalUI extends JFrame {
 
     //TODO TESTE DE IMPLEMENTAÇÃO DO MAP PARA APLICAR EM CLASSE DE LIMPEZA (RELEASE 3.3)
     public void MapearEquipes() {
-        Equipe equipe1 = new Equipe("Equipe Delta", 1, "vazio");
-        Equipe equipe2 = new Equipe("Equipe Gama", 2, "vazio");
+        Equipe equipe1 = new Equipe("Equipe Delta", generetedUidd.generateId(), "vazio", "");
+        Equipe equipe2 = new Equipe("Equipe Gama", generetedUidd.generateId(), "vazio", "");
 
         mapaEquipe.put("Lider Equipe", equipe1);
         mapaEquipe.put("Vice lider", equipe2);
@@ -631,7 +644,7 @@ public class PrincipalUI extends JFrame {
     public List<Equipamento> getEquipamentos(){ return equipamentos; }
     public ArrayList<Paciente> getPacientes(){ return this.pacientes ;}
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         JFrame frame = new PrincipalUI();
         frame.setVisible(true);
 

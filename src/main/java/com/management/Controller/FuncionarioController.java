@@ -5,16 +5,18 @@ import com.management.Model.Classes.Funcionario;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class FuncionarioController extends Component {
+
+
 
     public void salvarDadosFuncionario(Funcionario newFuncionario) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
-
-            int id = newFuncionario.getId();
+            String id = newFuncionario.getId();
             String nome = newFuncionario.getNome();
             String telefone = newFuncionario.getTelefone();
             String cargo = newFuncionario.getCargo();
@@ -28,7 +30,7 @@ public class FuncionarioController extends Component {
                             "(id, nome, telefone, email, cargo, statusFuncionario, pacientesAtendidos, password) values (?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
-            ps.setInt(1, id);
+            ps.setString(1, id);
             ps.setString(2, nome);
             ps.setString(3, telefone);
             ps.setString(4, email);
@@ -38,34 +40,66 @@ public class FuncionarioController extends Component {
             ps.setString(8, password);
 
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Insert Sucessfully");
+//            JOptionPane.showMessageDialog(this, "Insert Sucessfully");
 
         } catch (SQLException throwables) {
+            System.out.println("SQLException");
             throwables.printStackTrace();
+
         } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
             classNotFoundException.printStackTrace();
         }
     }
 
-    public int checkIdBeforeAdd(){
-        try{
+    public ArrayList<Funcionario> getFuncionarios() throws ClassNotFoundException, SQLException {
+        ArrayList<Funcionario> funcionarioList = new ArrayList<>();
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+        PreparedStatement ps = conn.prepareStatement("select * from funcionarios");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("select * from funcionarios");
+
+        Funcionario funcionario;
+
+        while(rs.next()){
+            funcionario = new Funcionario(
+                    rs.getString("id"), rs.getString("nome"),
+                    rs.getString("telefone"), rs.getString("email"),
+                    rs.getString("cargo"), rs.getString("statusFuncionario"),
+                    rs.getString("pacientesAtendidos"), rs.getString("password")
+            );
+
+            funcionarioList.add(funcionario);
+        }
+
+        return funcionarioList;
+    }
+
+    public void addFuncionarioEquipe(String idFuncioarioParam, String idEquipeParam) throws ClassNotFoundException, SQLException{
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
-            Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT id FROM funcionarios ORDER BY ID DESC LIMIT 1;");
+            String idFuncioario = idFuncioarioParam;
+            String idEquipe = idEquipeParam;
 
-            System.out.println("SELECT RESULT:");
-            System.out.println(rs);
-            return 0;
+            PreparedStatement ps = conn.prepareStatement("update funcionarios SET funcionarios_equipes= ? where id= ?");
+
+            ps.setString(1, idEquipe);
+            ps.setString(2, idFuncioario);
+
+            ps.executeUpdate();
 
         } catch (SQLException throwables) {
+            System.out.println("SQLException");
             throwables.printStackTrace();
-            return 0;
 
         } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
             classNotFoundException.printStackTrace();
-            return 0;
         }
     }
 }

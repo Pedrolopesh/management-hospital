@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class PacienteFormUI extends JFrame{
 
@@ -52,7 +53,7 @@ public class PacienteFormUI extends JFrame{
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
-                int nextid = generateId();
+                String nextid = generateId();
                 String nome = txNome.getText();
                 int idade = Integer.parseInt(txIdade.getText());
                 double altura = Double.parseDouble(txAltura.getText());
@@ -70,7 +71,7 @@ public class PacienteFormUI extends JFrame{
                     isolamento = "não";
                 }
 
-                Paciente exemploPaciente = new Paciente("",1,"",1,1,1.0,"Sim","","false","", "");
+                Paciente exemploPaciente = new Paciente("","1","",1,1,1.0,"Sim","","false","", "");
                 Paciente novoPaciente = new Paciente(nome, nextid, telefone,idade,altura,peso,comorbidade,diagnostico,isolamento,necessidade, "aguardando");
                 salvarByController(nome, nextid, telefone,idade,altura, peso,comorbidade,diagnostico,isolamento, necessidade, "aguardando", "Não possui");
 
@@ -96,20 +97,21 @@ public class PacienteFormUI extends JFrame{
         });
     }
 
-    private int generateId(){
-        int nextid = this.mainUI.getPacientes().size() + 1;;
-        return nextid;
+    private String generateId(){
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        return uuidAsString;
     }
 
     private void salvarByController(
-            String nomeParam, int nextidParam, String telefoneParam, int idadeParam, double alturaParam, double pesoParam, String comorbidadeParam,
+            String nomeParam, String nextidParam, String telefoneParam, int idadeParam, double alturaParam, double pesoParam, String comorbidadeParam,
             String diagnosticoParam, String isolamentoParam, String necessidadeParam, String statusPacienteParam, String funcionarioAntedimentoParam) throws ClassNotFoundException, SQLException {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
-            int nextid = nextidParam;
+            String nextid = nextidParam;
             String nome = nomeParam;
             String telefone = telefoneParam;
             double idade = idadeParam;
@@ -128,7 +130,7 @@ public class PacienteFormUI extends JFrame{
                             "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
-            ps.setInt(1, nextid);
+            ps.setString(1, nextid);
             ps.setString(2, nome);
             ps.setString(3, telefone);
             ps.setDouble(4, idade);

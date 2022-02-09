@@ -6,19 +6,20 @@ import java.util.ArrayList;
 
 public class Equipe {
     private String nomeEquipe;
-    private int idEquipe;
+    private String idEquipe;
     private String liderEquipe;
     private String statusEquipe;
     private ArrayList<Funcionario> funcionarios;
 
-    public Equipe(String nomeEquipe, int idEquipe, String statusEquipe){
+    public Equipe(String nomeEquipe, String idEquipe, String statusEquipe, String liderEquipe){
         this.nomeEquipe = nomeEquipe;
         this.idEquipe = idEquipe;
         this.funcionarios = new ArrayList<Funcionario>();
         this.statusEquipe = statusEquipe;
+        this.liderEquipe = liderEquipe;
     }
 
-    public int getIdEquipe() {
+    public String getIdEquipe() {
         return idEquipe;
     }
 

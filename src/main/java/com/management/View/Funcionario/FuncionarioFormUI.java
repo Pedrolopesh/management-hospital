@@ -1,18 +1,23 @@
 package com.management.View.Funcionario;
 
+import com.management.Controller.EquipeController;
+import com.management.Model.Classes.Equipe;
 import com.management.Model.Classes.Excessao;
 import com.management.Model.Classes.Funcionario;
 import com.management.View.Alerts.AlertaGeralUI;
 import com.management.Controller.FuncionarioController;
 import com.management.View.PrincipalUI;
 import com.management.utils.EncryptPassword;
+import com.management.utils.Uuid;
 import lombok.SneakyThrows;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FuncionarioFormUI extends JFrame {
     private JPanel mainPanel;
@@ -26,44 +31,52 @@ public class FuncionarioFormUI extends JFrame {
     private JButton confirmarButton;
     private JTextField tfpassword;
     private JTextField tfemail;
+    private JComboBox<Equipe> cbEquipes;
     private PrincipalUI mainUI;
     private ArrayList<Funcionario> funcionarios;
     private Excessao excessao;
-    private FuncionarioController funcionarioController;
-
+    private FuncionarioController funcionarioController = new FuncionarioController();
+    private Uuid uuidLocal;
+    private EquipeController equipeController = new EquipeController();
 
 // Construtor
-    public FuncionarioFormUI(PrincipalUI principalUIParam){
+    public FuncionarioFormUI(PrincipalUI principalUIParam) throws SQLException, ClassNotFoundException {
         this.mainUI = principalUIParam;
         this.funcionarios = new ArrayList<Funcionario>();
+        this.uuidLocal = new Uuid();
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mainPanel.setPreferredSize(new Dimension(300, 300));
 //        mainPanel.repaint();
         this.setContentPane(mainPanel);
         this.pack();
 
+        for (Equipe umaEquipe: this.equipeController.getEquipes()){
+            cbEquipes.addItem(umaEquipe);
+        }
+
         confirmarButton.addActionListener(new ActionListener() {
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
-                int nextid = generateId();
+                String nextid = uuidLocal.generateId();
                 String nome = tfNomeFuncionario.getText();
                 String telefone = tftelefoneFuncionario.getText();
                 String cargo = tfCargoFuncionario.getText();
                 String email = tfemail.getText();
                 String password = tfpassword.getText();
+                Equipe selectedEquipe = cbEquipes.getItemAt(cbEquipes.getSelectedIndex());
 
                 EncryptPassword encryptPassword = new EncryptPassword();
                 String encryptedPassword = encryptPassword.encrypt(password);
 
-                Funcionario newFuncionario = new Funcionario(nome, email,  nextid, telefone, "", "", "", encryptedPassword);
+                Funcionario newFuncionario = new Funcionario(nome, email,  nextid, telefone, cargo, "Ativo", "", encryptedPassword);
 
                 try {
-                    checkInputEntries(nome, nextid, telefone, cargo);
-                    newFuncionario.setCargo(cargo);
                     salvaFuncionario(newFuncionario);
+                    adicionarFuncionaroEquipe(nextid, selectedEquipe);
 
-                } catch (Excessao ex) {
+                } catch (Exception ex) {
                     String log = ex.getMessage();
                     System.out.println(log);
                 }
@@ -72,40 +85,24 @@ public class FuncionarioFormUI extends JFrame {
         });
     }
 
-    private int generateId(){
-        FuncionarioController funcionarioController = new FuncionarioController();
-        int nextid = funcionarioController.checkIdBeforeAdd() + 1;
-        return nextid;
-    }
+    private void salvaFuncionario(Funcionario newFuncionario){
+        try {
+            this.funcionarioController.salvarDadosFuncionario(newFuncionario);
+            this.mainUI.getFuncionarios().add(newFuncionario);
+            JOptionPane.showMessageDialog(this.mainPanel, "Funcionario cadastrado com successo!");
 
-    private void checkInputEntries(String nome, int id, String tel, String cargo) throws Excessao {
-        System.out.println(nome.isEmpty());
-        System.out.println(id == 0);
-        System.out.println(tel.isEmpty());
-        System.out.println(cargo.isEmpty());
-
-        if(nome.isEmpty() || id == 0 || tel.isEmpty() || cargo.isEmpty()){
-
+        }catch (Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this.mainPanel, "Erro ao adicionar funcionario!");
         }
     }
 
-    private void salvaFuncionario(Funcionario newFuncionario){
-        FuncionarioController funcionarioController = new FuncionarioController();
-        funcionarioController.salvarDadosFuncionario(newFuncionario);
-//        try{
-//            boolean idResult =  funcionarioController.checkIdBeforeAdd(newFuncionario.getId());
-//            if(idResult){
-//            }else{
-//                int newId = newFuncionario.getId()+1;
-//                Funcionario newFuncionarioId = new Funcionario(newFuncionario.getNome(), newFuncionario.getEmail(), newId, newFuncionario.getTelefone(), newFuncionario.getCargo(), newFuncionario.getStatusFuncionario(), newFuncionario.getPacientesAtendidos(),newFuncionario.getPassword());
-//                funcionarioController.salvarDadosFuncionario(newFuncionarioId);
-//            }
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-
-
-        this.mainUI.getFuncionarios().add(newFuncionario);
+    private void adicionarFuncionaroEquipe(String nextid, Equipe selectedEquipe) {
+        try{
+            this.funcionarioController.addFuncionarioEquipe(nextid, selectedEquipe.getIdEquipe());
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 }

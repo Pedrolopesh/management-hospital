@@ -44,7 +44,7 @@ public class PacienteEntitie extends Item {
         createdAt = new Date();
     }
 
-    public PacienteEntitie(String nome, int id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente) {
+    public PacienteEntitie(String nome, String id, String telefone, int idade, double altura, double peso, String comorbidade, String diagnostico, boolean isolamento, String necessidade, String statusPaciente) {
         super(nome, id, telefone);
         this.idade = idade;
         this.altura = altura;
