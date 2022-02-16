@@ -3,9 +3,9 @@ package com.management.Model.Classes;
 public class Equipamento {
     private String nomeEquipamento;
     private int qntEquipamento;
-    private int idEquipamento;
+    private String idEquipamento;
 
-    public Equipamento(String nomeEquipamento, int qntEquipamento, int idEquipamento){
+    public Equipamento(String nomeEquipamento, int qntEquipamento, String idEquipamento){
         this.nomeEquipamento = nomeEquipamento;
         this.qntEquipamento = qntEquipamento;
         this.idEquipamento = idEquipamento;
@@ -34,7 +34,7 @@ public class Equipamento {
         this.nomeEquipamento = nomeEquipamento;
         return true;
     }
-    public int getIdEquipamento(){
+    public String getIdEquipamento(){
         return idEquipamento;
     }
 
@@ -42,7 +42,6 @@ public class Equipamento {
         String texto = "";
         texto = texto + "equipamento: "+ this.getNomeEquipamento() + ", \n";
         texto = texto + "Quantidade: "+ this.getQntEquipamento() + ", \n";
-        texto = texto + "ID: "+ this.getIdEquipamento()+", \n";
         return texto;
     }
 }

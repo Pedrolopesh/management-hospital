@@ -2,14 +2,14 @@ package com.management.Model.Classes;
 
 public class Especialidade {
     private String nomeEspecialidade;
-    private int idEspecialidade;
+    private String idEspecialidade;
 
-    public Especialidade(String nomeEspecialidade, int idEspecialidade){
-        this.nomeEspecialidade = nomeEspecialidade;
+    public Especialidade(String idEspecialidade, String nomeEspecialidade){
         this.idEspecialidade = idEspecialidade;
+        this.nomeEspecialidade = nomeEspecialidade;
     }
 
-    public Especialidade(int idEspecialidade){
+    public Especialidade(String idEspecialidade){
         this.nomeEspecialidade = null;
         this.idEspecialidade = idEspecialidade;
     }
@@ -26,14 +26,13 @@ public class Especialidade {
         return true;
     }
 
-    public int getIdEspecialidade() {
+    public String getIdEspecialidade() {
         return idEspecialidade;
     }
 
     @Override
     public String toString() {
         String texto = "";
-        texto = texto + "id: "+this.getIdEspecialidade()+", \n";
         texto = texto + "especialidade: "+this.getNomeEspecialidade()+"\n";
         return texto;
     }

@@ -56,11 +56,16 @@ public class Funcionario extends Item {
         return true;
     }
 
+//    @Override
+//    public String toString(){
+//        String texto = "";
+//        texto = texto + super.toString();
+//        texto =  texto + "Cargo: " + this.getCargo()+", \n";
+//        return texto;
+//    }
+
     @Override
     public String toString(){
-        String texto = "";
-        texto = texto + super.toString();
-        texto =  texto + "Cargo: " + this.getCargo()+", \n";
-        return texto;
+        return this.email;
     }
 }

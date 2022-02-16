@@ -47,9 +47,7 @@ public abstract class Item {
 
     public String toString(){
         String texto = "";
-        texto =  texto + "ID: " + this.getId()+", \n";
-        texto =  texto + "Nome: " + this.getNome()+", \n";
-        texto =  texto + "Telefone: " + this.getTelefone()+", \n";
+        texto =  texto + "Nome: " + this.nome;
         return texto;
     }
 }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class UnidadeHospitalar {
     private String nomeUnidade;
-    private int idUnidadeHospitalar;
+    private String idUnidadeHospitalar;
     private String especialidade;
     private ArrayList<Equipe> equipes;
     private ArrayList<QuartoHospitalar> quartoHospitalars;
     private ArrayList<Especialidade> especialidades;
 
-    public UnidadeHospitalar(String nomeUnidade, int idUnidadeHospitalar){
+    public UnidadeHospitalar(String nomeUnidade, String idUnidadeHospitalar){
         this.nomeUnidade = nomeUnidade;
         this.idUnidadeHospitalar = idUnidadeHospitalar;
         this.equipes = new ArrayList<Equipe>();
@@ -30,7 +30,7 @@ public class UnidadeHospitalar {
         return true;
     }
 
-    public int getIdUnidadeHospitalar() {
+    public String getIdUnidadeHospitalar() {
         return idUnidadeHospitalar;
     }
 
@@ -79,9 +79,7 @@ public class UnidadeHospitalar {
     @Override
     public String toString() {
         String texto = "";
-        texto = texto + "ID: " + this.getIdUnidadeHospitalar() + ", \n";
-        texto = texto + "Nome Unidade: " + this.getNomeUnidade() + ", \n";
-        texto = texto + "Especialidade: " + this.getEspecialidade() + ", \n";
+        texto = texto + "Unidade: " + this.getNomeUnidade() + ", \n";
         return texto;
     }
 }

@@ -77,9 +77,7 @@ public class Equipe {
 
     public String toString(){
         String texto = "";
-        texto = texto + "ID da equipe: "+this.getIdEquipe()+", \n";
         texto = texto + "nomeEquipe: "+this.getNomeEquipe()+", \n";
-        texto = texto + "Lider da equipe: "+this.getLiderEquipe()+", \n";
         return texto;
     }
 

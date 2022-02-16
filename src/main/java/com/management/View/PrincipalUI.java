@@ -1,6 +1,6 @@
 package com.management.View;
 
-import com.management.Controller.FuncionarioController;
+import com.management.Controller.*;
 import com.management.Model.Classes.*;
 import com.management.Model.Repository.EquipamentoRepository;
 import com.management.View.Equipamento.EquipamentoFormEditarUI;
@@ -48,7 +48,6 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCriarFuncinario;
     private JMenuItem miCriarEquipe;
     private JMenuItem miListarEquipe;
-    private JMenuItem miAddFuncionario;
     private JMenu mnUnidadeHospitalar;
     private JMenuItem miCriarUnidade;
     private JMenuItem miListarUnidades;
@@ -66,14 +65,10 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miCadastrarEquipamento;
     private JMenuItem miListaEspecialidades;
     private JMenuItem miCriarEspecialidade;
-    private JMenuItem miUnidadeEquipe;
-    private JMenuItem miUnidadeAddQuarto;
     private JLabel labelInstrucao;
     private JMenuItem miQuartoAddLeito;
     private PrincipalUI principalUI;
-    private JMenuItem miPesquisaFuncionario;
-    private JMenuItem miPesquisaEquipe;
-    private JMenuItem miEditarFuncionario;
+
     private JMenuItem miEquipamentoEditar;
     private JPanel jpPacientesAguardando;
     private JPanel jpPacientesInternados;
@@ -94,6 +89,11 @@ public class PrincipalUI extends JFrame {
     Map<String, Equipe> mapaEquipe = new HashMap();
     private Uuid generetedUidd = new Uuid();
     private FuncionarioController funcionarioController = new FuncionarioController();
+    private EquipeController equipeController = new EquipeController();
+    private UnidadeHospitalarController unidadeHospitalarController = new UnidadeHospitalarController();
+    private EspecialidadeController especialidadeController = new EspecialidadeController();
+    private EquipamentoController equipamentoController = new EquipamentoController();
+    private QuartoController quartoController = new QuartoController();
 
     public PrincipalUI() throws SQLException, ClassNotFoundException {
         this.funcionarios = new ArrayList<Funcionario>();
@@ -109,8 +109,6 @@ public class PrincipalUI extends JFrame {
         MapearEquipes();
         calcPacientesInternados();
         calcPacientesAguardando();
-
-
 
         //DEFINE COMO A JANELA VAI SER FECHADA
         //EXIT_ON_CLOSE = FECHA A JANELA E O SISTEMA PARA DE FUNCIONAR
@@ -139,16 +137,9 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //FUNCIONARIOS - PESQUISAR FUNCIONARIO POR NOME
-        miPesquisaFuncionario.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pesquisaFuncionarioUI();
-            }
-        });
-
         //EQUIPE - CRIAR EQUIPE
         miCriarEquipe.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldEquipeFormUI();
@@ -157,38 +148,16 @@ public class PrincipalUI extends JFrame {
 
         //EQUIPE - LISTAR EQUIPES
         miListarEquipe.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldEquipeListaUI();
             }
         });
 
-        //EQUIPE - ADICIONAR FUNCIONARIO A UMA EQUIPE
-        miAddFuncionario.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                chieldEquipeAddFuncionario();
-            }
-        });
-
-        //EQUIPE - PESQUISAR EQUIPE POR NOME
-        miPesquisaEquipe.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pesquisaEquipeUI();
-            }
-        });
-
-        //EQUIPES - TROCAR FUNCIONARIO DE EQUIPE
-        miEditarFuncionario.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                editarEquipesFuncionarioUI();
-            }
-        });
-
         //UNIDADE - CRIAR UNIDADE HOSPITALR
         miCriarUnidade.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 unidadeFormUI();
@@ -197,30 +166,16 @@ public class PrincipalUI extends JFrame {
 
         //UNIDADE - LISTA UNIDADES HOSPITALARES
         miListarUnidades.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldUnidadeListaUI();
             }
         });
 
-        //UNIDADE - ADICIONAR EQUIPE A UMA UNIDADE HOSPITALAR
-        miUnidadeEquipe.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                unidadeAddequipeUI();
-            }
-        });
-
-        //UNIDADE - ADICIONAR QUARTO A UMA UNIDADE HOSPITALAR
-        miUnidadeAddQuarto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                unidadeAddQuartoUI();
-            }
-        });
-
         //ESPECIALIDADES - LISTA ESPECIALIDADES
         miListaEspecialidades.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 listaEspecialidadeUI();
@@ -237,6 +192,7 @@ public class PrincipalUI extends JFrame {
 
         //QUARTO - CRIAR QUARTO
         miCriarQuarto.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldQuartoCriarUI();
@@ -245,6 +201,7 @@ public class PrincipalUI extends JFrame {
 
         //QUARTO - LISTAR QUARTOS
         miListarQuarto.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldQuartoListaUI();
@@ -344,62 +301,31 @@ public class PrincipalUI extends JFrame {
     }
 
     //EQUIPE - CRIAR EQUIPE
-    private void chieldEquipeFormUI(){
+    private void chieldEquipeFormUI() throws SQLException, ClassNotFoundException {
         EquipeFormUI equipeFormUI = new EquipeFormUI(this);
         equipeFormUI.setVisible(true);
     }
 
     //EQUIPES - LISTA DE EQUIPES
-    private void chieldEquipeListaUI(){
+    private void chieldEquipeListaUI() throws SQLException, ClassNotFoundException {
         EquipeListaUI equipeListaUI = new EquipeListaUI(this);
         equipeListaUI.setVisible(true);
     }
 
-    //EQUIPES - ADICIONAR FUNCIONARIO A UMA EQUIPE
-    private void chieldEquipeAddFuncionario(){
-        EquipeAddFuncionario equipeAddFuncionario = new EquipeAddFuncionario(this);
-        equipeAddFuncionario.setVisible(true);
-    }
-
-    //EQUIPES - PESQUISAR EQUIPE PELO NOME
-    public void pesquisaEquipeUI(){
-        EquipePesquisaUI equipePesquisaUI = new EquipePesquisaUI(this);
-        equipePesquisaUI.setVisible(true);
-    }
-
-    //EQUIPES - TROCAR FUNCIONARIO DE EQUIPE
-    public void editarEquipesFuncionarioUI(){
-        EquipeEditaFuncionarioFormUI equipeEditaFuncionarioFormUI = new EquipeEditaFuncionarioFormUI(this);
-        equipeEditaFuncionarioFormUI.setVisible(true);
-    }
-
     //UNIDADES - CRIAR UNIDADE HOSPITALR
-    private void unidadeFormUI(){
+    private void unidadeFormUI() throws SQLException, ClassNotFoundException {
         UnidadeFormularioUI unidadeFormularioUI = new UnidadeFormularioUI(this);
         unidadeFormularioUI.setVisible(true);
     }
 
     //UNIDADES - LISTA UNIDADES HOSPITALARES
-    public void chieldUnidadeListaUI(){
+    public void chieldUnidadeListaUI() throws SQLException, ClassNotFoundException {
         UnidadeListaUI unidadeListaUI = new UnidadeListaUI(this);
         unidadeListaUI.setVisible(true);
     }
 
-    //UNIDADE - ADICIONAR EQUIPE A UMA UNIDADE HOSPITALAR
-    public void unidadeAddequipeUI(){
-        UnidadeEquipeFormUI unidadeEquipeFormUI = new UnidadeEquipeFormUI(this);
-        unidadeEquipeFormUI.setVisible(true);
-    }
-
-    //UNIDADE - ADICIONAR QUARTO A UMA UNIDADE HOSPITALAR
-    public void unidadeAddQuartoUI(){
-        UnidadeQuartoFormUI unidadeQuartoFormUI = new UnidadeQuartoFormUI(this);
-        unidadeQuartoFormUI.setVisible(true);
-    }
-
-
     //ESPECIALIDADES - LISTA ESPECIALIDADES
-    public void listaEspecialidadeUI(){
+    public void listaEspecialidadeUI() throws SQLException, ClassNotFoundException {
         EspecialidadeListaUI especialidadeListaUI = new EspecialidadeListaUI(this);
 
         //TORNA PAGINA VISIVEL
@@ -413,13 +339,13 @@ public class PrincipalUI extends JFrame {
     }
 
     //QUARTO - CRIAR QUARTO
-    public void chieldQuartoCriarUI(){
+    public void chieldQuartoCriarUI() throws SQLException, ClassNotFoundException {
         QuartoFormUI quartoFormUI = new QuartoFormUI(this);
         quartoFormUI.setVisible(true);
     }
 
     //QUARTO - LISTA DE QUARTOS
-    public void chieldQuartoListaUI(){
+    public void chieldQuartoListaUI() throws SQLException, ClassNotFoundException {
         QuartoListaUI quartoListaUI = new QuartoListaUI(this);
         quartoListaUI.setVisible(true);
     }
@@ -477,78 +403,77 @@ public class PrincipalUI extends JFrame {
 
 
     public void criarDadosTest() throws SQLException, ClassNotFoundException {
-        Especialidade especialidade1 = new Especialidade(1);
-        Especialidade especialidade2 = new Especialidade("Cardiologia", 2);
-        Especialidade especialidade3 = new Especialidade("Neurologia", 3);
-        Especialidade especialidade4 = new Especialidade("Reumatologia", 4);
-        Especialidade especialidade5 = new Especialidade("Cirurgia torácica", 5);
-        Especialidade especialidade6 = new Especialidade("Outra", 6);
-        especialidade1.setNomeEspecialidade("Dermatologia");
-        this.especialidades.add(especialidade1);
-        this.especialidades.add(especialidade2);
-        this.especialidades.add(especialidade3);
-        this.especialidades.add(especialidade4);
-        this.especialidades.add(especialidade5);
-        this.especialidades.add(especialidade6);
+        Especialidade especialidade1 = new Especialidade(generetedUidd.generateId(), "Clínico Geral");
+        Especialidade especialidade2 = new Especialidade(generetedUidd.generateId(), "Cardiologia");
+        Especialidade especialidade3 = new Especialidade(generetedUidd.generateId(), "Neurologia");
+        Especialidade especialidade4 = new Especialidade(generetedUidd.generateId(), "Reumatologia");
+        Especialidade especialidade5 = new Especialidade(generetedUidd.generateId(), "Cirurgia torácica");
+        Especialidade especialidade6 = new Especialidade(generetedUidd.generateId(), "Outra");
 
-        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,1);
-        Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,2);
-        Equipamento equipamento3 = new Equipamento("Oxímetro", 3,3);
-        Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,4);
-        Equipamento equipamento5 = new Equipamento("Desfibrilador", 5,5);
-        equipamentos.add(equipamento1);
-        equipamentos.add(equipamento2);
-        equipamentos.add(equipamento3);
-        equipamentos.add(equipamento4);
-        equipamentos.add(equipamento5);
+        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,generetedUidd.generateId());
+        Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,generetedUidd.generateId());
+        Equipamento equipamento3 = new Equipamento("Oxímetro", 3,generetedUidd.generateId());
+        Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,generetedUidd.generateId());
+        Equipamento equipamento5 = new Equipamento("Desfibrilador", 5,generetedUidd.generateId());
+
+        Funcionario funcionario1 = new Funcionario("Pedro Lopes", "pedrolopeshls@gmail.com", generetedUidd.generateId(), "admin", "Medico Geral", "ativo", "", "123123");
+        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "email@email.com", generetedUidd.generateId(), "1234567890", "admin", "ativo", "", "123123");
+        Funcionario funcionario3 = new Funcionario("Fernanda Alves", "email@email.com", generetedUidd.generateId(), "1234567890", "Medica residente", "ativo", "", "123123");
+        Funcionario funcionario4 = new Funcionario("Maria Silva", "email@email.com", generetedUidd.generateId(), "1234567890", "Enfermeira", "ativo", "", "123123");
+
+        Equipe equipe1 = new Equipe("Equipe 1", generetedUidd.generateId(), "ativa", funcionario1.getId());
+        Equipe equipe2 = new Equipe("Equipe 2", generetedUidd.generateId(), "ativa", funcionario2.getId());
+
+        UnidadeHospitalar unidade1 = new UnidadeHospitalar("A", generetedUidd.generateId());
+        UnidadeHospitalar unidade2 = new UnidadeHospitalar("B", generetedUidd.generateId());
+
+        QuartoHospitalar quart1 = new QuartoHospitalar("Quarto 1A", generetedUidd.generateId(), 10);
+        QuartoHospitalar quart2 = new QuartoHospitalar("Quarto 1B", generetedUidd.generateId(), 10);
+        QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 1C", generetedUidd.generateId(), 10);
+        QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 1D", generetedUidd.generateId(), 10);
+
+        if(this.especialidadeController.getEspecialidades().size() < 1){
+            this.especialidadeController.salvarDadosEspecialidade(especialidade1);
+            this.especialidadeController.salvarDadosEspecialidade(especialidade2);
+            this.especialidadeController.salvarDadosEspecialidade(especialidade3);
+            this.especialidadeController.salvarDadosEspecialidade(especialidade4);
+            this.especialidadeController.salvarDadosEspecialidade(especialidade5);
+            this.especialidadeController.salvarDadosEspecialidade(especialidade6);
+        }
+
+        if(this.equipamentoController.getEquipamentos().size() < 1){
+            this.equipamentoController.salvarDadosEquipamento(equipamento1);
+            this.equipamentoController.salvarDadosEquipamento(equipamento2);
+            this.equipamentoController.salvarDadosEquipamento(equipamento3);
+            this.equipamentoController.salvarDadosEquipamento(equipamento4);
+            this.equipamentoController.salvarDadosEquipamento(equipamento5);
+        }
+
 
         if(this.funcionarioController.getFuncionarios().size() < 1){
-            Funcionario funcionario1 = new Funcionario("Pedro Lopes", "pedrolopeshls@gmail.com", generetedUidd.generateId(), "admin", "Medico Geral", "ativo", "", "123123");
-            Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "email@email.com", generetedUidd.generateId(), "1234567890", "admin", "ativo", "", "123123");
-            Funcionario funcionario3 = new Funcionario("Fernanda Alves", "email@email.com", generetedUidd.generateId(), "1234567890", "Medica residente", "ativo", "", "123123");
-            Funcionario funcionario4 = new Funcionario("Maria Silva", "email@email.com", generetedUidd.generateId(), "1234567890", "Enfermeira", "ativo", "", "123123");
-
             this.funcionarioController.salvarDadosFuncionario(funcionario1);
             this.funcionarioController.salvarDadosFuncionario(funcionario2);
             this.funcionarioController.salvarDadosFuncionario(funcionario3);
             this.funcionarioController.salvarDadosFuncionario(funcionario4);
-
-            this.funcionarios.add(funcionario1);
-            this.funcionarios.add(funcionario2);
-            this.funcionarios.add(funcionario3);
-            this.funcionarios.add(funcionario4);
         }
 
+        if(this.equipeController.getEquipes().size() < 1){
 
-        Equipe equipe1 = new Equipe("Equipe Delta", generetedUidd.generateId(), "vazio", "");
-        Equipe equipe2 = new Equipe("Equipe Gama", generetedUidd.generateId(), "vazio", "");
-        this.equipes.add(equipe1);
-        this.equipes.add(equipe2);
+            this.equipeController.salvarDadosEquipe(equipe1);
+            this.equipeController.salvarDadosEquipe(equipe2);
+        }
 
-//        equipe1.addFuncionario(funcionario1);
-//        equipe1.setLiderEquipe(funcionario1.getNome());
-//        funcionario1.setStatusFuncionario("emEquipe");
+        if(this.unidadeHospitalarController.getUnidades().size() < 1){
+            this.unidadeHospitalarController.salvarDadosUnidade(unidade1);
+            this.unidadeHospitalarController.salvarDadosUnidade(unidade2);
+        }
 
-//        equipe1.addFuncionario(funcionario2);
-//        funcionario2.setStatusFuncionario("emEquipe");
-
-        equipe1.setStatusEquipe("funcionarios");
-
-        UnidadeHospitalar unidade1 = new UnidadeHospitalar("A", 1);
-        unidade1.setEspecialidade("Dermatologia");
-        UnidadeHospitalar unidade2 = new UnidadeHospitalar("B", 2);
-        unidade2.setEspecialidade("Reumatologia");
-        this.unidadeHospitalares.add(unidade1);
-        this.unidadeHospitalares.add(unidade2);
-
-        QuartoHospitalar quart1 = new QuartoHospitalar("Quarto 1A", 1, 10);
-        QuartoHospitalar quart2 = new QuartoHospitalar("Quarto 2A", 2, 10);
-        QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 3A", 3, 10);
-        QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 4A", 4, 10);
-        this.quartoHospitalars.add(quart1);
-        this.quartoHospitalars.add(quart2);
-        this.quartoHospitalars.add(quart3);
-        this.quartoHospitalars.add(quart4);
+        if(this.quartoController.getQuartos().size() < 1){
+            this.quartoController.salvarDadosQuarto(quart1);
+            this.quartoController.salvarDadosQuarto(quart2);
+            this.quartoController.salvarDadosQuarto(quart3);
+            this.quartoController.salvarDadosQuarto(quart4);
+        }
 
         LeitoHospitalar leito1 = new LeitoHospitalar(1);
         LeitoHospitalar leito2 = new LeitoHospitalar(2);

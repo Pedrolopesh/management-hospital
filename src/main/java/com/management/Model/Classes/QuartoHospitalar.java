@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class QuartoHospitalar {
     private String nomeQuarto;
-    private int idQuarto;
+    private String idQuarto;
     private int numLeitos;
     private ArrayList<LeitoHospitalar> leitoHospitalares;
 
-    public QuartoHospitalar(String nomeQuarto, int idQuarto, int numLeitos){
+    public QuartoHospitalar(String nomeQuarto, String idQuarto, int numLeitos){
         this.nomeQuarto = nomeQuarto;
         this.idQuarto = idQuarto;
         this.numLeitos = numLeitos;
@@ -19,7 +19,7 @@ public class QuartoHospitalar {
         return nomeQuarto;
     }
 
-    public int getIdQuarto(){
+    public String getIdQuarto(){
         return idQuarto;
     }
 

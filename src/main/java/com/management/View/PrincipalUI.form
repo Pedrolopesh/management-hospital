@@ -40,12 +40,6 @@
                   <text value="Criar Funcionarios"/>
                 </properties>
               </component>
-              <component id="4ca6c" class="javax.swing.JMenuItem" binding="miPesquisaFuncionario">
-                <constraints/>
-                <properties>
-                  <text value="Pesquisar funcionario por nome"/>
-                </properties>
-              </component>
             </children>
           </grid>
           <grid id="74eee" class="javax.swing.JMenu" binding="mnEquipe" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
@@ -67,24 +61,6 @@
                 <constraints/>
                 <properties>
                   <text value="Listar equipes"/>
-                </properties>
-              </component>
-              <component id="5c1ef" class="javax.swing.JMenuItem" binding="miAddFuncionario">
-                <constraints/>
-                <properties>
-                  <text value="Adicionar funcionário a uma equipe"/>
-                </properties>
-              </component>
-              <component id="530f7" class="javax.swing.JMenuItem" binding="miPesquisaEquipe">
-                <constraints/>
-                <properties>
-                  <text value="Pesquisar equipe por nome"/>
-                </properties>
-              </component>
-              <component id="b175c" class="javax.swing.JMenuItem" binding="miEditarFuncionario">
-                <constraints/>
-                <properties>
-                  <text value="Trocar Funciário de equipe"/>
                 </properties>
               </component>
             </children>
@@ -121,18 +97,6 @@
                 <constraints/>
                 <properties>
                   <text value="Criar Especialidade"/>
-                </properties>
-              </component>
-              <component id="9100a" class="javax.swing.JMenuItem" binding="miUnidadeEquipe">
-                <constraints/>
-                <properties>
-                  <text value="Adicionar equipe a unidade"/>
-                </properties>
-              </component>
-              <component id="909e" class="javax.swing.JMenuItem" binding="miUnidadeAddQuarto">
-                <constraints/>
-                <properties>
-                  <text value="Adicionar quarto a Unidade"/>
                 </properties>
               </component>
             </children>
