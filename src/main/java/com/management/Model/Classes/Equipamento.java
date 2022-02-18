@@ -35,7 +35,7 @@ public class Equipamento {
         return true;
     }
     public String getIdEquipamento(){
-        return idEquipamento;
+        return this.idEquipamento;
     }
 
     public String toString(){

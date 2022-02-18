@@ -3,10 +3,12 @@ package com.management.View.Equipamento;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
+import com.management.Controller.EquipamentoController;
 import com.management.Model.Classes.Equipamento;
 import com.management.View.PrincipalUI;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +17,13 @@ public class EquipamentoListaUI extends JFrame  {
     private JTextArea txTextShow;
     private JTable JTable;
     private PrincipalUI mainUI;
+    private EquipamentoController equipamentoController = new EquipamentoController();
     // Contrutor
-    public EquipamentoListaUI(PrincipalUI principalUI){
+    public EquipamentoListaUI(PrincipalUI principalUI) throws SQLException, ClassNotFoundException {
         this.mainUI = principalUI;
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mainPainel.setPreferredSize(new Dimension(300, 800));
+        mainPainel.setPreferredSize(new Dimension(300, 200));
         this.setContentPane(mainPainel);
         this.pack();
 
@@ -34,19 +37,14 @@ public class EquipamentoListaUI extends JFrame  {
         }
     }
 
-
-    public void createTable() {
-        test();
-    }
-
-    public void test(){
+    public void createTable() throws SQLException, ClassNotFoundException {
         List<Equipamento> equipamentos = new ArrayList<>();
 //        equipamentos.add(new Equipamento("item 1", 1, 1));
 //        equipamentos.add(new Equipamento("item 2", 2, 2));
 //        equipamentos.add(new Equipamento("item 3", 2, 3));
 //        equipamentos.add(new Equipamento("item 4", 2, 4));
 
-        for(Equipamento umEquipamento : this.mainUI.getEquipamentos()){
+        for(Equipamento umEquipamento : this.equipamentoController.getEquipamentos()){
             equipamentos.add(new Equipamento(umEquipamento.getNomeEquipamento(), umEquipamento.getQntEquipamento(), umEquipamento.getIdEquipamento()));
         }
 

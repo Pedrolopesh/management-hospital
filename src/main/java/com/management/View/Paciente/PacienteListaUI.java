@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacienteListaUI extends JFrame{
-    private JTextArea txTextShow;
     private JPanel mainPanel;
     private JTable JTable;
     private PrincipalUI mainUI;
@@ -27,14 +26,9 @@ public class PacienteListaUI extends JFrame{
         this.setContentPane(mainPanel);
         this.pack();
         createTable();
-
-        for(Paciente umPaciente : this.mainUI.getPacientes()){
-            txTextShow.append(umPaciente.imformacaoPacientes());
-            txTextShow.append("\n");
-        }
     }
 
-    public void createTable() throws SQLException, ClassNotFoundException {
+    public void createTable() {
         try {
             List<Paciente> pacienteList = new ArrayList<>();
 
@@ -49,10 +43,6 @@ public class PacienteListaUI extends JFrame{
             PacienteModel pacienteModel = new PacienteModel(pacienteList);
             JTable.setModel(pacienteModel);
             JTable.setAutoCreateRowSorter(true);
-
-//            QuartoListaUI.QuartoModel quartoModel = new QuartoListaUI.QuartoModel(quartoHospitalarList);
-//            JTable.setModel(quartoModel);
-//            JTable.setAutoCreateRowSorter(true);
 
         } catch (SQLException SQLException) {
             System.out.println(SQLException);

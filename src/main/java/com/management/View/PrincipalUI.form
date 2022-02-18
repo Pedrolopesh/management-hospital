@@ -157,17 +157,9 @@
                   <text value="Cadastrar novos Equipamentos"/>
                 </properties>
               </component>
-              <component id="e4b39" class="javax.swing.JMenuItem" binding="miQuartoAddLeito">
+              <component id="9e90" class="javax.swing.JMenuItem" binding="miQuartoAddLeito">
                 <constraints/>
-                <properties>
-                  <text value="Adicionar Leito a um quarto"/>
-                </properties>
-              </component>
-              <component id="b17a0" class="javax.swing.JMenuItem" binding="miEquipamentoEditar">
-                <constraints/>
-                <properties>
-                  <text value="Editar um Equipamento"/>
-                </properties>
+                <properties/>
               </component>
             </children>
           </grid>

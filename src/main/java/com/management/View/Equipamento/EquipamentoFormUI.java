@@ -48,7 +48,6 @@ public class EquipamentoFormUI extends JFrame {
     private void salvarEquipamento(Equipamento novoEquipamento) {
         try {
             this.equipamentoController.salvarDadosEquipamento(novoEquipamento);
-            this.mainUI.getEquipamentos().add(novoEquipamento);
             JOptionPane.showMessageDialog(this.mainPanel, "Equipamento cadastrado com successo!");
 
         } catch (Exception e){

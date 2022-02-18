@@ -69,7 +69,6 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miQuartoAddLeito;
     private PrincipalUI principalUI;
 
-    private JMenuItem miEquipamentoEditar;
     private JPanel jpPacientesAguardando;
     private JPanel jpPacientesInternados;
     private JPanel jpAcoes;
@@ -270,20 +269,12 @@ public class PrincipalUI extends JFrame {
 
         //EQUIPAMENTO - LISTA EQUIPAMENTO
         miListaEquipamentos.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 equipamentoListaUI();
             }
         });
-
-        //EQUIPAMENTO - EDITAR EQUIPAMENTO
-        miEquipamentoEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                equipamentoEditarUI();
-            }
-        });
-
     }
 
     //FUNCIONARIO - CRIAR FUNCIONARIO
@@ -395,14 +386,9 @@ public class PrincipalUI extends JFrame {
     }
 
     //EQUIPAMENTO - LISTAR EQUIPAMENTO
-    public void equipamentoListaUI(){
+    public void equipamentoListaUI() throws SQLException, ClassNotFoundException {
        EquipamentoListaUI equipamentoListaUI = new EquipamentoListaUI(this);
         equipamentoListaUI.setVisible(true);
-    }
-
-    public void equipamentoEditarUI(){
-        EquipamentoFormEditarUI editarNewEquipamentoFormUI = new EquipamentoFormEditarUI(this);
-        editarNewEquipamentoFormUI.setVisible(true);
     }
 
 
@@ -414,7 +400,7 @@ public class PrincipalUI extends JFrame {
         Especialidade especialidade5 = new Especialidade(generetedUidd.generateId(), "Cirurgia torácica");
         Especialidade especialidade6 = new Especialidade(generetedUidd.generateId(), "Outra");
 
-        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1,generetedUidd.generateId());
+        Equipamento equipamento1 = new Equipamento("Eletrocardiógrafos", 1, generetedUidd.generateId());
         Equipamento equipamento2 = new Equipamento("Ventilador pulmonar.", 2,generetedUidd.generateId());
         Equipamento equipamento3 = new Equipamento("Oxímetro", 3,generetedUidd.generateId());
         Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,generetedUidd.generateId());
@@ -439,6 +425,15 @@ public class PrincipalUI extends JFrame {
         LeitoHospitalar leito1 = new LeitoHospitalar(generetedUidd.generateId(), false);
         LeitoHospitalar leito2 = new LeitoHospitalar(generetedUidd.generateId(), false);
         LeitoHospitalar leito3 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito4 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito5 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito6 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito7 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito8 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito9 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito10 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito11 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito12 = new LeitoHospitalar(generetedUidd.generateId(), false);
 
         Paciente paciente1 = new Paciente("Maria", generetedUidd.generateId(), "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
         Paciente paciente2 = new Paciente("João", generetedUidd.generateId(), "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
@@ -491,6 +486,15 @@ public class PrincipalUI extends JFrame {
             this.leitoController.salvarDadosLeito(leito1);
             this.leitoController.salvarDadosLeito(leito2);
             this.leitoController.salvarDadosLeito(leito3);
+            this.leitoController.salvarDadosLeito(leito4);
+            this.leitoController.salvarDadosLeito(leito5);
+            this.leitoController.salvarDadosLeito(leito6);
+            this.leitoController.salvarDadosLeito(leito7);
+            this.leitoController.salvarDadosLeito(leito8);
+            this.leitoController.salvarDadosLeito(leito9);
+            this.leitoController.salvarDadosLeito(leito10);
+            this.leitoController.salvarDadosLeito(leito11);
+            this.leitoController.salvarDadosLeito(leito12);
         }
 
         if(this.pacienteController.getPacientes().size() < 1){
