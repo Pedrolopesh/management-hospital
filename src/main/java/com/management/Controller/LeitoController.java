@@ -1,30 +1,28 @@
 package com.management.Controller;
 
-import com.management.Model.Classes.Especialidade;
+import com.management.Model.Classes.LeitoHospitalar;
 import com.management.Model.Classes.QuartoHospitalar;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class QuartoController {
+public class LeitoController {
 
-    public void salvarDadosQuarto(QuartoHospitalar newQuarto) {
+    public void salvarDadosLeito(LeitoHospitalar newLeito) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
-            String id = newQuarto.getIdQuarto();
-            String nomeQuarto = newQuarto.getNomeQuarto();
-            int quantLeitos = newQuarto.getNumLeitos();
+            String id = newLeito.getIdLeito();
+            boolean ocupado = newLeito.getOcupado();
 
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into quartos " +
-                            "(idQuarto, nome, quantLeitos) values (?, ?, ?)"
+                    "insert into leitos " +
+                            "(idLeito, ocupado) values (?, ?)"
             );
 
             ps.setString(1, id);
-            ps.setString(2, nomeQuarto);
-            ps.setInt(3, quantLeitos);
+            ps.setBoolean(2, ocupado);
 
             ps.executeUpdate();
             ps.closeOnCompletion();
@@ -39,45 +37,44 @@ public class QuartoController {
         }
     }
 
-    public ArrayList<QuartoHospitalar> getQuartos() throws ClassNotFoundException, SQLException {
-        ArrayList<QuartoHospitalar> quartosList = new ArrayList<>();
+    public ArrayList<LeitoHospitalar> getLeitos() throws ClassNotFoundException, SQLException {
+        ArrayList<LeitoHospitalar> leitoHospitalarsList = new ArrayList<>();
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
         Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery("select * from quartos");
+        ResultSet rs = st.executeQuery("select * from leitos");
 
-        QuartoHospitalar quartoHospitalar;
+        LeitoHospitalar leitoHospitalar;
 
         while(rs.next()){
-            quartoHospitalar = new QuartoHospitalar(rs.getString("nome"), rs.getString("idQuarto"), rs.getInt("quantLeitos"));
+            leitoHospitalar = new LeitoHospitalar(rs.getString("idLeito"), rs.getBoolean("ocupado"));
 
-            quartosList.add(quartoHospitalar);
+            leitoHospitalarsList.add(leitoHospitalar);
         }
 
         st.closeOnCompletion();
-        return quartosList;
+        return leitoHospitalarsList;
     }
 
-    public void salvarDadosQuartoWithUnidade(QuartoHospitalar newQuarto, String selectedUnidade) {
+    public void salvarDadosLeitoWithQuarto(LeitoHospitalar newLeito, String SelectedQuarto) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
-            String id = newQuarto.getIdQuarto();
-            String nomeQuarto = newQuarto.getNomeQuarto();
-            int quantLeitos = newQuarto.getNumLeitos();
+            String id = newLeito.getIdLeito();
+            boolean ocupado = newLeito.getOcupado();
+            String quarto_leito = SelectedQuarto;
 
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into quartos " +
-                            "(idQuarto, nome, quantLeitos, unidade) values (?, ?, ?, ?)"
+                    "insert into leitos " +
+                            "(idLeito, ocupado, quarto_leito) values (?, ?, ?)"
             );
 
             ps.setString(1, id);
-            ps.setString(2, nomeQuarto);
-            ps.setInt(3, quantLeitos);
-            ps.setString(4, selectedUnidade);
+            ps.setBoolean(2, ocupado);
+            ps.setString(3, quarto_leito);
 
             ps.executeUpdate();
             ps.closeOnCompletion();

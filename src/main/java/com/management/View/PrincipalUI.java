@@ -94,6 +94,8 @@ public class PrincipalUI extends JFrame {
     private EspecialidadeController especialidadeController = new EspecialidadeController();
     private EquipamentoController equipamentoController = new EquipamentoController();
     private QuartoController quartoController = new QuartoController();
+    private LeitoController leitoController = new LeitoController();
+    private PacienteController pacienteController = new PacienteController();
 
     public PrincipalUI() throws SQLException, ClassNotFoundException {
         this.funcionarios = new ArrayList<Funcionario>();
@@ -218,6 +220,7 @@ public class PrincipalUI extends JFrame {
 
         //LEITO - CRIAR LEITO
         miCriarLeito.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 chieldLeitoFormUI();
@@ -250,6 +253,7 @@ public class PrincipalUI extends JFrame {
 
         //PACIENTE - LISTA PACIENTES
         miListaPaciente.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
                 pacientelistaui();
@@ -357,7 +361,7 @@ public class PrincipalUI extends JFrame {
     }
 
     //LEITO - CRIAR LEITO
-    public void chieldLeitoFormUI(){
+    public void chieldLeitoFormUI() throws SQLException, ClassNotFoundException {
         LeitoFormUI leitoFormUI = new LeitoFormUI(this);
         leitoFormUI.setVisible(true);
     }
@@ -380,7 +384,7 @@ public class PrincipalUI extends JFrame {
         pacienteFormUI.setVisible(true);
     }
     //PACIENTE - LISTAR PACIENTE
-    public void pacientelistaui(){
+    public void pacientelistaui() throws SQLException, ClassNotFoundException {
         PacienteListaUI pacienteListaUI = new PacienteListaUI(this);
         pacienteListaUI.setVisible(true);
     }
@@ -432,6 +436,15 @@ public class PrincipalUI extends JFrame {
         QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 1C", generetedUidd.generateId(), 10);
         QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 1D", generetedUidd.generateId(), 10);
 
+        LeitoHospitalar leito1 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito2 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito3 = new LeitoHospitalar(generetedUidd.generateId(), false);
+
+        Paciente paciente1 = new Paciente("Maria", generetedUidd.generateId(), "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
+        Paciente paciente2 = new Paciente("João", generetedUidd.generateId(), "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
+        Paciente paciente3 = new Paciente("Paulo", generetedUidd.generateId(), "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", "false", "Não possui", "aguardando");
+        Paciente paciente4 = new Paciente("Gustavo", generetedUidd.generateId(), "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", "false", "Não possui", "aguardando");
+
         if(this.especialidadeController.getEspecialidades().size() < 1){
             this.especialidadeController.salvarDadosEspecialidade(especialidade1);
             this.especialidadeController.salvarDadosEspecialidade(especialidade2);
@@ -458,7 +471,6 @@ public class PrincipalUI extends JFrame {
         }
 
         if(this.equipeController.getEquipes().size() < 1){
-
             this.equipeController.salvarDadosEquipe(equipe1);
             this.equipeController.salvarDadosEquipe(equipe2);
         }
@@ -475,27 +487,24 @@ public class PrincipalUI extends JFrame {
             this.quartoController.salvarDadosQuarto(quart4);
         }
 
-        LeitoHospitalar leito1 = new LeitoHospitalar(1);
-        LeitoHospitalar leito2 = new LeitoHospitalar(2);
-        LeitoHospitalar leito3 = new LeitoHospitalar(3);
-        this.leitoHospitalares.add(leito1);
-        this.leitoHospitalares.add(leito2);
-        this.leitoHospitalares.add(leito3);
-        leito1.addEquipamento(equipamento1);
-        leito2.addEquipamento(equipamento2);
+        if(this.leitoController.getLeitos().size() < 1){
+            this.leitoController.salvarDadosLeito(leito1);
+            this.leitoController.salvarDadosLeito(leito2);
+            this.leitoController.salvarDadosLeito(leito3);
+        }
 
-        quart1.addLeitoHospitalar(leito1);
-        quart1.addLeitoHospitalar(leito2);
+        if(this.pacienteController.getPacientes().size() < 1){
+            this.pacienteController.salvarDadosPaciente(paciente1);
+            this.pacienteController.salvarDadosPaciente(paciente2);
+            this.pacienteController.salvarDadosPaciente(paciente3);
+            this.pacienteController.salvarDadosPaciente(paciente4);
+        }
 
+//        leito1.addEquipamento(equipamento1);
+//        leito2.addEquipamento(equipamento2);
 
-        Paciente paciente1 = new Paciente("Maria", "1", "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
-        Paciente paciente2 = new Paciente("João", "2", "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
-        Paciente paciente3 = new Paciente("Paulo", "3", "(21) 99982-2093", 38, 1.85, 80.5, "Diabetes", "infecção", "false", "Não possui", "aguardando");
-        Paciente paciente4 = new Paciente("Gustavo", "4", "(11) 99523-3048", 28, 1.68, 60.5, "Não possui", "não concluído", "false", "Não possui", "aguardando");
-        this.pacientes.add(paciente1);
-        this.pacientes.add(paciente2);
-        this.pacientes.add(paciente3);
-        this.pacientes.add(paciente4);
+//        quart1.addLeitoHospitalar(leito1);
+//        quart1.addLeitoHospitalar(leito2);
 
         leito1.setPaciente(paciente1);
         leito1.setOcupado(true);

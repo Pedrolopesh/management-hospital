@@ -54,9 +54,7 @@ public class QuartoHospitalar {
 
     public String toString(){
         String texto = "";
-        texto = texto + "ID do quarto: "+this.getIdQuarto()+", \n";
         texto = texto + "Nome do quarto: "+this.getNomeQuarto()+", \n";
-        texto = texto + "Quantidade de leitos no quarto: "+this.getNumLeitos()+", \n";
 
         return texto;
     }

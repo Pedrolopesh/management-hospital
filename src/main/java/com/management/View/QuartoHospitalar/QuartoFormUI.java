@@ -1,5 +1,6 @@
 package com.management.View.QuartoHospitalar;
 
+import com.management.Controller.QuartoController;
 import com.management.Controller.UnidadeHospitalarController;
 import com.management.Model.Classes.Funcionario;
 import com.management.Model.Classes.QuartoHospitalar;
@@ -23,12 +24,13 @@ public class QuartoFormUI extends JFrame{
     private PrincipalUI mainUI;
     private Uuid uuid = new Uuid();
     private UnidadeHospitalarController unidadeHospitalarController = new UnidadeHospitalarController();
+    private QuartoController quartoController = new QuartoController();
 
     public QuartoFormUI(PrincipalUI principalUI) throws SQLException, ClassNotFoundException {
         this.mainUI = principalUI;
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mainPanel.setPreferredSize(new Dimension(600, 200));
+        mainPanel.setPreferredSize(new Dimension(300, 400));
         this.setContentPane(mainPanel);
         this.pack();
 
@@ -50,7 +52,16 @@ public class QuartoFormUI extends JFrame{
     }
 
     private void salvarQuarto(QuartoHospitalar newQuartoHospitalar, UnidadeHospitalar unidadeHospitalar){
-        System.out.println(unidadeHospitalar);
-        this.mainUI.getQuartos().add(newQuartoHospitalar);
+
+        try {
+            this.quartoController.salvarDadosQuartoWithUnidade(newQuartoHospitalar, unidadeHospitalar.getIdUnidadeHospitalar());
+            this.mainUI.getQuartos().add(newQuartoHospitalar);
+            JOptionPane.showMessageDialog(this.mainPanel, "Quarto cadastrado com successo!");
+
+        } catch (Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this.mainPanel, "Erro ao cadastrar quarto!");
+        }
+
     }
 }

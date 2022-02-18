@@ -1,48 +1,87 @@
 package com.management.Controller;
 
+
+import com.management.Model.Classes.LeitoHospitalar;
 import com.management.Model.Classes.Paciente;
-import com.management.Model.Entities.PacienteEntitie;
+import com.management.Model.Classes.QuartoHospitalar;
+import com.management.utils.Uuid;
 
-import javax.swing.*;
-import java.awt.*;
 import java.sql.*;
+import java.util.ArrayList;
 
-public class PacienteController extends Component {
+public class PacienteController{
+    private Uuid uuid = new Uuid();
 
-
-    public void salvarDadosPaciente(Paciente paciente) {
+    public void salvarDadosPaciente(Paciente newPaciente) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
 
+            String id = newPaciente.getId();
+            String nome = newPaciente.getNome();
+            String telefone = newPaciente.getTelefone();
+            double idade = newPaciente.getIdade();
+            double altura = newPaciente.getAltura();
+            double peso = newPaciente.getPeso();
+            String diagnostico = newPaciente.getDiagnostico();
+            String isolamento = newPaciente.getIsolamento();
+            String necessidade = newPaciente.getNecessidade();
+            String statusPaciente = newPaciente.getStatusPaciente();
+            String comorbidade = newPaciente.getComorbidade();
+            String funcionarioAntedimento = newPaciente.getFuncionarioAtendimento();
+
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into paciente " +
+                    "insert into pacientes " +
                             "(id, nome, telefone, idade, altura, peso, diagnostico, isolamento, necessidade, statusPaciente, comorbidade, funcionarioAntedimento) " +
                             "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
-            ps.setString(1, paciente.getId());
-            ps.setString(2, paciente.getNome());
-            ps.setString(3, paciente.getTelefone());
-            ps.setInt(4, paciente.getIdade());
-            ps.setDouble(5, paciente.getAltura());
-            ps.setDouble(6, paciente.getPeso());
-            ps.setString(7, paciente.getDiagnostico());
-            ps.setString(8, paciente.getIsolamento());
-            ps.setString(9, paciente.getNecessidade());
-            ps.setString(10,paciente.getStatusPaciente());
-            ps.setString(11,paciente.getComorbidade());
-            ps.setString(12,paciente.getFuncionarioAtendimento());
+            ps.setString(1, id);
+            ps.setString(2, nome);
+            ps.setString(3, telefone);
+            ps.setDouble(4, idade);
+            ps.setDouble(5, altura);
+            ps.setDouble(6, peso);
+            ps.setString(7, diagnostico);
+            ps.setString(8, isolamento);
+            ps.setString(9, necessidade);
+            ps.setString(10, statusPaciente);
+            ps.setString(11, comorbidade);
+            ps.setString(12, funcionarioAntedimento);
 
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Insert Sucessfully");
+            ps.closeOnCompletion();
 
-//            ResultSet rs = stmt.executeQuery("select idequipamento, nomeEquipamento, qntEquipamento from equipamento;");
-//            System.out.println(rs);
+        } catch (SQLException throwables) {
+            System.out.println("SQLException");
+            throwables.printStackTrace();
 
-        } catch (Exception e){
-            System.out.println(e);
+        } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
+            classNotFoundException.printStackTrace();
         }
+    }
+
+
+    public ArrayList<Paciente> getPacientes() throws ClassNotFoundException, SQLException {
+        ArrayList<Paciente> pacientesList = new ArrayList<>();
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("select * from pacientes");
+
+        Paciente paciente;
+
+        while(rs.next()){
+            paciente = new Paciente( rs.getString("nome"), rs.getString("id"), rs.getString("telefone"), rs.getInt("idade"), rs.getDouble("altura"), rs.getDouble("peso"), rs.getString("comorbidade"), rs.getString("diagnostico"), rs.getString("isolamento"),  rs.getString("necessidade"), rs.getString("statusPaciente"));
+
+            pacientesList.add(paciente);
+        }
+
+        st.closeOnCompletion();
+        return pacientesList;
     }
 
 

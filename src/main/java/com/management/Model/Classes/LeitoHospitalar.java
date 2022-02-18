@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
-    private int idLeito;
+    private String idLeito;
     private boolean ocupado;
 
     public Paciente getPaciente() {
@@ -18,14 +18,15 @@ public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
     public Paciente paciente;
     private ArrayList<Equipamento> equipamentos;
 
-    public LeitoHospitalar(int idLeito) {
+    public LeitoHospitalar(String idLeito, boolean ocupado) {
         this.idLeito = idLeito;
         this.paciente = new Paciente();
+        this.ocupado = ocupado;
         this.equipamentos = new ArrayList<Equipamento>();
     }
 
 
-    public int getIdLeito() {
+    public String getIdLeito() {
         return idLeito;
     }
 
