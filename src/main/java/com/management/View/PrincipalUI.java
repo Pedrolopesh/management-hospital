@@ -66,7 +66,7 @@ public class PrincipalUI extends JFrame {
     private JMenuItem miListaEspecialidades;
     private JMenuItem miCriarEspecialidade;
     private JLabel labelInstrucao;
-    private JMenuItem miQuartoAddLeito;
+    private LeitoFormUI leitoFormUI;
     private PrincipalUI principalUI;
 
     private JPanel jpPacientesAguardando;
@@ -74,7 +74,6 @@ public class PrincipalUI extends JFrame {
     private JPanel jpAcoes;
     private JButton PacienteNovoButton;
     private JButton listaPacientesButton;
-    private JButton ListaLimpezaButton;
     private JLabel jlContPacientesAguardando;
     private JLabel jlContPacientesInternados;
     private ArrayList<Funcionario> funcionarios;
@@ -93,7 +92,7 @@ public class PrincipalUI extends JFrame {
     private EspecialidadeController especialidadeController = new EspecialidadeController();
     private EquipamentoController equipamentoController = new EquipamentoController();
     private QuartoController quartoController = new QuartoController();
-    private LeitoController leitoController = new LeitoController();
+    private LeitoController leitoController = new LeitoController(this.leitoFormUI);
     private PacienteController pacienteController = new PacienteController();
 
     public PrincipalUI() throws SQLException, ClassNotFoundException {
@@ -209,13 +208,13 @@ public class PrincipalUI extends JFrame {
             }
         });
 
-        //QUARTO - LISTAR QUARTOS
-        miQuartoAddLeito.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                quartoAddLeito();
-            }
-        });
+//        //QUARTO - LISTAR QUARTOS
+//        miQuartoAddLeito.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                quartoAddLeito();
+//            }
+//        });
 
         //LEITO - CRIAR LEITO
         miCriarLeito.addActionListener(new ActionListener() {
@@ -244,9 +243,10 @@ public class PrincipalUI extends JFrame {
 
         //PACIENTE - ADICIONAR PACIENTE EM LEITO
         miLeitoAddPaciente.addActionListener(new ActionListener() {
+            @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
-                leitoAddPacienteUI();
+                 leitoAddPacienteUI();
             }
         });
 
@@ -273,6 +273,24 @@ public class PrincipalUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 equipamentoListaUI();
+            }
+        });
+
+        //MAIN BUTTONS
+           //|----- ADICIONAR PACIENTE
+        PacienteNovoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pacienteFormUI();
+            }
+        });
+
+        //|----- ADICIONAR PACIENTE
+        listaPacientesButton.addActionListener(new ActionListener() {
+            @SneakyThrows
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pacientelistaui();
             }
         });
     }
@@ -345,11 +363,11 @@ public class PrincipalUI extends JFrame {
         quartoListaUI.setVisible(true);
     }
 
-    //QUARTO - ADICIONAR LEITO AO QUARTO
-    public void quartoAddLeito(){
-        LeitoAddQuarto leitoAddQuarto = new LeitoAddQuarto(this);
-        leitoAddQuarto.setVisible(true);
-    }
+//    //QUARTO - ADICIONAR LEITO AO QUARTO
+//    public void quartoAddLeito(){
+//        LeitoAddQuarto leitoAddQuarto = new LeitoAddQuarto(this);
+//        leitoAddQuarto.setVisible(true);
+//    }
 
     //LEITO - CRIAR LEITO
     public void chieldLeitoFormUI() throws SQLException, ClassNotFoundException {
@@ -364,7 +382,7 @@ public class PrincipalUI extends JFrame {
     }
 
     //LEITO - ALOCAR PACIENTE EM LEITO
-    public void leitoAddPacienteUI(){
+    public void leitoAddPacienteUI() throws SQLException, ClassNotFoundException {
         LeitoAddPacienteUI leitoAddPacienteUI = new LeitoAddPacienteUI(this);
         leitoAddPacienteUI.setVisible(true);
     }
@@ -406,10 +424,10 @@ public class PrincipalUI extends JFrame {
         Equipamento equipamento4 = new Equipamento("Monitor multiparamétrico", 4,generetedUidd.generateId());
         Equipamento equipamento5 = new Equipamento("Desfibrilador", 5,generetedUidd.generateId());
 
-        Funcionario funcionario1 = new Funcionario("Pedro Lopes", "pedrolopeshls@gmail.com", generetedUidd.generateId(), "admin", "Medico Geral", "ativo", "", "123123");
-        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", "email@email.com", generetedUidd.generateId(), "1234567890", "admin", "ativo", "", "123123");
-        Funcionario funcionario3 = new Funcionario("Fernanda Alves", "email@email.com", generetedUidd.generateId(), "1234567890", "Medica residente", "ativo", "", "123123");
-        Funcionario funcionario4 = new Funcionario("Maria Silva", "email@email.com", generetedUidd.generateId(), "1234567890", "Enfermeira", "ativo", "", "123123");
+        Funcionario funcionario1 = new Funcionario("Pedro Lopes", generetedUidd.generateId(),"1234567890", "pedrolopeshls@gmail.com", "Medico Geral", "ativo", "", "123123");
+        Funcionario funcionario2 = new Funcionario("Alisson Gabriel", generetedUidd.generateId(),"1234567890", "pedrolopeshls@gmail.com", "Medico Geral", "ativo", "", "123123");
+        Funcionario funcionario3 = new Funcionario("Fernanda Alves", generetedUidd.generateId(),"1234567890", "pedrolopeshls@gmail.com", "Medico Geral", "ativo", "", "123123");
+        Funcionario funcionario4 = new Funcionario("Maria Silva", generetedUidd.generateId(),"1234567890", "pedrolopeshls@gmail.com", "Medico Geral", "ativo", "", "123123");
 
         Equipe equipe1 = new Equipe("Equipe 1", generetedUidd.generateId(), "ativa", funcionario1.getId());
         Equipe equipe2 = new Equipe("Equipe 2", generetedUidd.generateId(), "ativa", funcionario2.getId());
@@ -422,18 +440,18 @@ public class PrincipalUI extends JFrame {
         QuartoHospitalar quart3 = new QuartoHospitalar("Quarto 1C", generetedUidd.generateId(), 10);
         QuartoHospitalar quart4 = new QuartoHospitalar("Quarto 1D", generetedUidd.generateId(), 10);
 
-        LeitoHospitalar leito1 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito2 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito3 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito4 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito5 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito6 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito7 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito8 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito9 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito10 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito11 = new LeitoHospitalar(generetedUidd.generateId(), false);
-        LeitoHospitalar leito12 = new LeitoHospitalar(generetedUidd.generateId(), false);
+        LeitoHospitalar leito1 = new LeitoHospitalar("1A", generetedUidd.generateId(), false);
+        LeitoHospitalar leito2 = new LeitoHospitalar("2A",generetedUidd.generateId(), false);
+        LeitoHospitalar leito3 = new LeitoHospitalar("3A",generetedUidd.generateId(), false);
+        LeitoHospitalar leito4 = new LeitoHospitalar("4A",generetedUidd.generateId(), false);
+        LeitoHospitalar leito5 = new LeitoHospitalar("5A",generetedUidd.generateId(), false);
+        LeitoHospitalar leito6 = new LeitoHospitalar("1B",generetedUidd.generateId(), false);
+        LeitoHospitalar leito7 = new LeitoHospitalar("2B",generetedUidd.generateId(), false);
+        LeitoHospitalar leito8 = new LeitoHospitalar("3B",generetedUidd.generateId(), false);
+        LeitoHospitalar leito9 = new LeitoHospitalar("1C",generetedUidd.generateId(), false);
+        LeitoHospitalar leito10 = new LeitoHospitalar("2C",generetedUidd.generateId(), false);
+        LeitoHospitalar leito11 = new LeitoHospitalar("3C",generetedUidd.generateId(), false);
+        LeitoHospitalar leito12 = new LeitoHospitalar("4C",generetedUidd.generateId(), false);
 
         Paciente paciente1 = new Paciente("Maria", generetedUidd.generateId(), "(48) 99942-2614", 18, 1.77, 60.5, "Não possui", "COVID-19", "true", "Isolamento imediato", "aguardando");
         Paciente paciente2 = new Paciente("João", generetedUidd.generateId(), "(48) 9823-2019", 20, 1.80, 70.4, "Asmático", "COVID-19", "true", "Isolamento Imediato", "aguardando");
@@ -556,17 +574,12 @@ public class PrincipalUI extends JFrame {
 
     }
 
-    public void calcPacientesAguardando(){
-        int totalPacientesAguardando = this.pacientes.size();
-
-//        Paciente paciente =
-
-        jlContPacientesAguardando.setText(String.valueOf(totalPacientesAguardando));
-
+    public void calcPacientesAguardando() throws SQLException, ClassNotFoundException {
+        jlContPacientesAguardando.setText( String.valueOf(this.pacienteController.pacientesAguardando()) );
     }
 
-    public void calcPacientesInternados() {
-
+    public void calcPacientesInternados() throws SQLException, ClassNotFoundException {
+        jlContPacientesInternados.setText( String.valueOf(this.pacienteController.pacientesInternados()) );
     }
 
     public ArrayList<Funcionario> getFuncionarios(){

@@ -18,15 +18,18 @@ import java.sql.SQLException;
 
 public class LeitoFormUI extends JFrame {
     private JLabel labelEquipamentos;
+    private LeitoFormUI leitoFormUI;
     private JComboBox<Equipamento> cbEquipamentos;
     private JButton salvarButton;
     private JPanel mainPanel;
     private JComboBox cbQuartos;
+    private JTextField tfNomeLeito;
     private PrincipalUI mainUI;
     private QuartoController quartoController = new QuartoController();
     private Uuid uuid = new Uuid();
-    private LeitoController leitoController = new LeitoController();
+    private LeitoController leitoController = new LeitoController(this.leitoFormUI);
     private EquipamentoController equipamentoController = new EquipamentoController();
+    private LeitoHospitalar newLeito;
 
     public LeitoFormUI(PrincipalUI principalUI) throws SQLException, ClassNotFoundException {
         this.mainUI = principalUI;
@@ -44,32 +47,46 @@ public class LeitoFormUI extends JFrame {
             cbQuartos.addItem(umQuartoHospitalar);
         }
 
+        Equipamento equipamentoSelecionado = cbEquipamentos.getItemAt(cbEquipamentos.getSelectedIndex());
+        QuartoHospitalar quartoHospitalar = (QuartoHospitalar) cbQuartos.getItemAt(cbQuartos.getSelectedIndex());
+        String nomeLeito = tfNomeLeito.getText();
+        LeitoHospitalar newLeito = new LeitoHospitalar(nomeLeito, uuid.generateId(), false);
+        this.newLeito = newLeito;
 
         salvarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Equipamento equipamentoSelecionado = cbEquipamentos.getItemAt(cbEquipamentos.getSelectedIndex());
-//                UnidadeHospitalar unidadeHospitalar = (UnidadeHospitalar) cbUnidades.getItemAt(cbUnidades.getSelectedIndex());
                 QuartoHospitalar quartoHospitalar = (QuartoHospitalar) cbQuartos.getItemAt(cbQuartos.getSelectedIndex());
-
-                LeitoHospitalar newLeito = new LeitoHospitalar(uuid.generateId(), false);
+                String nomeLeito = tfNomeLeito.getText();
+                LeitoHospitalar newLeito = new LeitoHospitalar(nomeLeito, uuid.generateId(), false);
 
                 salvarLeito(newLeito,equipamentoSelecionado, quartoHospitalar);
             }
         });
     }
 
+    public void showAlert(String msg){
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
+    public LeitoHospitalar dadosNovoLeito(){
+        return this.newLeito;
+    }
+
     private void salvarLeito(LeitoHospitalar newLeito,Equipamento equipamentoSelecionado, QuartoHospitalar selectedQuarto ){
-        this.mainUI.getLeitos().add(newLeito);
+        System.out.println(newLeito.getNomeLeito());
+        System.out.println(newLeito.getIdLeito());
+        System.out.println(newLeito.getOcupado());
 
-        this.leitoController.salvarDadosLeitoWithQuarto(newLeito, selectedQuarto.getIdQuarto());
+        try {
+            this.leitoController.salvarDadosLeitoWithQuartoEquipamento(newLeito, equipamentoSelecionado, selectedQuarto.getIdQuarto());
+            JOptionPane.showMessageDialog(this.mainPanel, "Leito cadastrado com successo!");
 
-//        for (Equipamento umEquipamento : this.mainUI.getEquipamentos()){
-//            if(umEquipamento.getIdEquipamento() == equipamentoSelecionado.getIdEquipamento()){
-//                newLeito.addEquipamento(equipamentoSelecionado);
-//            }
-//        }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(this.mainPanel, "Erro ao cadastrar leito!");
+            System.out.println(e);
+        }
     }
 
 }

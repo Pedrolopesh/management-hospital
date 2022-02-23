@@ -1,6 +1,7 @@
 package com.management.Controller;
 
 
+import com.management.Model.Classes.Funcionario;
 import com.management.Model.Classes.LeitoHospitalar;
 import com.management.Model.Classes.Paciente;
 import com.management.Model.Classes.QuartoHospitalar;
@@ -84,5 +85,92 @@ public class PacienteController{
         return pacientesList;
     }
 
+
+    public void internarPacienteLeito(LeitoHospitalar leitoSelecionado, Paciente pacienteSelecionado, Funcionario funcionarioSelecionado) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+            String leito = leitoSelecionado.getIdLeito();
+            String paciente = pacienteSelecionado.getId();
+            String funcionario = funcionarioSelecionado.getNome();
+
+            System.out.println(leito);
+            System.out.println(paciente);
+            System.out.println(funcionario);
+
+            PreparedStatement ps1 = conn.prepareStatement("update pacientes SET leito=? , statusPaciente='internado' , funcionarioAntedimento=? where id=? ");
+            ps1.setString(1, leito);
+            ps1.setString(2, funcionario);
+            ps1.setString(3, paciente);
+            ps1.executeUpdate();
+            ps1.closeOnCompletion();
+
+            PreparedStatement ps2 = conn.prepareStatement("update leitos SET ocupado=true where idLeito=?");
+            ps2.setString(1, leito);
+            ps2.executeUpdate();
+            ps2.closeOnCompletion();
+
+        } catch (SQLException throwables) {
+            System.out.println("SQLException");
+            throwables.printStackTrace();
+
+        } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
+            classNotFoundException.printStackTrace();
+        }
+    }
+
+    public int pacientesInternados() throws ClassNotFoundException, SQLException{
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select COUNT(leito) from pacientes where statusPaciente = 'internado';");
+
+            int total = 0;
+            while(rs.next()){
+                total = rs.getInt(1);
+            }
+            System.out.println(total);
+            return total;
+
+        }catch (SQLException throwables) {
+            System.out.println("SQLException");
+            throwables.printStackTrace();
+
+        } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
+            classNotFoundException.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int pacientesAguardando() throws ClassNotFoundException, SQLException{
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/s03_prog02_database","root", "root");
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select COUNT(ocupado) from leitos where ocupado= false;");
+
+            int total = 0;
+            while(rs.next()){
+                total = rs.getInt(1);
+            }
+            System.out.println(total);
+            return total;
+
+        }catch (SQLException throwables) {
+            System.out.println("SQLException");
+            throwables.printStackTrace();
+
+        } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("classNotFoundException");
+            classNotFoundException.printStackTrace();
+        }
+        return 0;
+    }
 
 }

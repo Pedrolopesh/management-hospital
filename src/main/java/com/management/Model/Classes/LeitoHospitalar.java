@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
     private String idLeito;
     private boolean ocupado;
+    private String nomeLeito;
 
     public Paciente getPaciente() {
         return paciente;
@@ -18,13 +19,21 @@ public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
     public Paciente paciente;
     private ArrayList<Equipamento> equipamentos;
 
-    public LeitoHospitalar(String idLeito, boolean ocupado) {
+    public LeitoHospitalar(String nomeLeito, String idLeito, boolean ocupado) {
+        this.nomeLeito = nomeLeito;
         this.idLeito = idLeito;
         this.paciente = new Paciente();
         this.ocupado = ocupado;
         this.equipamentos = new ArrayList<Equipamento>();
     }
 
+    public String getNomeLeito() {
+        return this.nomeLeito;
+    }
+
+    public void setNomeLeito(String nomeLeito) {
+        this.nomeLeito = nomeLeito;
+    }
 
     public String getIdLeito() {
         return idLeito;
@@ -37,6 +46,11 @@ public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
     public boolean setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
         return true;
+    }
+
+
+    public void setidLeito(String idLeito) {
+        this.idLeito = idLeito;
     }
 
     public void addEquipamento(Equipamento equipamentos) {
@@ -54,8 +68,7 @@ public class LeitoHospitalar implements Comparable <LeitoHospitalar>{
 
     public String toString() {
         String texto = "";
-        texto = texto + "ID do leito :" + this.idLeito + " \n";
-        texto = texto + "Ocupado ?" + this.ocupado + " \n";
+        texto = texto + "Leito:" + this.nomeLeito + " \n";
         return texto;
     }
 

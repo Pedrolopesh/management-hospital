@@ -46,7 +46,7 @@ public class FuncionarioListaUI extends JFrame {
             funcionarioArrayList = this.funcionarioController.getFuncionarios();
 
             for(Funcionario umfuncionario : funcionarioArrayList){
-                funcionarioList.add(new Funcionario(umfuncionario.getNome(), umfuncionario.getEmail(), umfuncionario.getId(), umfuncionario.getTelefone(), umfuncionario.getCargo(), umfuncionario.getStatusFuncionario(), umfuncionario.getPacientesAtendidos(),""));
+                funcionarioList.add(new Funcionario(umfuncionario.getId(), umfuncionario.getNome(), umfuncionario.getTelefone(), umfuncionario.getEmail(), umfuncionario.getCargo(), umfuncionario.getStatusFuncionario(), umfuncionario.getPacientesAtendidos(), ""));
             }
 
             FuncionarioModel funcionarioModel = new FuncionarioModel(funcionarioList);
@@ -83,13 +83,12 @@ public class FuncionarioListaUI extends JFrame {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             return switch (columnIndex) {
-                case 0 -> funcionarioList.get(rowIndex).getId();
-                case 1 -> funcionarioList.get(rowIndex).getNome();
+                case 0 -> funcionarioList.get(rowIndex).getNome();
+                case 1 -> funcionarioList.get(rowIndex).getId();
                 case 2 -> funcionarioList.get(rowIndex).getTelefone();
-                case 3 -> funcionarioList.get(rowIndex).getTelefone();
-                case 4 -> funcionarioList.get(rowIndex).getCargo();
-                case 5 -> funcionarioList.get(rowIndex).getStatusFuncionario();
-                case 6 -> funcionarioList.get(rowIndex).getPacientesAtendidos();
+                case 3 -> funcionarioList.get(rowIndex).getCargo();
+                case 4 -> funcionarioList.get(rowIndex).getStatusFuncionario();
+                case 5 -> funcionarioList.get(rowIndex).getPacientesAtendidos();
                 default -> "-";
             };
         }
